@@ -1,35 +1,39 @@
-#include <iostream>
-#include <conio.h>
+# include <iostream>
+# include <conio.h>
 using namespace std;
+
 class Converter
 {
 private:
-	int a;
-	double c;
+	double w;
 	double b;
 	double m;
+	int a;	// переменная отвечающая ща текущий вес в килограммах
 public:
-	void GetA();
-	void check(int *_a)
+	Converter()
 	{
-		cout << *_a;
+		a = 0;
+		cout << "Работа конструктора при создании нового объекта: " << endl;
+		cout << "a = " << a << endl;
+
 	}
-
+	void setConverter()
+	{
+		cout << "Введите вес в килограммах = а: ";
+		cin >> a;
+	}
+	void getConverter() //выведем на экран измененные значения
+	{
+		cout << "Текущий вес в килограммах a = " << a << endl;
+	}
 };
-void Converter::GetA()
-{
-	cin >> a;
-}
-
-
-
-
-
-
 int main()
 {
-	Converter С1;
+	int a = 0;
+	setlocale(LC_ALL, "rus");
+	Converter C1;
 
-	С1.check(&a);
+	C1.setConverter();
+	C1.getConverter();
 	system("pause");
 }
