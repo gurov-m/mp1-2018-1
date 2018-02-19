@@ -165,7 +165,6 @@ int main()
 				}
 				}
 			}
-			h = 1;
 			break;
 		}
 		case 4:
@@ -182,9 +181,7 @@ WeightConverter::WeightConverter(int _weight):weight(_weight)
 
 int WeightConverter::GetWeightInKilograms()
 {
-	return weight 
-	cout<< "     \n";
-	
+	return weight;	
 }
 void WeightConverter::SetWeightInKilograms(int _weight)
 {
