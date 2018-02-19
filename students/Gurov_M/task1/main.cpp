@@ -179,9 +179,9 @@ int WeightConverter::GetWeightInKilograms()
 {
 	cout << weight << "     \n";
 }
-void WeightConverter::SetWeightInKilograms(int *_weight)
+void WeightConverter::SetWeightInKilograms(int _weight)
 {
-	weight = *_weight;
+	weight = _weight;
 }
 int WeightConverter::GetWeightInGrams()
 {
