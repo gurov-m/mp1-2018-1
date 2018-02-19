@@ -7,87 +7,216 @@
 #include <conio.h>
 #include <stdio.h>
 using namespace std;
-
-class Converter
+void data_entry(int *_w);
+class Weight_Converter
 {
 private:
-	int a;	// переменная отвечающая ща текущий вес в килограммах
+
+	int weight;	// argument responsible for the current weight in kilograms
+
 public:
-	Converter()
-	{
-		a = 0;
-		cout << "Работа конструктора при создании нового объекта: " << endl;
-		cout << "a = " << a << " текущий вес в киллограммах" << endl;
 
-	}
-	void setConverter()
-	{
-		cout << "Введите вес в килограммах = а: ";
-		cin >> a;
-	}
+	Weight_Converter(int _weight = 0);
 
-	void getConverter()
-	{
-		cout << "Текущий вес в килограммах a = " << a << endl;
-	}
-	void Conversion()
-	{
-		cout << "в каратах = " << a * 5000 << endl;
-		cout << "в граммах = " << a * 1000 << endl;
-		cout << "в граммах = " << a * 1000 << endl;
-		cout << "в миллиграммах = " << a * 1000000 << endl;
-		cout << "в каратах = " << a * 5000 << endl;
-		cout << "в унциях = " << a * 35.27396194958 << endl;
-		cout << "в пудах = " << a * 0.061 << endl;
-		cout << "в фунтах = " << a * 2.2046226218 << endl;
-		cout << "в аптечных фунтах  = " << a * 2.2679229035769 << endl;
-	}
+	void Set_Weight_In_Kilograms(int *_weight);
+
+	void Show_Current_Weight_In_Kilograms();
+
+	void Get_Weight_In_Grams();
+
+	void Get_Weight_In_Carats();
+
+	void Get_Weight_In_Milligrams();
+
+	void Get_Weight_In_Ounces();
+
+	void Get_Weight_In_Ponds();
+
+	void Get_Weight_In_Pounds();
+
+	void Get_Weight_In_Pharmacy_Pounds();
+
 };
 int main()
 {
+	int j = 0;
+	int _w = 0;
 	int b = 0;
 	int c = 1;
+	int h = 1;
 	setlocale(LC_ALL, "rus");
-	Converter C1;
+	Weight_Converter C1;
 	system("pause");
 	system("cls");
 	while (c == 1)
 	{
-		cout << "чтобы изменить текущей вес в килограммах введите 1 = b " << endl;
-		cout << "чтобы узнать текущий вес в килограммах введите 2 = b " << endl;
-		cout << "чтобы узнать текущей вес в отличных от килограммов единицах веса введите 3 = b" << endl;
-		cout << "чтобы чтобы выйти из программы введите любое число отличное от предложенных выше" << endl;
-		cout << "введите b =" << " ";
+		cout << "Set weight in kilograms                b = 1 " << endl;
+		cout << "Show current weight in kilograms       b = 2 " << endl;
+		cout << "Get weight in other weight units       b = 3 " << endl;
+		cout << "Exit b = 4 " << endl;
+		cout << "enter b =" << " ";
 		cin >> b;
 		switch (b)
 		{
 		case 1:
 		{
-			C1.setConverter();
+			data_entry(&_w);
+			C1.Set_Weight_In_Kilograms(&_w);
 			system("pause");
 			system("cls");
 			break;
 		}
 		case 2:
 		{
-			C1.getConverter();
+			C1.Show_Current_Weight_In_Kilograms();
 			system("pause");
 			system("cls");
 			break;
 		}
 		case 3:
 		{
-			C1.Conversion();
-			system("pause");
-			system("cls");
+			while (h == 1)
+			{
+				cout << "Get weight in grams           j = 1 " << endl;
+				cout << "Get weight in carats          j = 2 " << endl;
+				cout << "Get weight in milligrams      j = 3 " << endl;
+				cout << "Get weight in ounces          j = 4 " << endl;
+				cout << "Get weight in ponds           j = 5 " << endl;
+				cout << "Get weight in pounds          j = 6 " << endl;
+				cout << "Get weight in pharmacy pounds j = 7 " << endl;
+				cout << "Exit                          j = 8 " << endl;
+				cout << "enter j =" << " ";
+				cin >> j;
+				switch (j)
+				{
+				case 1:
+				{
+					cout << " \n";
+					C1.Get_Weight_In_Grams();
+					cout << " \n";
+					system("pause");
+					system("cls");
+					break;
+				}
+				case 2:
+				{
+					cout << " \n";
+					C1.Get_Weight_In_Carats();
+					cout << " \n";
+					system("pause");
+					system("cls");
+					break;
+				}
+				case 3:
+				{
+					cout << " \n";
+					C1.Get_Weight_In_Milligrams();
+					cout << " \n";
+					system("pause");
+					system("cls");
+					break;
+				}
+				case 4:
+				{
+					cout << " \n";
+					C1.Get_Weight_In_Ounces();
+					cout << " \n";
+					system("pause");
+					system("cls");
+					break;
+				}
+				case 5:
+				{
+					cout << " \n";
+					C1.Get_Weight_In_Ponds();
+					cout << " \n";
+					system("pause");
+					system("cls");
+					break;
+				}
+				case 6:
+				{
+					cout << " \n";
+					C1.Get_Weight_In_Pounds();
+					cout << " \n";
+					system("pause");
+					system("cls");
+					break;
+				}
+				case 7:
+				{
+					cout << " \n";
+					C1.Get_Weight_In_Pharmacy_Pounds();
+					cout << " \n";
+					system("pause");
+					system("cls");
+					break;
+				}
+				case 8:
+				{
+					h = 0;
+					system("pause");
+					system("cls");
+					break;
+				}
+				}
+			}
 			break;
 		}
-		default:
+		case 4:
 		{
-
-			c++;
+			c = 0;
+			break;
 		}
+
 		}
 	}
 	system("pause");
 }
+Weight_Converter::Weight_Converter(int _weight)
+{
+	weight = _weight;
+}
+void Weight_Converter::Show_Current_Weight_In_Kilograms()
+{
+	cout << weight << "     \n";
+}
+void Weight_Converter::Set_Weight_In_Kilograms(int *_weight)
+{
+	weight = *_weight;
+}
+void Weight_Converter::Get_Weight_In_Grams()
+{
+	cout << weight * 1000;
+}
+void Weight_Converter::Get_Weight_In_Carats()
+{
+	cout << weight * 5000;
+}
+void Weight_Converter::Get_Weight_In_Milligrams()
+{
+	cout << weight * 1000000;
+}
+void Weight_Converter::Get_Weight_In_Ounces()
+{
+	cout << weight * 35.27396194958;
+}
+void Weight_Converter::Get_Weight_In_Ponds()
+{
+	cout << weight * 0.061;
+}
+void Weight_Converter::Get_Weight_In_Pounds()
+{
+	cout << weight * 2.2046226218;
+}
+void Weight_Converter::Get_Weight_In_Pharmacy_Pounds()
+{
+	cout << weight * 2.2679229035769;
+}
+void data_entry(int *_w)
+{
+	cout << "Enter Weight ";
+	cin >> *_w;
+}
+
+
