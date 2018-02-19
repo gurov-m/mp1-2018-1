@@ -14,7 +14,7 @@ private:
 
 public:
 
-	WeightConverter(int _weight = 1);
+	WeightConverter(int _weight = 0);
 
 	void SetWeightInKilograms(int _weight);
 
