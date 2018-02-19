@@ -9,37 +9,23 @@ void DataEntry(int _w);
 class WeightConverter
 {
 private:
-
 	int weight;	// argument responsible for the current weight in kilograms
-
 public:
-
 	WeightConverter(int _weight = 0);
-
 	void SetWeightInKilograms(int _weight);
-
 	int GetWeightInKilograms();
-
 	int GetWeightInGrams();
-
 	int GetWeightInCarats();
-
 	int GetWeightInMilligrams();
-
 	double GetWeightInOunces();
-
 	double GetWeightInPonds();
-
 	double GetWeightInPounds();
-
 	double GetWeightInPharmacyPounds();
-
 	WeightConverter& operator=(const WeightConverter& obj)
 	{
 		weight = obj.weight;
 		return *this;
 	}
-
 };
 int main()
 {
@@ -172,13 +158,14 @@ int main()
 			c = 0;
 			break;
 		}
-
 		}
 	}
 	system("pause");
 }
-WeightConverter::WeightConverter(int _weight):weight(_weight)
-
+WeightConverter::WeightConverter(int _weight)
+{
+	weight = _weight;
+}
 int WeightConverter::GetWeightInKilograms()
 {
 	return weight;	
