@@ -1,9 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <time.h>
-#include <ctime>
 #include <math.h>
-#include <windows.h>
 #include <conio.h>
 #include <stdio.h>
 using namespace std;
@@ -35,6 +33,12 @@ public:
 	int GetWeightInPounds();
 
 	int GetWeightInPharmacyPounds();
+
+	WeightConverter& operator=(const WeightConverter& obj)
+	{
+		weight = obj.weight;
+		return *this;
+	}
 
 };
 int main()
@@ -178,6 +182,7 @@ WeightConverter::WeightConverter(int _weight):weight(_weight)
 int WeightConverter::GetWeightInKilograms()
 {
 	cout << weight << "     \n";
+	return 0;
 }
 void WeightConverter::SetWeightInKilograms(int _weight)
 {
