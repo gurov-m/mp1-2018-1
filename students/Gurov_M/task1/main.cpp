@@ -14,7 +14,7 @@ private:
 
 public:
 
-	WeightConverter(int _weight = 0);
+	WeightConverter(int _weight = 1);
 
 	void SetWeightInKilograms(int _weight);
 
@@ -181,8 +181,9 @@ WeightConverter::WeightConverter(int _weight):weight(_weight)
 
 int WeightConverter::GetWeightInKilograms()
 {
-	cout << weight << "     \n";
-	return 0;
+	return weight 
+	cout<< "     \n";
+	
 }
 void WeightConverter::SetWeightInKilograms(int _weight)
 {
@@ -190,31 +191,31 @@ void WeightConverter::SetWeightInKilograms(int _weight)
 }
 int WeightConverter::GetWeightInGrams()
 {
-	cout << weight * 1000;
+	return weight * 1000;
 }
 int WeightConverter::GetWeightInCarats()
 {
-	cout << weight * 5000;
+	return weight * 5000;
 }
 int WeightConverter::GetWeightInMilligrams()
 {
-	cout << weight * 1000000;
+	return weight * 1000000;
 }
 int WeightConverter::GetWeightInOunces()
 {
-	cout << weight * 35.27396194958;
+	return weight * 35.27396194958;
 }
 int WeightConverter::GetWeightInPonds()
 {
-	cout << weight * 0.061;
+	return weight * 0.061;
 }
 int WeightConverter::GetWeightInPounds()
 {
-	cout << weight * 2.2046226218;
+	return weight * 2.2046226218;
 }
 int WeightConverter::GetWeightInPharmacyPounds()
 {
-	cout << weight * 2.2679229035769;
+	return weight * 2.2679229035769;
 }
 void DataEntry(int _w)
 {
