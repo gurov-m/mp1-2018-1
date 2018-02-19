@@ -7,7 +7,7 @@
 #include <conio.h>
 #include <stdio.h>
 using namespace std;
-void data_entry(int *_w);
+void DataEntry(int _w);
 class Weight_Converter
 {
 private:
@@ -16,25 +16,25 @@ private:
 
 public:
 
-	Weight_Converter(int _weight = 0);
+	WeightConverter(int _weight = 0);
 
-	void Set_Weight_In_Kilograms(int *_weight);
+	void SetWeightInKilograms(int _weight);
 
-	void Show_Current_Weight_In_Kilograms();
+	int GetWeightInKilograms();
 
-	void Get_Weight_In_Grams();
+	int GetWeightInGrams();
 
-	void Get_Weight_In_Carats();
+	int GetWeightInCarats();
 
-	void Get_Weight_In_Milligrams();
+	int GetWeightInMilligrams();
 
-	void Get_Weight_In_Ounces();
+	int GetWeightInOunces();
 
-	void Get_Weight_In_Ponds();
+	int GetWeightInPonds();
 
-	void Get_Weight_In_Pounds();
+	int GetWeightInPounds();
 
-	void Get_Weight_In_Pharmacy_Pounds();
+	int GetWeightInPharmacyPounds();
 
 };
 int main()
@@ -45,13 +45,13 @@ int main()
 	int c = 1;
 	int h = 1;
 	setlocale(LC_ALL, "rus");
-	Weight_Converter C1;
+	WeightConverter C1;
 	system("pause");
 	system("cls");
 	while (c == 1)
 	{
 		cout << "Set weight in kilograms                b = 1 " << endl;
-		cout << "Show current weight in kilograms       b = 2 " << endl;
+		cout << "Get current weight in kilograms       b = 2 " << endl;
 		cout << "Get weight in other weight units       b = 3 " << endl;
 		cout << "Exit b = 4 " << endl;
 		cout << "enter b =" << " ";
@@ -60,15 +60,15 @@ int main()
 		{
 		case 1:
 		{
-			data_entry(&_w);
-			C1.Set_Weight_In_Kilograms(&_w);
+			DataEntry(_w);
+			C1.SetWeightInKilograms(_w);
 			system("pause");
 			system("cls");
 			break;
 		}
 		case 2:
 		{
-			C1.Show_Current_Weight_In_Kilograms();
+			C1.GetWeightInKilograms();
 			system("pause");
 			system("cls");
 			break;
@@ -92,7 +92,7 @@ int main()
 				case 1:
 				{
 					cout << " \n";
-					C1.Get_Weight_In_Grams();
+					C1.GetWeightInGrams();
 					cout << " \n";
 					system("pause");
 					system("cls");
@@ -101,7 +101,7 @@ int main()
 				case 2:
 				{
 					cout << " \n";
-					C1.Get_Weight_In_Carats();
+					C1.GetWeightInCarats();
 					cout << " \n";
 					system("pause");
 					system("cls");
@@ -110,7 +110,7 @@ int main()
 				case 3:
 				{
 					cout << " \n";
-					C1.Get_Weight_In_Milligrams();
+					C1.GetWeightInMilligrams();
 					cout << " \n";
 					system("pause");
 					system("cls");
@@ -119,7 +119,7 @@ int main()
 				case 4:
 				{
 					cout << " \n";
-					C1.Get_Weight_In_Ounces();
+					C1.GetWeightInOunces();
 					cout << " \n";
 					system("pause");
 					system("cls");
@@ -128,7 +128,7 @@ int main()
 				case 5:
 				{
 					cout << " \n";
-					C1.Get_Weight_In_Ponds();
+					C1.GetWeightInPonds();
 					cout << " \n";
 					system("pause");
 					system("cls");
@@ -137,7 +137,7 @@ int main()
 				case 6:
 				{
 					cout << " \n";
-					C1.Get_Weight_In_Pounds();
+					C1.GetWeightInPounds();
 					cout << " \n";
 					system("pause");
 					system("cls");
@@ -146,7 +146,7 @@ int main()
 				case 7:
 				{
 					cout << " \n";
-					C1.Get_Weight_In_Pharmacy_Pounds();
+					C1.GetWeightInPharmacyPounds();
 					cout << " \n";
 					system("pause");
 					system("cls");
@@ -173,50 +173,48 @@ int main()
 	}
 	system("pause");
 }
-Weight_Converter::Weight_Converter(int _weight)
-{
-	weight = _weight;
-}
-void Weight_Converter::Show_Current_Weight_In_Kilograms()
+WeightConverter::WeightConverter(int _weight):weight(_weight)
+
+int WeightConverter::GetWeightInKilograms()
 {
 	cout << weight << "     \n";
 }
-void Weight_Converter::Set_Weight_In_Kilograms(int *_weight)
+void WeightConverter::SetWeightInKilograms(int *_weight)
 {
 	weight = *_weight;
 }
-void Weight_Converter::Get_Weight_In_Grams()
+int WeightConverter::GetWeightInGrams()
 {
 	cout << weight * 1000;
 }
-void Weight_Converter::Get_Weight_In_Carats()
+int WeightConverter::GetWeightInCarats()
 {
 	cout << weight * 5000;
 }
-void Weight_Converter::Get_Weight_In_Milligrams()
+int WeightConverter::GetWeightInMilligrams()
 {
 	cout << weight * 1000000;
 }
-void Weight_Converter::Get_Weight_In_Ounces()
+int WeightConverter::GetWeightInOunces()
 {
 	cout << weight * 35.27396194958;
 }
-void Weight_Converter::Get_Weight_In_Ponds()
+int WeightConverter::GetWeightInPonds()
 {
 	cout << weight * 0.061;
 }
-void Weight_Converter::Get_Weight_In_Pounds()
+int WeightConverter::GetWeightInPounds()
 {
 	cout << weight * 2.2046226218;
 }
-void Weight_Converter::Get_Weight_In_Pharmacy_Pounds()
+int WeightConverter::GetWeightInPharmacyPounds()
 {
 	cout << weight * 2.2679229035769;
 }
-void data_entry(int *_w)
+void DataEntry(int _w)
 {
 	cout << "Enter Weight ";
-	cin >> *_w;
+	cin >> _w;
 }
 
 
