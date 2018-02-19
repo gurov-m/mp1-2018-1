@@ -8,7 +8,7 @@
 #include <stdio.h>
 using namespace std;
 void DataEntry(int _w);
-class Weight_Converter
+class WeightConverter
 {
 private:
 
