@@ -26,13 +26,13 @@ public:
 
 	int GetWeightInMilligrams();
 
-	int GetWeightInOunces();
+	double GetWeightInOunces();
 
-	int GetWeightInPonds();
+	double GetWeightInPonds();
 
-	int GetWeightInPounds();
+	double GetWeightInPounds();
 
-	int GetWeightInPharmacyPounds();
+	double GetWeightInPharmacyPounds();
 
 	WeightConverter& operator=(const WeightConverter& obj)
 	{
@@ -165,6 +165,7 @@ int main()
 				}
 				}
 			}
+			h = 1;
 			break;
 		}
 		case 4:
@@ -201,19 +202,19 @@ int WeightConverter::GetWeightInMilligrams()
 {
 	return weight * 1000000;
 }
-int WeightConverter::GetWeightInOunces()
+double WeightConverter::GetWeightInOunces()
 {
 	return weight * 35.27396194958;
 }
-int WeightConverter::GetWeightInPonds()
+double WeightConverter::GetWeightInPonds()
 {
 	return weight * 0.061;
 }
-int WeightConverter::GetWeightInPounds()
+double WeightConverter::GetWeightInPounds()
 {
 	return weight * 2.2046226218;
 }
-int WeightConverter::GetWeightInPharmacyPounds()
+double WeightConverter::GetWeightInPharmacyPounds()
 {
 	return weight * 2.2679229035769;
 }
