@@ -5,14 +5,14 @@
 #include <conio.h>
 #include <stdio.h>
 using namespace std;
-void DataEntry(int _w);
+void DataEntry(int *_w);
 class WeightConverter
 {
 private:
-	int weight;	// argument responsible for the current weight in kilograms
+	int weight = 0;	// argument responsible for the current weight in kilograms
 public:
 	WeightConverter(int _weight = 0);
-	void SetWeightInKilograms(int _weight);
+	void SetWeightInKilograms(int *_weight);
 	int GetWeightInKilograms();
 	int GetWeightInGrams();
 	int GetWeightInCarats();
@@ -25,6 +25,38 @@ public:
 	{
 		weight = obj.weight;
 		return *this;
+	}
+	void print1()
+	{
+		cout << GetWeightInKilograms() << "\n";
+	}
+	void print2()
+	{
+		cout << GetWeightInGrams() << "\n";
+	}
+	void print3()
+	{
+		cout << GetWeightInCarats() << "\n";
+	}
+	void print4()
+	{
+		cout << GetWeightInMilligrams() << "\n";
+	}
+	void print5()
+	{
+		cout << GetWeightInOunces() << "\n";
+	}
+	void print6()
+	{
+		cout << GetWeightInPonds() << "\n";
+	}
+	void print7()
+	{
+		cout << GetWeightInPounds() << "\n";
+	}
+	void print8()
+	{
+		cout << GetWeightInPharmacyPounds() << "\n";
 	}
 };
 int main()
@@ -41,7 +73,7 @@ int main()
 	while (c == 1)
 	{
 		cout << "Set weight in kilograms                b = 1 " << endl;
-		cout << "Get current weight in kilograms       b = 2 " << endl;
+		cout << "Get current weight in kilograms        b = 2 " << endl;
 		cout << "Get weight in other weight units       b = 3 " << endl;
 		cout << "Exit b = 4 " << endl;
 		cout << "enter b =" << " ";
@@ -50,21 +82,24 @@ int main()
 		{
 		case 1:
 		{
-			DataEntry(_w);
-			C1.SetWeightInKilograms(_w);
+			DataEntry(&_w);
+			C1.SetWeightInKilograms(&_w);
 			system("pause");
 			system("cls");
 			break;
 		}
 		case 2:
 		{
-			C1.GetWeightInKilograms();
+			C1.print1();//Get current weight in kilograms
 			system("pause");
 			system("cls");
 			break;
 		}
 		case 3:
 		{
+			h = 1;
+			system("pause");
+			system("cls");
 			while (h == 1)
 			{
 				cout << "Get weight in grams           j = 1 " << endl;
@@ -82,7 +117,7 @@ int main()
 				case 1:
 				{
 					cout << " \n";
-					C1.GetWeightInGrams();
+					C1.print2();//Get weight in grams
 					cout << " \n";
 					system("pause");
 					system("cls");
@@ -91,7 +126,7 @@ int main()
 				case 2:
 				{
 					cout << " \n";
-					C1.GetWeightInCarats();
+					C1.print3();//Get weight in carats 
 					cout << " \n";
 					system("pause");
 					system("cls");
@@ -100,7 +135,7 @@ int main()
 				case 3:
 				{
 					cout << " \n";
-					C1.GetWeightInMilligrams();
+					C1.print4();//Get weight in milligrams
 					cout << " \n";
 					system("pause");
 					system("cls");
@@ -109,7 +144,7 @@ int main()
 				case 4:
 				{
 					cout << " \n";
-					C1.GetWeightInOunces();
+					C1.print5();//Get weight in ounces
 					cout << " \n";
 					system("pause");
 					system("cls");
@@ -118,7 +153,7 @@ int main()
 				case 5:
 				{
 					cout << " \n";
-					C1.GetWeightInPonds();
+					C1.print6();//Get weight in ponds
 					cout << " \n";
 					system("pause");
 					system("cls");
@@ -127,7 +162,7 @@ int main()
 				case 6:
 				{
 					cout << " \n";
-					C1.GetWeightInPounds();
+					C1.print7();//Get weight in pounds
 					cout << " \n";
 					system("pause");
 					system("cls");
@@ -136,7 +171,7 @@ int main()
 				case 7:
 				{
 					cout << " \n";
-					C1.GetWeightInPharmacyPounds();
+					C1.print8();//Get weight in pharmacy pounds
 					cout << " \n";
 					system("pause");
 					system("cls");
@@ -150,6 +185,7 @@ int main()
 					break;
 				}
 				}
+
 			}
 			break;
 		}
@@ -168,11 +204,11 @@ WeightConverter::WeightConverter(int _weight)
 }
 int WeightConverter::GetWeightInKilograms()
 {
-	return weight;	
+	return weight;
 }
-void WeightConverter::SetWeightInKilograms(int _weight)
+void WeightConverter::SetWeightInKilograms(int *_weight)
 {
-	weight = _weight;
+	weight = *_weight;
 }
 int WeightConverter::GetWeightInGrams()
 {
@@ -202,10 +238,8 @@ double WeightConverter::GetWeightInPharmacyPounds()
 {
 	return weight * 2.2679229035769;
 }
-void DataEntry(int _w)
+void DataEntry(int *_w)
 {
 	cout << "Enter Weight ";
-	cin >> _w;
+	cin >> *_w;
 }
-
-
