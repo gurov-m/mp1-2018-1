@@ -82,8 +82,7 @@ public:
 			indicator = 0;
 			for (int j = 0; j < i; j++)
 			{
-				if (string[i] != string[j])
-					for (int p = 0; p < 52; p++)
+				if (string[i] != string[j])					
 						if (isalpha(string[i]))
 							indicator++;
 			}
