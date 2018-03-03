@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cstring>
 #include <stdlib.h>
+#include <conio.h>
 #include <stdio.h>
 using namespace std;
 class Line
@@ -20,9 +21,9 @@ public:
 	}
 	void SetString(char* word)
 	{
-		int len = strlen(word);
+		int length = strlen(word);
 		delete[]string;
-		string = new char[len + 1];
+		string = new char[length + 1];
 		strcpy(string, word);
 	}
 	char* GetString()
@@ -31,17 +32,16 @@ public:
 	}
 	int GetStringLength()
 	{
-		length = strlen(string);
 		return length;
 	}
-	int isPalindrom()
+	bool isPalindrom()
 	{
 		for (int i = 0; i < length / 2; i++)
 			if (string[i] != string[length - 1 - i])
 				return -1;
 		return 1;
 	}
-	Line operator=(Line &obj1)
+	Line& operator=(Line &obj1)
 	{
 		if (this == &obj1)
 			return *this;
@@ -73,7 +73,7 @@ public:
 	{
 		return string[k];
 	}
-	int HowManyDifferentSymbolsInString()
+	int HowManyDifferentLatinSymbolsInString()
 	{
 		int counter = 0;
 		int indicator;
@@ -83,7 +83,9 @@ public:
 			for (int j = 0; j < i; j++)
 			{
 				if (string[i] != string[j])
-					indicator++;
+					for (int p = 0; p < 52; p++)
+						if (isalpha(string[i]))
+							indicator++;
 			}
 			if (indicator == i)
 				counter++;
@@ -93,6 +95,7 @@ public:
 };
 int main()
 {
+
 	char word;
 	int start = 0;
 	int _length = 0;
@@ -190,7 +193,7 @@ int main()
 		}
 		case 7:
 		{
-			cout << "\n" << S1.HowManyDifferentSymbolsInString() << endl;
+			cout << "\n" << S1.HowManyDifferentLatinSymbolsInString() << endl;
 			system("pause");
 			system("cls");
 			break;
