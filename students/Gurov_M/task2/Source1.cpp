@@ -10,26 +10,24 @@ private:
 	int   length;
 	char *string;
 public:
-	Line()   // конструктор 
+	Line()
 	{
 		string = new char[41];
 	}
-	~Line()  // деструктор
+	~Line()
 	{
 		delete[]string;
 	}
-	int SetString() //получение строки от пользователя (работает)
+
+	void SetString(char* word)
 	{
-		cout << "Enter the string: ";
-		cin >> string;
-		length = strlen(string);
-		return length;
+		string = word;
 	}
-	char* GetString()  //показ строки (работает)
+	char* GetString()
 	{
 		return string;
 	}
-	int GetStringLenght() // получение длины строки (работает)
+	int GetStringLength()
 	{
 		length = strlen(string);
 		return length;
@@ -63,22 +61,20 @@ public:
 	}
 	char GetSymbol(int index)
 	{
-		return string[index - 1];
+		return string[index];
 	}
 	void ChangeSymbolFromString(int index2, char change)
 	{
-		string[index2 - 1] = change;
+		string[index2] = change;
 	}
-	void GetPartOfString(int start, int _length = 0)
+	char GetPartOfString(int start, int _length = 0)
 	{
-		cout << "\n";
 		for (int i = start; i < (start + _length); i++)
 		{
-			cout << string[i - 1];
+			return string[i - 1];
 		}
-		cout << "\n";
 	}
-	void HowManyDifferentSymbolsInString()
+	int HowManyDifferentSymbolsInString()
 	{
 		int counter = 0;
 		int indicator;
@@ -93,11 +89,13 @@ public:
 			if (indicator == i)
 				counter++;
 		}
-		cout << counter << endl;
+		return counter;
 	}
 };
+
 int main()
 {
+	char word;
 	int start = 0;
 	int _length = 0;
 	int index = 0;
@@ -106,7 +104,7 @@ int main()
 	char change = 0;
 	int j = 0;
 	Line S1;
-	S1.SetString();
+
 	while (h == 1)
 	{
 		cout << "Set string                     inter 0 \n" <<
@@ -123,8 +121,9 @@ int main()
 		{
 		case 0:
 		{
-			S1.SetString();
-			system("pause");
+			cout << "Enter string";
+			cin >> word;
+			S1.SetString(&word);
 			system("cls");
 			break;
 		}
@@ -137,7 +136,7 @@ int main()
 		}
 		case 2:
 		{
-			cout << "\n" << S1.GetStringLenght() << endl;
+			cout << "\n" << S1.GetStringLength() << endl;
 			system("pause");
 			system("cls");
 			break;
@@ -167,8 +166,7 @@ int main()
 			cin >> start;
 			cout << "\n" << "Enter length: ";
 			cin >> _length;
-			S1.GetPartOfString(start, _length);
-			cout << "\n";
+			cout << "\n" << S1.GetPartOfString(start, _length) << endl;
 			system("pause");
 			system("cls");
 			break;
@@ -187,7 +185,7 @@ int main()
 		}
 		case 7:
 		{
-			S1.HowManyDifferentSymbolsInString();
+			cout << S1.HowManyDifferentSymbolsInString() << endl;
 			system("pause");
 			system("cls");
 			break;
