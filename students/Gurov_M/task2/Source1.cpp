@@ -18,10 +18,12 @@ public:
 	{
 		delete[]string;
 	}
-
 	void SetString(char* word)
 	{
-		string = word;
+		int len = strlen(word);
+		delete[]string;
+		string = new char[len + 1];
+		strcpy(string, word);
 	}
 	char* GetString()
 	{
@@ -39,7 +41,7 @@ public:
 				return -1;
 		return 1;
 	}
-	Line operator=(const Line &obj1)
+	Line operator=(Line &obj1)
 	{
 		if (this == &obj1)
 			return *this;
@@ -67,12 +69,9 @@ public:
 	{
 		string[index2] = change;
 	}
-	char GetPartOfString(int start, int _length = 0)
+	char GetPartOfString(int k)
 	{
-		for (int i = start; i < (start + _length); i++)
-		{
-			return string[i - 1];
-		}
+		return string[k];
 	}
 	int HowManyDifferentSymbolsInString()
 	{
@@ -92,7 +91,6 @@ public:
 		return counter;
 	}
 };
-
 int main()
 {
 	char word;
@@ -104,7 +102,9 @@ int main()
 	char change = 0;
 	int j = 0;
 	Line S1;
-
+	cout << "Enter the string: ";
+	cin >> word;
+	S1.SetString(&word);
 	while (h == 1)
 	{
 		cout << "Set string                     inter 0 \n" <<
@@ -121,9 +121,10 @@ int main()
 		{
 		case 0:
 		{
-			cout << "Enter string";
+			cout << "Enter the string: ";
 			cin >> word;
 			S1.SetString(&word);
+			system("pause");
 			system("cls");
 			break;
 		}
@@ -166,7 +167,11 @@ int main()
 			cin >> start;
 			cout << "\n" << "Enter length: ";
 			cin >> _length;
-			cout << "\n" << S1.GetPartOfString(start, _length) << endl;
+			for (int i = start; i < (start + _length); i++)
+			{
+				cout << S1.GetPartOfString(i);
+			}
+			cout << "\n";
 			system("pause");
 			system("cls");
 			break;
@@ -185,7 +190,7 @@ int main()
 		}
 		case 7:
 		{
-			cout << S1.HowManyDifferentSymbolsInString() << endl;
+			cout << "\n" << S1.HowManyDifferentSymbolsInString() << endl;
 			system("pause");
 			system("cls");
 			break;
