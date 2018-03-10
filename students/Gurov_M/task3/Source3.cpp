@@ -43,7 +43,7 @@ public:
 		double sum1 = x;
 		for (int i = 1; i <= n; i++)
 		{
-			sum1 += (pow(-1, (i - 1))*pow(x, (2 * i - 1))) / factorial(2 * i - 1);
+			sum1 += (pow(-1, (2*i - 1))*pow(x, (2 * i - 1))) / factorial(2 * i - 1);
 		}
 		return sum1;
 	}
@@ -105,7 +105,7 @@ public:
 		if (num == 1)
 			return x;
 		else
-			return (pow(-1, (num - 1))*pow(x, (2 * num - 1))) / factorial(2 * num - 1);
+			return (pow(-1, (2*num - 1))*pow(x, (2 * num - 1))) / factorial(2 * num - 1);
 	}
 
 	double CalculateCurrentElementOfCos(int *k)
