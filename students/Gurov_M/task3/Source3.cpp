@@ -5,13 +5,13 @@ class TaylorSeries
 {
 	double x;
 	int    n;
-	int choice;
+	int functionNumber;
 public:
-	TaylorSeries(double _argument = 0, int _number_of_elements = 0, int _choice = 0)
+	TaylorSeries(double _argument = 0, int _number_of_elements = 0, int _functionNumber = 0)
 	{
 		x = _argument;
 		n = _number_of_elements;
-		choice = _choice;
+		functionNumber = _functionNumber;
 	}
 	~TaylorSeries()
 	{
@@ -21,7 +21,7 @@ public:
 	{
 		x = obj.x;
 		n = obj.n;
-		choice = obj.choice;
+		functionNumber = obj.functionNumber;
 		return *this;
 	}
 	int GetNumberOfElements()
@@ -32,9 +32,9 @@ public:
 	{
 		x = _argument;
 	}
-	void SaveChoiceInClass(int _choice)
+	void SetFunctionNumber(int _functionNumber)
 	{
-		choice = _choice;
+		functionNumber = _functionNumber;
 	}
 	void SetNumberOfElements(int _number)
 	{
@@ -89,7 +89,7 @@ public:
 	{
 		double sum = 0;
 		double g = 0;
-		switch (choice)
+		switch (functionNumber)
 		{
 		case 1:
 		{
@@ -101,7 +101,6 @@ public:
 				g *= -1.0 * x * x / ((2 * i - 1) * (2 * i));
 			}
 			return sum;
-			break;
 		}
 		case 2:
 		{
@@ -113,7 +112,6 @@ public:
 				g *= -1.0 * x * x / ((2 * i) * (2 * i + 1));
 			}
 			return sum;
-			break;
 		}
 		case 3:
 		{
@@ -126,15 +124,14 @@ public:
 				sum += g;
 			}
 			return sum;
-			break;
 		}
 		}
 	}
-	double GetDeviationValueOfSeries()
+	double GetAccuracyOfSeries()
 	{
 		double sum = 0;
 		double g = 0;
-		switch (choice)
+		switch (functionNumber)
 		{
 		case 1:
 		{
@@ -180,7 +177,7 @@ public:
 void   PrintSeries(const TaylorSeries &q1)
 {
 
-	switch (q1.choice)
+	switch (q1.functionNumber)
 	{
 	case 1:
 	{
@@ -224,7 +221,7 @@ void   PrintSeries(const TaylorSeries &q1)
 }
 int main()
 {
-	int choice = 0;
+	int functionNumber = 0;
 	double _x = 0;
 	int _n = 0;
 	int  k = 0;
@@ -251,21 +248,21 @@ int main()
 				<< "Enter 1 = cosx  \n"
 				<< "Enter 2 = sinx  \n"
 				<< "Enter 3 = exponent" << endl;
-			cin >> choice;
-			T.SaveChoiceInClass(choice);
+			cin >> functionNumber;
+			T.SetFunctionNumber(functionNumber);
 			system("pause");
 			system("cls");
 			break;
 		}
 		case 1:
 		{
-			if (choice == 0)
+			if (functionNumber == 0)
 				cout << "You didnt choose any function" << endl;
-			if (choice == 1)
+			if (functionNumber == 1)
 				cout << "cosx" << endl;
-			if (choice == 2)
+			if (functionNumber == 2)
 				cout << "sinx" << endl;
-			if (choice == 3)
+			if (functionNumber == 3)
 				cout << "exponent" << endl;
 			system("pause");
 			system("cls");
@@ -317,11 +314,11 @@ int main()
 			T.SetArgument(_x);
 			cout << "\n" << "Enter number of element: ";
 			cin >> k;
-			if (choice == 1)
+			if (functionNumber == 1)
 				cout << "\n" << T.CalculateCurrentElementOfCos(k) << endl;
-			if (choice == 2)
+			if (functionNumber == 2)
 				cout << "\n" << T.CalculateCurrentElementOfSin(k) << endl;
-			if (choice == 3)
+			if (functionNumber == 3)
 				cout << "\n" << T.CalculateCurrentElementOfExponent(k) << endl;
 			system("pause");
 			system("cls");
@@ -335,7 +332,7 @@ int main()
 			cout << "\n" << "Enter argument x: ";
 			cin >> _x;
 			T.SetArgument(_x);
-			cout << "\n" << T.GetDeviationValueOfSeries() << endl;
+			cout << "\n" << T.GetAccuracyOfSeries() << endl;
 			system("pause");
 			system("cls");
 			break;
