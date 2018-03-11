@@ -32,7 +32,7 @@ public:
 	{
 		x = _argument;
 	}
-	void SetChoice(int _choice)
+	void SaveChoiceInClass(int _choice)
 	{
 		choice = _choice;
 	}
@@ -40,9 +40,7 @@ public:
 	{
 		n = _number;
 	}
-	friend  double CalculateSeries(const TaylorSeries &s1);
 	friend  void   PrintSeries(const TaylorSeries &q1);
-	friend  double ReferenceValue(const TaylorSeries &s1);
 	double CalculateCurrentElementOfExponent(int k)
 	{
 		double u = 1.0;
@@ -87,52 +85,104 @@ public:
 			u *= j;
 		return (i / u);
 	}
-};
-double CalculateSeries(const TaylorSeries &s1)
-{
-	double g = s1.x;
-	if (s1.choice == 1)
-		g = 1.0;
+	double CalculateSeries()
+	{
+		double sum = 0;
+		double g = 0;
+		switch (choice)
+		{
+		case 1:
+		{
+			g = 1.0;
+			sum = 0.0;
+			for (int i = 1; i <= n; i++)
+			{
+				sum += g;
+				g *= -1.0 * x * x / ((2 * i - 1) * (2 * i));
+			}
+			return sum;
+			break;
+		}
+		case 2:
+		{
+			g = x;
+			sum = 0.0;
+			for (int i = 1; i <= n; i++)
+			{
+				sum += g;
+				g *= -1.0 * x * x / ((2 * i) * (2 * i + 1));
+			}
+			return sum;
+			break;
+		}
+		case 3:
+		{
 
-	double sum2 = 0.0;
-	for (int i = 1; i <= s1.n; i++)
-	{
-		sum2 += g;
-		g *= -1.0 * s1.x * s1.x / ((2 * i - 1) * (2 * i));
+			g = 1.0;
+			sum = 1.0;
+			for (int i = 1; i <= n; i++)
+			{
+				g *= (x / i);
+				sum += g;
+			}
+			return sum;
+			break;
+		}
+		}
 	}
-	return sum2;
-	if (s1.choice == 2)
-		g = s1.x;
-	double sum1 = 0.0;
-	for (int i = 1; i <= s1.n; i++)
+	double GetDeviationValueOfSeries()
 	{
-		sum1 += g;
-		g *= -1.0 * s1.x * s1.x / ((2 * i) * (2 * i + 1));
+		double sum = 0;
+		double g = 0;
+		switch (choice)
+		{
+		case 1:
+		{
+			g = 1.0;
+			sum = 0.0;
+
+			for (int i = 1; i <= n; i++)
+			{
+				sum += g;
+				g *= -1.0 * x * x / ((2 * i - 1) * (2 * i));
+			}
+			return abs(sum - cos(x));
+			break;
+		}
+		case 2:
+		{
+			g = x;
+			sum = 0.0;
+			for (int i = 1; i <= n; i++)
+			{
+				sum += g;
+				g *= -1.0 * x * x / ((2 * i) * (2 * i + 1));
+			}
+			return abs(sum - sin(x));
+			break;
+		}
+		case 3:
+		{
+
+			g = 1.0;
+			sum = 1.0;
+			for (int i = 1; i <= n; i++)
+			{
+				g *= (x / i);
+				sum += g;
+			}
+			return abs(sum - exp(x));
+			break;
+		}
+		}
 	}
-	return sum1;
-	if (s1.choice == 3)
-		g = 1.0;
-	double sum3 = 1.0;
-	for (int i = 1; i <= s1.n; i++)
-	{
-		g *= (s1.x / i);
-		sum3 += g;
-	}
-	return sum3;
-}
-double ReferenceValue(const TaylorSeries &s1)
-{
-	if (s1.choice == 1)
-		return cos(s1.x);
-	if (s1.choice == 2)
-		return sin(s1.x);
-	if (s1.choice == 3)
-		return exp(s1.x);
-	return cos(s1.x);
-}
+};
 void   PrintSeries(const TaylorSeries &q1)
 {
-	if (q1.choice == 1)
+
+	switch (q1.choice)
+	{
+	case 1:
 	{
 		cout << "1";
 		for (int i = 2; i <= q1.n; i++)
@@ -144,8 +194,9 @@ void   PrintSeries(const TaylorSeries &q1)
 			cout << "x^" << (2 * i - 2) << "/" << (2 * i - 2) << "!";
 		}
 		cout << endl;
+		break;
 	}
-	if (q1.choice == 2)
+	case 2:
 	{
 		cout << "x";
 		for (int i = 2; i <= q1.n; i++)
@@ -157,8 +208,9 @@ void   PrintSeries(const TaylorSeries &q1)
 			cout << "x^" << (2 * i - 1) << "/" << (2 * i - 1) << "!";
 		}
 		cout << endl;
+		break;
 	}
-	if (q1.choice == 3)
+	case 3:
 	{
 		cout << "1";
 		for (int i = 1; i < q1.n; i++)
@@ -166,6 +218,8 @@ void   PrintSeries(const TaylorSeries &q1)
 			cout << "+" << "x^" << i << "/" << i << "!";
 		}
 		cout << endl;
+		break;
+	}
 	}
 }
 int main()
@@ -198,7 +252,7 @@ int main()
 				<< "Enter 2 = sinx  \n"
 				<< "Enter 3 = exponent" << endl;
 			cin >> choice;
-			T.SetChoice(choice);
+			T.SaveChoiceInClass(choice);
 			system("pause");
 			system("cls");
 			break;
@@ -251,7 +305,7 @@ int main()
 			cout << "\n" << "Enter argument x: ";
 			cin >> _x;
 			T.SetArgument(_x);
-			cout << "\n" << CalculateSeries(T) << endl;
+			cout << "\n" << T.CalculateSeries() << endl;
 			system("pause");
 			system("cls");
 			break;
@@ -281,7 +335,7 @@ int main()
 			cout << "\n" << "Enter argument x: ";
 			cin >> _x;
 			T.SetArgument(_x);
-			cout << "\n" << abs(CalculateSeries(T) - ReferenceValue(T)) << endl;
+			cout << "\n" << T.GetDeviationValueOfSeries() << endl;
 			system("pause");
 			system("cls");
 			break;
