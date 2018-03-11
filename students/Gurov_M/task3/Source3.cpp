@@ -237,7 +237,7 @@ int main()
 			<< "4)Get formula of series\n "
 			<< "5)Calculate the value of series\n "
 			<< "6)Calculate the value of current element\n "
-			<< "7)Calculate deviation from the reference value\n "
+			<< "7)Calculate accuracy of the series\n "
 			<< "8)Exit\n " << endl;
 		cin >> j;
 		switch (j)
