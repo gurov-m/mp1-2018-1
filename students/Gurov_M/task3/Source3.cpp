@@ -24,6 +24,12 @@ public:
 		functionNumber = obj.functionNumber;
 		return *this;
 	}
+	TaylorSeries(const TaylorSeries &obj2)
+	{
+		x = obj2.x;
+		n = obj2.n;
+		functionNumber = obj2.functionNumber;
+	}
 	int GetNumberOfElements()
 	{
 		return n;
@@ -40,6 +46,7 @@ public:
 	{
 		n = _number;
 	}
+	friend  void   GetCurrentFunction(const TaylorSeries &q2);
 	friend  void   PrintSeries(const TaylorSeries &q1);
 	double CalculateCurrentElementOfExponent(int k)
 	{
@@ -79,11 +86,12 @@ public:
 		if (num == 1)
 			return 1.0;
 		else
-			return
+		{
 			i = pow(-1, num)*pow(x, 2 * num);
-		for (int j = 1; j <= (2 * num); j++)
-			u *= j;
-		return (i / u);
+			for (int j = 1; j <= (2 * num); j++)
+				u *= j;
+			return (i / u);
+		}
 	}
 	double CalculateSeries()
 	{
@@ -185,10 +193,14 @@ void   PrintSeries(const TaylorSeries &q1)
 		for (int i = 2; i <= q1.n; i++)
 		{
 			if (fmod(i, 2) == 0)
+			{
 				cout << "-";
+			}
 			else
+			{
 				cout << "+";
-			cout << "x^" << (2 * i - 2) << "/" << (2 * i - 2) << "!";
+			}
+			cout << "x^(" << (2 * i - 2) << ")/" << (2 * i - 2) << "!";
 		}
 		cout << endl;
 		break;
@@ -199,10 +211,14 @@ void   PrintSeries(const TaylorSeries &q1)
 		for (int i = 2; i <= q1.n; i++)
 		{
 			if (fmod(i, 2) == 0)
+			{
 				cout << "-";
+			}
 			else
+			{
 				cout << "+";
-			cout << "x^" << (2 * i - 1) << "/" << (2 * i - 1) << "!";
+			}
+			cout << "x^(" << (2 * i - 1) << ")/" << (2 * i - 1) << "!";
 		}
 		cout << endl;
 		break;
@@ -212,9 +228,30 @@ void   PrintSeries(const TaylorSeries &q1)
 		cout << "1";
 		for (int i = 1; i < q1.n; i++)
 		{
-			cout << "+" << "x^" << i << "/" << i << "!";
+			cout << "+x^(" << i << ")/" << i << "!";
 		}
 		cout << endl;
+		break;
+	}
+	}
+}
+void   GetCurrentFunction(const TaylorSeries &q2)
+{
+	switch (q2.functionNumber)
+	{
+	case 1:
+	{
+		cout << "\n" << "cosx" << endl;
+		break;
+	}
+	case 2:
+	{
+		cout << "\n" << "sinx" << endl;
+		break;
+	}
+	case 3:
+	{
+		cout << "\n" << "exponent" << endl;
 		break;
 	}
 	}
@@ -230,15 +267,16 @@ int main()
 	TaylorSeries T;
 	while (h == 1)
 	{
-		cout << " 0)Set function\n "
-			<< "1)Get current function\n "
-			<< "2)Set number of elements\n "
-			<< "3)Get number of elements\n "
-			<< "4)Get formula of series\n "
-			<< "5)Calculate the value of series\n "
-			<< "6)Calculate the value of current element\n "
-			<< "7)Calculate accuracy of the series\n "
-			<< "8)Exit\n " << endl;
+		cout << " 0) Set function\n "
+			<< "1) Get current function\n "
+			<< "2) Set number of elements\n "
+			<< "3) Get number of elements\n "
+			<< "4) Get formula of series\n "
+			<< "5) Calculate the value of series\n "
+			<< "6) Calculate the value of current element\n "
+			<< "7) Calculate accuracy of the series\n "
+			<< "8) Exit\n "
+			<< "Your choice: ";
 		cin >> j;
 		switch (j)
 		{
@@ -247,7 +285,8 @@ int main()
 			cout << "Choose function \n"
 				<< "Enter 1 = cosx  \n"
 				<< "Enter 2 = sinx  \n"
-				<< "Enter 3 = exponent" << endl;
+				<< "Enter 3 = exponent\n"
+				<< "Your choice: ";
 			cin >> functionNumber;
 			T.SetFunctionNumber(functionNumber);
 			system("pause");
@@ -256,14 +295,7 @@ int main()
 		}
 		case 1:
 		{
-			if (functionNumber == 0)
-				cout << "You didnt choose any function" << endl;
-			if (functionNumber == 1)
-				cout << "cosx" << endl;
-			if (functionNumber == 2)
-				cout << "sinx" << endl;
-			if (functionNumber == 3)
-				cout << "exponent" << endl;
+			GetCurrentFunction(T);
 			system("pause");
 			system("cls");
 			break;
@@ -314,12 +346,24 @@ int main()
 			T.SetArgument(_x);
 			cout << "\n" << "Enter number of element: ";
 			cin >> k;
-			if (functionNumber == 1)
+			switch (functionNumber)
+			{
+			case 1:
+			{
 				cout << "\n" << T.CalculateCurrentElementOfCos(k) << endl;
-			if (functionNumber == 2)
+				break;
+			}
+			case 2:
+			{
 				cout << "\n" << T.CalculateCurrentElementOfSin(k) << endl;
-			if (functionNumber == 3)
+				break;
+			}
+			case 3:
+			{
 				cout << "\n" << T.CalculateCurrentElementOfExponent(k) << endl;
+				break;
+			}
+			}
 			system("pause");
 			system("cls");
 			break;
@@ -343,7 +387,7 @@ int main()
 			break;
 		}
 		}
-		system("pause");
 	}
 }
+
 
