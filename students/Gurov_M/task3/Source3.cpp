@@ -46,7 +46,10 @@ public:
 	{
 		n = _number;
 	}
-	friend  void   GetCurrentFunction(const TaylorSeries &q2);
+	int GetFunctionNumber()
+	{
+		return functionNumber;
+	}
 	friend  void   PrintSeries(const TaylorSeries &q1);
 	double CalculateCurrentElementOfExponent(int k)
 	{
@@ -123,7 +126,6 @@ public:
 		}
 		case 3:
 		{
-
 			g = 1.0;
 			sum = 1.0;
 			for (int i = 1; i <= n; i++)
@@ -145,7 +147,6 @@ public:
 		{
 			g = 1.0;
 			sum = 0.0;
-
 			for (int i = 1; i <= n; i++)
 			{
 				sum += g;
@@ -182,9 +183,8 @@ public:
 		}
 	}
 };
-void   PrintSeries(const TaylorSeries &q1)
+void  PrintSeries(const TaylorSeries &q1)
 {
-
 	switch (q1.functionNumber)
 	{
 	case 1:
@@ -192,14 +192,10 @@ void   PrintSeries(const TaylorSeries &q1)
 		cout << "1";
 		for (int i = 2; i <= q1.n; i++)
 		{
-			if (fmod(i, 2) == 0)
-			{
-				cout << "-";
-			}
-			else
-			{
+			if (i & 1)
 				cout << "+";
-			}
+			else
+				cout << "-";
 			cout << "x^(" << (2 * i - 2) << ")/" << (2 * i - 2) << "!";
 		}
 		cout << endl;
@@ -210,14 +206,10 @@ void   PrintSeries(const TaylorSeries &q1)
 		cout << "x";
 		for (int i = 2; i <= q1.n; i++)
 		{
-			if (fmod(i, 2) == 0)
-			{
-				cout << "-";
-			}
-			else
-			{
+			if (i & 1)
 				cout << "+";
-			}
+			else
+				cout << "-";
 			cout << "x^(" << (2 * i - 1) << ")/" << (2 * i - 1) << "!";
 		}
 		cout << endl;
@@ -227,31 +219,8 @@ void   PrintSeries(const TaylorSeries &q1)
 	{
 		cout << "1";
 		for (int i = 1; i < q1.n; i++)
-		{
 			cout << "+x^(" << i << ")/" << i << "!";
-		}
 		cout << endl;
-		break;
-	}
-	}
-}
-void   GetCurrentFunction(const TaylorSeries &q2)
-{
-	switch (q2.functionNumber)
-	{
-	case 1:
-	{
-		cout << "\n" << "cosx" << endl;
-		break;
-	}
-	case 2:
-	{
-		cout << "\n" << "sinx" << endl;
-		break;
-	}
-	case 3:
-	{
-		cout << "\n" << "exponent" << endl;
 		break;
 	}
 	}
@@ -267,22 +236,22 @@ int main()
 	TaylorSeries T;
 	while (h == 1)
 	{
-		cout << " 0) Set function\n "
-			<< "1) Get current function\n "
-			<< "2) Set number of elements\n "
-			<< "3) Get number of elements\n "
-			<< "4) Get formula of series\n "
-			<< "5) Calculate the value of series\n "
-			<< "6) Calculate the value of current element\n "
-			<< "7) Calculate accuracy of the series\n "
-			<< "8) Exit\n "
+		cout<< "1) Set function\n "
+			<< "2) Get function\n "
+			<< "3) Set number of elements\n "
+			<< "4) Get number of elements\n "
+			<< "5) Get formula of series\n "
+			<< "6) Calculate the value of series\n "
+			<< "7) Calculate the value of current element\n "
+			<< "8) Calculate accuracy of the series\n "
+			<< "9) Exit\n "
 			<< "Your choice: ";
 		cin >> j;
 		switch (j)
 		{
-		case 0:
+		case 1:
 		{
-			cout << "Choose function \n"
+			cout<< "Choose function \n"
 				<< "Enter 1 = cosx  \n"
 				<< "Enter 2 = sinx  \n"
 				<< "Enter 3 = exponent\n"
@@ -293,14 +262,31 @@ int main()
 			system("cls");
 			break;
 		}
-		case 1:
+		case 2:
 		{
-			GetCurrentFunction(T);
+			switch (T.GetFunctionNumber())
+			{
+			case 1:
+			{
+				cout << "\n" << "cosx" << endl;
+				break;
+			}
+			case 2:
+			{
+				cout << "\n" << "sinx" << endl;
+				break;
+			}
+			case 3:
+			{
+				cout << "\n" << "exponent" << endl;
+				break;
+			}
+			}
 			system("pause");
 			system("cls");
 			break;
 		}
-		case 2:
+		case 3:
 		{
 			cout << "\n" << "Enter number of elements: ";
 			cin >> _n;
@@ -309,14 +295,14 @@ int main()
 			system("cls");
 			break;
 		}
-		case 3:
+		case 4:
 		{
 			cout << "\n" << T.GetNumberOfElements() << endl;
 			system("pause");
 			system("cls");
 			break;
 		}
-		case 4:
+		case 5:
 		{
 			cout << "\n" << "Enter number of elements: ";
 			cin >> _n;
@@ -326,7 +312,7 @@ int main()
 			system("cls");
 			break;
 		}
-		case 5:
+		case 6:
 		{
 			cout << "\n" << "Enter number of elements: ";
 			cin >> _n;
@@ -339,14 +325,14 @@ int main()
 			system("cls");
 			break;
 		}
-		case 6:
+		case 7:
 		{
 			cout << "\n" << "Enter argument x: ";
 			cin >> _x;
 			T.SetArgument(_x);
 			cout << "\n" << "Enter number of element: ";
 			cin >> k;
-			switch (functionNumber)
+			switch (T.GetFunctionNumber())
 			{
 			case 1:
 			{
@@ -368,7 +354,7 @@ int main()
 			system("cls");
 			break;
 		}
-		case 7:
+		case 8:
 		{
 			cout << "\n" << "Enter number of elements: ";
 			cin >> _n;
@@ -381,7 +367,7 @@ int main()
 			system("cls");
 			break;
 		}
-		case 8:
+		case 9:
 		{
 			h = 0;
 			break;
