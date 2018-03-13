@@ -3,8 +3,9 @@
 using namespace std;
 class TaylorSeries
 {
+private:
 	double x;
-	int    n;
+	int n;
 	int functionNumber;
 public:
 	TaylorSeries(double _argument = 0, int _number_of_elements = 0, int _functionNumber = 0)
@@ -15,9 +16,9 @@ public:
 	}
 	~TaylorSeries()
 	{
-		cout << "Destructor was called  " << endl;
+		cout << "Destructor was called" << endl;
 	}
-	TaylorSeries& operator=(const TaylorSeries& obj)
+	TaylorSeries& operator=(const TaylorSeries &obj)
 	{
 		x = obj.x;
 		n = obj.n;
@@ -50,7 +51,7 @@ public:
 	{
 		return functionNumber;
 	}
-	friend  void   PrintSeries(const TaylorSeries &q1);
+	friend void PrintSeries(const TaylorSeries &q1);
 	double CalculateCurrentElementOfExponent(int k)
 	{
 		double u = 1.0;
@@ -169,7 +170,6 @@ public:
 		}
 		case 3:
 		{
-
 			g = 1.0;
 			sum = 1.0;
 			for (int i = 1; i <= n; i++)
@@ -183,7 +183,7 @@ public:
 		}
 	}
 };
-void  PrintSeries(const TaylorSeries &q1)
+void PrintSeries(const TaylorSeries &q1)
 {
 	switch (q1.functionNumber)
 	{
@@ -198,7 +198,6 @@ void  PrintSeries(const TaylorSeries &q1)
 				cout << "-";
 			cout << "x^(" << (2 * i - 2) << ")/" << (2 * i - 2) << "!";
 		}
-		cout << endl;
 		break;
 	}
 	case 2:
@@ -212,7 +211,6 @@ void  PrintSeries(const TaylorSeries &q1)
 				cout << "-";
 			cout << "x^(" << (2 * i - 1) << ")/" << (2 * i - 1) << "!";
 		}
-		cout << endl;
 		break;
 	}
 	case 3:
@@ -220,7 +218,6 @@ void  PrintSeries(const TaylorSeries &q1)
 		cout << "1";
 		for (int i = 1; i < q1.n; i++)
 			cout << "+x^(" << i << ")/" << i << "!";
-		cout << endl;
 		break;
 	}
 	}
@@ -230,32 +227,33 @@ int main()
 	int functionNumber = 0;
 	double _x = 0;
 	int _n = 0;
-	int  k = 0;
+	int k = 0;
 	int h = 1;
 	int j = 0;
 	TaylorSeries T;
 	while (h == 1)
 	{
-		cout<< "1) Set function\n "
-			<< "2) Get function\n "
-			<< "3) Set number of elements\n "
-			<< "4) Get number of elements\n "
-			<< "5) Get formula of series\n "
-			<< "6) Calculate the value of series\n "
-			<< "7) Calculate the value of current element\n "
-			<< "8) Calculate accuracy of the series\n "
-			<< "9) Exit\n "
-			<< "Your choice: ";
+		cout << "1) Set function\n " << endl;
+		cout << "2) Get function\n " << endl;
+		cout << "3) Set number of elements\n " << endl;
+		cout << "4) Get number of elements\n " << endl;
+		cout << "5) Get formula of series\n " << endl;
+		cout << "6) Calculate the value of series\n " << endl;
+		cout << "7) Calculate the value of current element\n " << endl;
+		cout << "8) Calculate accuracy of the series\n " << endl;
+		cout << "9) Exit\n " << endl;
+		cout << "Your choice: ";
 		cin >> j;
+		system("cls");
 		switch (j)
 		{
 		case 1:
 		{
-			cout<< "Choose function \n"
-				<< "Enter 1 = cosx  \n"
-				<< "Enter 2 = sinx  \n"
-				<< "Enter 3 = exponent\n"
-				<< "Your choice: ";
+			cout << "Choose function \n" << endl;
+			cout << "Enter 1 = cosx  \n" << endl;
+			cout << "Enter 2 = sinx  \n" << endl;
+			cout << "Enter 3 = exponent\n" << endl;
+			cout << "Your choice: ";
 			cin >> functionNumber;
 			T.SetFunctionNumber(functionNumber);
 			system("pause");
@@ -307,7 +305,9 @@ int main()
 			cout << "\n" << "Enter number of elements: ";
 			cin >> _n;
 			T.SetNumberOfElements(_n);
+			cout << endl;
 			PrintSeries(T);
+			cout << endl;
 			system("pause");
 			system("cls");
 			break;
