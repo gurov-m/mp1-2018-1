@@ -103,39 +103,39 @@ public:
 		double g = 0;
 		switch (functionNumber)
 		{
-		case 1:
-		{
-			g = 1.0;
-			sum = 0.0;
-			for (int i = 1; i <= n; i++)
-			{
-				sum += g;
-				g *= -1.0 * x * x / ((2 * i - 1) * (2 * i));
-			}
-			return sum;
-		}
-		case 2:
-		{
-			g = x;
-			sum = 0.0;
-			for (int i = 1; i <= n; i++)
-			{
-				sum += g;
-				g *= -1.0 * x * x / ((2 * i) * (2 * i + 1));
-			}
-			return sum;
-		}
-		case 3:
-		{
-			g = 1.0;
-			sum = 1.0;
-			for (int i = 1; i <= n; i++)
-			{
-				g *= (x / i);
-				sum += g;
-			}
-			return sum;
-		}
+		    case 1:
+		    {
+			    g = 1.0;
+			    sum = 0.0;
+			    for (int i = 1; i <= n; i++)
+			    {
+				    sum += g;
+				    g *= -1.0 * x * x / ((2 * i - 1) * (2 * i));
+			    }
+			    return sum;
+		    }
+		    case 2:
+		    {
+			    g = x;
+			    sum = 0.0;
+			    for (int i = 1; i <= n; i++)
+			    {
+				    sum += g;
+				    g *= -1.0 * x * x / ((2 * i) * (2 * i + 1));
+			    }
+			    return sum;
+		    }
+		    case 3:
+		    {
+			    g = 1.0;
+			    sum = 1.0;
+			    for (int i = 1; i <= n; i++)
+			    {
+				    g *= (x / i);
+				    sum += g;
+			    }
+			    return sum;
+		    }
 		}
 	}
 	double GetAccuracyOfSeries()
@@ -144,39 +144,39 @@ public:
 		double g = 0;
 		switch (functionNumber)
 		{
-		case 1:
-		{
-			g = 1.0;
-			sum = 0.0;
-			for (int i = 1; i <= n; i++)
-			{
-				sum += g;
-				g *= -1.0 * x * x / ((2 * i - 1) * (2 * i));
-			}
-			return abs(sum - cos(x));
-		}
-		case 2:
-		{
-			g = x;
-			sum = 0.0;
-			for (int i = 1; i <= n; i++)
-			{
-				sum += g;
-				g *= -1.0 * x * x / ((2 * i) * (2 * i + 1));
-			}
-			return abs(sum - sin(x));
-		}
-		case 3:
-		{
-			g = 1.0;
-			sum = 1.0;
-			for (int i = 1; i <= n; i++)
-			{
-				g *= (x / i);
-				sum += g;
-			}
-			return abs(sum - exp(x));
-		}
+		    case 1:
+		    {
+			    g = 1.0;
+			    sum = 0.0;
+			    for (int i = 1; i <= n; i++)
+			    {
+				    sum += g;
+				    g *= -1.0 * x * x / ((2 * i - 1) * (2 * i));
+			    }
+			    return abs(sum - cos(x));
+		    }
+		    case 2:
+		    {
+			    g = x;
+			    sum = 0.0;
+			    for (int i = 1; i <= n; i++)
+			    {
+				    sum += g;
+				    g *= -1.0 * x * x / ((2 * i) * (2 * i + 1));
+			    }
+			    return abs(sum - sin(x));
+		    }
+		    case 3:
+		    {
+			    g = 1.0;
+			    sum = 1.0;
+			    for (int i = 1; i <= n; i++)
+		  	    {
+				    g *= (x / i);
+				    sum += g;
+			    }
+			    return abs(sum - exp(x));
+		    }
 		}
 	}
 };
@@ -184,39 +184,39 @@ void PrintSeries(const TaylorSeries &q1)
 {
 	switch (q1.functionNumber)
 	{
-	case 1:
-	{
-		cout << "1";
-		for (int i = 2; i <= q1.n; i++)
-		{
-			if (i & 1)
-				cout << "+";
-			else
-				cout << "-";
-			cout << "x^(" << (2 * i - 2) << ")/" << (2 * i - 2) << "!";
-		}
-		break;
-	}
-	case 2:
-	{
-		cout << "x";
-		for (int i = 2; i <= q1.n; i++)
-		{
-			if (i & 1)
-				cout << "+";
-			else
-				cout << "-";
-			cout << "x^(" << (2 * i - 1) << ")/" << (2 * i - 1) << "!";
-		}
-		break;
-	}
-	case 3:
-	{
-		cout << "1";
-		for (int i = 1; i < q1.n; i++)
-			cout << "+x^(" << i << ")/" << i << "!";
-		break;
-	}
+	    case 1:
+	    {
+		    cout << "1";
+		    for (int i = 2; i <= q1.n; i++)
+		    {
+			    if (i & 1)
+				    cout << "+";
+			    else
+				    cout << "-";
+			    cout << "x^(" << (2 * i - 2) << ")/" << (2 * i - 2) << "!";
+		    }
+		    break;
+	    }
+	    case 2:
+	    {
+		    cout << "x";
+		    for (int i = 2; i <= q1.n; i++)
+		    {
+			    if (i & 1)
+				    cout << "+";
+			    else
+				    cout << "-";
+			    cout << "x^(" << (2 * i - 1) << ")/" << (2 * i - 1) << "!";
+		    }
+		    break;
+	    }
+	    case 3:
+	    {
+		    cout << "1";
+		    for (int i = 1; i < q1.n; i++)
+			    cout << "+x^(" << i << ")/" << i << "!";
+		    break;
+	    }
 	}
 }
 int main()
@@ -244,131 +244,131 @@ int main()
 		system("cls");
 		switch (j)
 		{
-		case 1:
-		{
-			cout << "Choose function \n" << endl;
-			cout << "Enter 1 = cosx  \n" << endl;
-			cout << "Enter 2 = sinx  \n" << endl;
-			cout << "Enter 3 = exponent\n" << endl;
-			cout << "Your choice: ";
-			cin >> functionNumber;
-			T.SetFunctionNumber(functionNumber);
-			system("pause");
-			system("cls");
-			break;
-		}
-		case 2:
-		{
-			switch (T.GetFunctionNumber())
-			{
-			case 1:
-			{
-				cout << "\n" << "cosx" << endl;
-				break;
-			}
-			case 2:
-			{
-				cout << "\n" << "sinx" << endl;
-				break;
-			}
-			case 3:
-			{
-				cout << "\n" << "exponent" << endl;
-				break;
-			}
-			}
-			system("pause");
-			system("cls");
-			break;
-		}
-		case 3:
-		{
-			cout << "\n" << "Enter number of elements: ";
-			cin >> _n;
-			T.SetNumberOfElements(_n);
-			system("pause");
-			system("cls");
-			break;
-		}
-		case 4:
-		{
-			cout << "\n" << T.GetNumberOfElements() << endl;
-			system("pause");
-			system("cls");
-			break;
-		}
-		case 5:
-		{
-			cout << "\n" << "Enter number of elements: ";
-			cin >> _n;
-			T.SetNumberOfElements(_n);
-			cout << endl;
-			PrintSeries(T);
-			cout << endl;
-			system("pause");
-			system("cls");
-			break;
-		}
-		case 6:
-		{
-			cout << "\n" << "Enter number of elements: ";
-			cin >> _n;
-			T.SetNumberOfElements(_n);
-			cout << "\n" << "Enter argument x: ";
-			cin >> _x;
-			T.SetArgument(_x);
-			cout << "\n" << T.CalculateSeries() << endl;
-			system("pause");
-			system("cls");
-			break;
-		}
-		case 7:
-		{
-			cout << "\n" << "Enter argument x: ";
-			cin >> _x;
-			T.SetArgument(_x);
-			cout << "\n" << "Enter number of element: ";
-			cin >> k;
-			switch (T.GetFunctionNumber())
-			{
-			case 1:
-			{
-				cout << "\n" << T.CalculateCurrentElementOfCos(k) << endl;
-				break;
-			}
-			case 2:
-			{
-				cout << "\n" << T.CalculateCurrentElementOfSin(k) << endl;
-				break;
-			}
-			case 3:
-			{
-				cout << "\n" << T.CalculateCurrentElementOfExponent(k) << endl;
-				break;
-			}
-			}
-			system("pause");
-			system("cls");
-			break;
-		}
-		case 8:
-		{
-			cout << "\n" << "Enter number of elements: ";
-			cin >> _n;
-			T.SetNumberOfElements(_n);
-			cout << "\n" << "Enter argument x: ";
-			cin >> _x;
-			T.SetArgument(_x);
-			cout << "\n" << T.GetAccuracyOfSeries() << endl;
-			system("pause");
-			system("cls");
-			break;
-		}
-		case 9:
-		{
-			h = 0;
-			break;
-		}
+		    case 1:
+		    {
+			    cout << "Choose function \n" << endl;
+			    cout << "Enter 1 = cosx  \n" << endl;
+			    cout << "Enter 2 = sinx  \n" << endl;
+			    cout << "Enter 3 = exponent\n" << endl;
+			    cout << "Your choice: ";
+			    cin >> functionNumber;
+			    T.SetFunctionNumber(functionNumber);
+			    system("pause");
+			    system("cls");
+			    break;
+		    }
+		    case 2:
+		    {
+			    switch (T.GetFunctionNumber())
+			    {
+			        case 1:
+			        {
+				        cout << "\n" << "cosx" << endl;
+				        break;
+			        }
+			        case 2:
+			        {
+				        cout << "\n" << "sinx" << endl;
+				        break;
+			        }
+			        case 3:
+			        {
+				        cout << "\n" << "exponent" << endl;
+				        break;
+			        }
+			    }
+			    system("pause");
+			    system("cls");
+			    break;
+		    }
+		    case 3:
+		    {
+			    cout << "\n" << "Enter number of elements: ";
+			    cin >> _n;
+			    T.SetNumberOfElements(_n);
+			    system("pause");
+			    system("cls");
+			    break;
+		    }
+		    case 4:
+		    {
+			    cout << "\n" << T.GetNumberOfElements() << endl;
+			    system("pause");
+			    system("cls");
+			    break;
+		    }
+		    case 5:
+		    {
+			    cout << "\n" << "Enter number of elements: ";
+			    cin >> _n;
+			    T.SetNumberOfElements(_n);
+			    cout << endl;
+			    PrintSeries(T);
+			    cout << endl;
+			    system("pause");
+			    system("cls");
+			    break;
+		    }
+		    case 6:
+		    {
+			    cout << "\n" << "Enter number of elements: ";
+			    cin >> _n;
+			    T.SetNumberOfElements(_n);
+			    cout << "\n" << "Enter argument x: ";
+			    cin >> _x;
+			    T.SetArgument(_x);
+			    cout << "\n" << T.CalculateSeries() << endl;
+		 	    system("pause");
+			    system("cls");
+			    break;
+		    }
+		    case 7:
+		    {
+			    cout << "\n" << "Enter argument x: ";
+			    cin >> _x;
+			    T.SetArgument(_x);
+			    cout << "\n" << "Enter number of element: ";
+			    cin >> k;
+			    switch (T.GetFunctionNumber())
+			    {
+			        case 1:
+			        {
+				        cout << "\n" << T.CalculateCurrentElementOfCos(k) << endl;
+				        break;
+			        }
+			        case 2:
+			        {
+				        cout << "\n" << T.CalculateCurrentElementOfSin(k) << endl;
+				        break;
+			        }
+			        case 3:
+			        {
+				        cout << "\n" << T.CalculateCurrentElementOfExponent(k) << endl;
+				        break;
+			        }
+			    }
+			    system("pause");
+			    system("cls");
+			    break;
+		    }
+		    case 8:
+		    {
+			    cout << "\n" << "Enter number of elements: ";
+			    cin >> _n;
+			    T.SetNumberOfElements(_n);
+			    cout << "\n" << "Enter argument x: ";
+			    cin >> _x;
+			    T.SetArgument(_x);
+			    cout << "\n" << T.GetAccuracyOfSeries() << endl;
+			    system("pause");
+			    system("cls");
+			    break;
+		    }
+		    case 9:
+		    {
+			    h = 0;
+			    break;
+		    }
 		}
 	}
 }
