@@ -154,7 +154,6 @@ public:
 				g *= -1.0 * x * x / ((2 * i - 1) * (2 * i));
 			}
 			return abs(sum - cos(x));
-			break;
 		}
 		case 2:
 		{
@@ -166,7 +165,6 @@ public:
 				g *= -1.0 * x * x / ((2 * i) * (2 * i + 1));
 			}
 			return abs(sum - sin(x));
-			break;
 		}
 		case 3:
 		{
@@ -178,7 +176,6 @@ public:
 				sum += g;
 			}
 			return abs(sum - exp(x));
-			break;
 		}
 		}
 	}
@@ -193,9 +190,13 @@ void PrintSeries(const TaylorSeries &q1)
 		for (int i = 2; i <= q1.n; i++)
 		{
 			if (i & 1)
+			{
 				cout << "+";
+			}
 			else
+			{
 				cout << "-";
+			}
 			cout << "x^(" << (2 * i - 2) << ")/" << (2 * i - 2) << "!";
 		}
 		break;
@@ -206,9 +207,13 @@ void PrintSeries(const TaylorSeries &q1)
 		for (int i = 2; i <= q1.n; i++)
 		{
 			if (i & 1)
+			{
 				cout << "+";
+			}
 			else
+			{
 				cout << "-";
+			}
 			cout << "x^(" << (2 * i - 1) << ")/" << (2 * i - 1) << "!";
 		}
 		break;
