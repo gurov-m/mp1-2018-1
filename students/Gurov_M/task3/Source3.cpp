@@ -190,13 +190,9 @@ void PrintSeries(const TaylorSeries &q1)
 		for (int i = 2; i <= q1.n; i++)
 		{
 			if (i & 1)
-			{
 				cout << "+";
-			}
 			else
-			{
 				cout << "-";
-			}
 			cout << "x^(" << (2 * i - 2) << ")/" << (2 * i - 2) << "!";
 		}
 		break;
@@ -207,13 +203,9 @@ void PrintSeries(const TaylorSeries &q1)
 		for (int i = 2; i <= q1.n; i++)
 		{
 			if (i & 1)
-			{
 				cout << "+";
-			}
 			else
-			{
 				cout << "-";
-			}
 			cout << "x^(" << (2 * i - 1) << ")/" << (2 * i - 1) << "!";
 		}
 		break;
