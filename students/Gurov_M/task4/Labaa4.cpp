@@ -552,6 +552,7 @@ int main()
 				counts = atoi(x);
 				GO.ConsiderHistoryFromFile(counts,k);
 				scale_out.close();
+				k += counts;
 				system("pause");
 				system("cls");
 				break;
