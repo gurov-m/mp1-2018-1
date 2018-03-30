@@ -83,38 +83,38 @@ public:
 	{
 		switch (i)
 		{
-		case 1:
-		{
-			return StepCounts[ind];
-		}
-		case 2:
-		{
-			return info[ind].day;
-		}
-		case 3:
-		{
-			return info[ind].month;
-		}
-		case 4:
-		{
-			return info[ind].year;
-		}
-		case 5:
-		{
-			return info[ind].minOfStart;
-		}
-		case 6:
-		{
-			return info[ind].hourOfStart;
-		}
-		case 7:
-		{
-			return info[ind].minOfEnd;
-		}
-		case 8:
-		{
-			return info[ind].hourOfEnd;
-		}
+			case 1:
+			{
+				return StepCounts[ind];
+			}
+			case 2:
+			{
+				return info[ind].day;
+			}
+			case 3:
+			{
+				return info[ind].month;
+			}
+			case 4:
+			{
+				return info[ind].year;
+			}
+			case 5:
+			{
+				return info[ind].minOfStart;
+			}
+			case 6:
+			{
+				return info[ind].hourOfStart;
+			}
+			case 7:
+			{
+				return info[ind].minOfEnd;
+			}
+			case 8:
+			{
+				return info[ind].hourOfEnd;
+			}
 		}
 	}
 	double GetTheAverageNumberOfStepsInTheSelectedMonthOrInTheEntireObservationHistory(int _month)
@@ -145,7 +145,6 @@ public:
 					steps += StepCounts[i];
 				}
 			}
-
 			return (steps / double(k));
 		}
 	}
@@ -162,61 +161,61 @@ public:
 			help = info[i].month - 1;
 			switch (help)
 			{
-			case 1:
-			{
-				days += 28;
-				break;
-			}
-			case 2:
-			{
-				days += 59;
-				break;
-			}
-			case 3:
-			{
-				days += 89;
-				break;
-			}
-			case 4:
-			{
-				days += 120;
-				break;
-			}
-			case 5:
-			{
-				days += 150;
-				break;
-			}
-			case 6:
-			{
-				days += 181;
-				break;
-			}
-			case 7:
-			{
-				days += 212;
-				break;
-			}
-			case 8:
-			{
-				days += 242;
-				break;
-			}
-			case 9:
-			{
-				days += 273;
-				break;
-			}
-			case 10:
-			{
-				days += 303;
-				break;
-			}
-			case 11:
-			{
-				days += 334;
-				break;
-			}
+				case 1:
+				{
+					days += 28;
+					break;
+				}
+				case 2:
+				{
+					days += 59;
+					break;
+				}
+				case 3:
+				{
+					days += 89;
+					break;
+				}
+				case 4:
+				{
+					days += 120;
+					break;
+				}
+				case 5:
+				{
+					days += 150;
+					break;
+				}
+				case 6:
+				{
+					days += 181;
+					break;
+				}
+				case 7:
+				{
+					days += 212;
+					break;
+				}
+				case 8:
+				{
+					days += 242;
+					break;
+				}
+				case 9:
+				{
+					days += 273;
+					break;
+				}
+				case 10:
+				{
+					days += 303;
+					break;
+				}
+				case 11:
+				{
+					days += 334;
+					break;
+				}
 			}
 			days += (info[i].day - 1);
 			for (int i = 1; i <= abs(info[i].year - 2000); i++)
@@ -266,22 +265,22 @@ public:
 		}
 		switch (_i)
 		{
-		case 1:
-		{
-			return max;
-		}
-		case 2:
-		{
-			return info[nmax].day;
-		}
-		case 3:
-		{
-			return info[nmax].month;
-		}
-		case 4:
-		{
-			return info[nmax].year;
-		}
+			case 1:
+			{
+				return max;
+			}
+			case 2:
+			{
+				return info[nmax].day;
+			}
+			case 3:
+			{
+				return info[nmax].month;
+			}
+			case 4:
+			{
+				return info[nmax].year;
+			}
 		}
 	}
 	void SaveHistoryToFile(int k)
@@ -357,212 +356,211 @@ int main()
 		system("cls");
 		switch (j)
 		{
-		case 1: // Set date of the start of counts 
-		{
-			cout << "Enter the day: ";
-			cin >> _stDay;
-			cout << "Enter the month: ";
-			cin >> _stMonth;
-			cout << "Enter the year: ";
-			cin >> _stYear;
-			GO.SetDateOfTheStartOfCounts(_stDay, _stMonth, _stYear);
-			system("pause");
-			system("cls");
-			break;
-		}
-		case 2: // Get date of the start of counts 
-		{
-			startDate = GO.GetDateOfTheStartOfCounts();
-			cout << "day: " << startDate.startDay << endl;
-			cout << "month: " << startDate.startMonth << endl;
-			cout << "year: " << startDate.startYear << endl;
-			system("pause");
-			system("cls");
-			break;
-		}
-		case 3: // Set Count 
-		{
-
-			cout << "Enter the number of steps: ";
-			cin >> newCount;
-			cout << "Enter the day: ";
-			cin >> _day;
-			cout << "Enter the month: ";
-			cin >> _month;
-			cout << "Enter the year: ";
-			cin >> _year;
-			cout << "Enter the min of start: ";
-			cin >> stmin;
-			cout << "Enter the hour of start: ";
-			cin >> sthour;
-			cout << "Enter the min of end: ";
-			cin >> edmin;
-			cout << "Enter the hour of end: ";
-			cin >> edhour;
-			GO.SetCount(k, newCount, _day, _month, _year, stmin, sthour, edmin, edhour);
-			k++;
-			system("pause");
-			system("cls");
-			break;
-		}
-		case 4: // Get Count 
-		{
-			cout << "Enter the index: ";
-			cin >> ind;
-			for (i = 1; i <= 8; i++)
+			case 1: // Set date of the start of counts 
 			{
-				switch (i)
-				{
-				case 1:
-				{
-					cout << "Steps: ";
-					break;
-				}
-				case 2:
-				{
-					cout << "Day: ";
-					break;
-				}
-				case 3:
-				{
-					cout << "Month: ";
-					break;
-				}
-				case 4:
-				{
-					cout << "Year: ";
-					break;
-				}
-				case 5:
-				{
-					cout << "Min of start: ";
-					break;
-				}
-				case 6:
-				{
-					cout << "Hour of start: ";
-					break;
-				}
-				case 7:
-				{
-					cout << "Min of end: ";
-					break;
-				}
-				case 8:
-				{
-					cout << "Hour of end: ";
-					break;
-				}
-				}
-				cout << GO.GetCount(ind, i) << endl;
+				cout << "Enter the day: ";
+				cin >> _stDay;
+				cout << "Enter the month: ";
+				cin >> _stMonth;
+				cout << "Enter the year: ";
+				cin >> _stYear;
+				GO.SetDateOfTheStartOfCounts(_stDay, _stMonth, _stYear);
+				system("pause");
+				system("cls");
+				break;
 			}
-			system("pause");
-			system("cls");
-			break;
-		}
-		case 5: // Get the average number of steps in the selected month or in the entire observation history 
-		{
-			cout << "Enter the month: ";
-			cin >> _month1;
-			cout << "average number of steps: " << GO.GetTheAverageNumberOfStepsInTheSelectedMonthOrInTheEntireObservationHistory(_month1) << endl;
-			system("pause");
-			system("cls");
-			break;
-		}
-		case 6: // Get the average number of steps on the selected day of the week in the entire observation history 
-		{
-			cout << "Choose day of the week" << endl; // reference date is ( 1 of January 2000 (Sunday) )
-			cout << "1) Monday" << "\n";
-			cout << "2) Tuesday" << "\n";
-			cout << "3) Wednesday" << "\n";
-			cout << "4) Thursday" << "\n";
-			cout << "5) Friday" << "\n";
-			cout << "6) Saturday" << "\n";
-			cout << "7) Sunday" << "\n";
-			cout << "Enter your choice: ";
-			cin >> dayOfWeek;
-			cout << "\n" << "Average steps on that day in the entire observation history: " << GO.GetTheAverageNumberOfStepsOnTheSelectedDayOfTheWeekInTheEntireObservationHistory(dayOfWeek) << endl;
-			system("pause");
-			system("cls");
-			break;
-		}
-		case 7: // Get the maximum number of steps on the selected day in the selected month or in the entire observation history and the date when it was reached
-		{
-			cout << "0) Show result of the entire observation history" << "\n";
-			cout << "Choose month " << endl;
-			cout << "1) January" << "\n";
-			cout << "2) February" << "\n";
-			cout << "3) March" << "\n";
-			cout << "4) April" << "\n";
-			cout << "5) May" << "\n";
-			cout << "6) June" << "\n";
-			cout << "7) July" << "\n";
-			cout << "8) August" << "\n";
-			cout << "9) September" << "\n";
-			cout << "10) October" << "\n";
-			cout << "11) November" << "\n";
-			cout << "12) December" << "\n";
-			cout << "Enter your choice: ";
-			cin >> _month2;
-			for (int i = 1; i <= 4; i++)
+			case 2: // Get date of the start of counts 
 			{
-				switch (i)
-				{
-				case 1:
-				{
-					cout << "Steps: ";
-					break;
-				}
-				case 2:
-				{
-					cout << "Day: ";
-					break;
-				}
-				case 3:
-				{
-					cout << "Month: ";
-					break;
-				}
-				case 4:
-				{
-					cout << "Year: ";
-					break;
-				}
-				}
-				cout << GO.GetTheMaximumNumberOfStepsOnTheSelectedDayInTheSelectedMonthOrInTheEntireObservationHistoryAndTheDateWhenItWasReached(_month2, i) << endl;
+				startDate = GO.GetDateOfTheStartOfCounts();
+				cout << "day: " << startDate.startDay << endl;
+				cout << "month: " << startDate.startMonth << endl;
+				cout << "year: " << startDate.startYear << endl;
+				system("pause");
+				system("cls");
+				break;
 			}
-			system("pause");
-			system("cls");
-			break;
-		}
-		case 8: // Save history of the step counts to a file 
-		{
-			scale_in.open("C:/Users/Maksim/Desktop/Pedometer.txt");
-			GO.SaveHistoryToFile(k);
-			scale_in.close();
-			system("pause");
-			system("cls");
-			break;
-		}
-		case 9: // Consider history of the step counts from a file 
-		{
-			char x[100];
-			scale_out.open("C:/Users/Maksim/Desktop/Pedometer.txt");
-			scale_out.getline(x, 100, ' ');
-			scale_out.getline(x, 100, ' ');
-			scale_out.getline(x, 100, '\n');
-			counts = atoi(x);
-			GO.ConsiderHistoryFromFile(counts);
-			scale_out.close();
-			system("pause");
-			system("cls");
-			break;
-		}
-		case 10: // Exit 
-		{
-			h = 0;
-			break;
-		}
+			case 3: // Set Count 
+			{
+				cout << "Enter the number of steps: ";
+				cin >> newCount;
+				cout << "Enter the day: ";
+				cin >> _day;
+				cout << "Enter the month: ";
+				cin >> _month;
+				cout << "Enter the year: ";
+				cin >> _year;
+				cout << "Enter the min of start: ";
+				cin >> stmin;
+				cout << "Enter the hour of start: ";
+				cin >> sthour;
+				cout << "Enter the min of end: ";
+				cin >> edmin;
+				cout << "Enter the hour of end: ";
+				cin >> edhour;
+				GO.SetCount(k, newCount, _day, _month, _year, stmin, sthour, edmin, edhour);
+				k++;
+				system("pause");
+				system("cls");
+				break;
+			}
+			case 4: // Get Count 
+			{
+				cout << "Enter the index: ";
+				cin >> ind;
+				for (i = 1; i <= 8; i++)
+				{
+					switch (i)
+					{
+						case 1:
+						{
+							cout << "Steps: ";
+							break;
+						}
+						case 2:
+						{
+							cout << "Day: ";
+							break;
+						}
+						case 3:
+						{
+							cout << "Month: ";
+							break;
+						}
+						case 4:
+						{
+							cout << "Year: ";
+							break;
+						}
+						case 5:
+						{
+							cout << "Min of start: ";
+							break;
+						}
+						case 6:
+						{
+							cout << "Hour of start: ";
+							break;
+						}
+						case 7:
+						{
+							cout << "Min of end: ";
+							break;
+						}
+						case 8:
+						{
+							cout << "Hour of end: ";
+							break;
+						}
+					}
+					cout << GO.GetCount(ind, i) << endl;
+				}
+				system("pause");
+				system("cls");
+				break;
+			}
+			case 5: // Get the average number of steps in the selected month or in the entire observation history 
+			{
+				cout << "Enter the month: ";
+				cin >> _month1;
+				cout << "average number of steps: " << GO.GetTheAverageNumberOfStepsInTheSelectedMonthOrInTheEntireObservationHistory(_month1) << endl;
+				system("pause");
+				system("cls");
+				break;
+			}
+			case 6: // Get the average number of steps on the selected day of the week in the entire observation history 
+			{
+				cout << "Choose day of the week" << endl; // reference date is ( 1 of January 2000 (Sunday) )
+				cout << "1) Monday" << "\n";
+				cout << "2) Tuesday" << "\n";
+				cout << "3) Wednesday" << "\n";
+				cout << "4) Thursday" << "\n";
+				cout << "5) Friday" << "\n";
+				cout << "6) Saturday" << "\n";
+				cout << "7) Sunday" << "\n";
+				cout << "Enter your choice: ";
+				cin >> dayOfWeek;
+				cout << "\n" << "Average steps on that day in the entire observation history: " << GO.GetTheAverageNumberOfStepsOnTheSelectedDayOfTheWeekInTheEntireObservationHistory(dayOfWeek) << endl;
+				system("pause");
+				system("cls");
+				break;
+			}
+			case 7: // Get the maximum number of steps on the selected day in the selected month or in the entire observation history and the date when it was reached
+			{
+				cout << "0) Show result of the entire observation history" << "\n";
+				cout << "Choose month " << endl;
+				cout << "1) January" << "\n";
+				cout << "2) February" << "\n";
+				cout << "3) March" << "\n";
+				cout << "4) April" << "\n";
+				cout << "5) May" << "\n";
+				cout << "6) June" << "\n";
+				cout << "7) July" << "\n";
+				cout << "8) August" << "\n";
+				cout << "9) September" << "\n";
+				cout << "10) October" << "\n";
+				cout << "11) November" << "\n";
+				cout << "12) December" << "\n";
+				cout << "Enter your choice: ";
+				cin >> _month2;
+				for (int i = 1; i <= 4; i++)
+				{
+					switch (i)
+					{
+						case 1:
+						{
+							cout << "Steps: ";
+							break;
+						}
+						case 2:
+						{
+							cout << "Day: ";
+							break;
+						}
+						case 3:
+						{
+							cout << "Month: ";
+							break;
+						}
+						case 4:
+						{
+							cout << "Year: ";
+							break;
+						}
+					}
+					cout << GO.GetTheMaximumNumberOfStepsOnTheSelectedDayInTheSelectedMonthOrInTheEntireObservationHistoryAndTheDateWhenItWasReached(_month2, i) << endl;
+				}
+				system("pause");
+				system("cls");
+				break;
+			}
+			case 8: // Save history of the step counts to a file 
+			{
+				scale_in.open("C:/Users/Maksim/Desktop/Pedometer.txt");
+				GO.SaveHistoryToFile(k);
+				scale_in.close();
+				system("pause");
+				system("cls");
+				break;
+			}
+			case 9: // Consider history of the step counts from a file 
+			{
+				char x[100];
+				scale_out.open("C:/Users/Maksim/Desktop/Pedometer.txt");
+				scale_out.getline(x, 100, ' ');
+				scale_out.getline(x, 100, ' ');
+				scale_out.getline(x, 100, '\n');
+				counts = atoi(x);
+				GO.ConsiderHistoryFromFile(counts);
+				scale_out.close();
+				system("pause");
+				system("cls");
+				break;
+			}
+			case 10: // Exit 
+			{
+				h = 0;
+				break;
+			}
 		}
 	}
 }
