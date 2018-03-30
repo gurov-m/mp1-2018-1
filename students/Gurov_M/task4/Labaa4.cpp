@@ -291,10 +291,10 @@ public:
 			scale_in << StepCounts[i] << endl << info[i] << endl;
 		}
 	}
-	void ConsiderHistoryFromFile(int size)
+	void ConsiderHistoryFromFile(int size , int k)
 	{
 		char y[300];
-		for (int i = 0; i < size; i++)
+		for (int i = k; i < (k+size); i++)
 		{
 			scale_out.getline(y, 100, '\n');
 			StepCounts[i] = atoi(y);
@@ -550,7 +550,7 @@ int main()
 				scale_out.getline(x, 100, ' ');
 				scale_out.getline(x, 100, '\n');
 				counts = atoi(x);
-				GO.ConsiderHistoryFromFile(counts);
+				GO.ConsiderHistoryFromFile(counts,k);
 				scale_out.close();
 				system("pause");
 				system("cls");
