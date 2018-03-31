@@ -44,8 +44,8 @@ struct AllInfoAboutCount
 	}
 	friend ostream &operator<<(ostream& os, const AllInfoAboutCount &_info);
 };
-ofstream pedometer_in;
-ifstream pedometer_out;
+ofstream scale_in;
+ifstream scale_out;
 ostream &operator<<(ostream& os, const AllInfoAboutCount &_info)
 {
 	os << _info.day << '.' << _info.month << '.' << _info.year << '.' << _info.minOfStart << '.' << _info.hourOfStart << '.' << _info.minOfEnd << '.' << _info.hourOfEnd;
@@ -58,13 +58,13 @@ private:
 	DateOftheCountsStart startDate = {};
 	AllInfoAboutCount info[numberOfCounts] = {};
 public:
-	void SetDateOfTheStartOfCounts(int _startDay, int _startMonth, int _startYear)
+	void SetStartDate(int _startDay, int _startMonth, int _startYear)
 	{
 		startDate.startDay = _startDay;
 		startDate.startMonth = _startMonth;
 		startDate.startYear = _startYear;
 	}
-	DateOftheCountsStart GetDateOfTheStartOfCounts()
+	DateOftheCountsStart GetStartDate()
 	{
 		return startDate;
 	}
@@ -117,10 +117,9 @@ public:
 			}
 		}
 	}
-	double GetTheAverageNumberOfStepsInTheSelectedMonthOrInTheEntireObservationHistory(int _month)
+	double GetAverageStepsInMonth(int _month)
 	{
 		int steps = 0;
-		int k = 0;
 		int i = 0;
 		int b = 0;
 		if (_month == 0)
@@ -141,14 +140,70 @@ public:
 			{
 				if (_month == info[i].month)
 				{
-					k++;
 					steps += StepCounts[i];
 				}
 			}
-			return (steps / double(k));
+			switch (_month)
+			{
+				case 1:
+				{
+					return (steps / double(31));
+				}
+				case 2:
+				{
+					if (((info[i].year - 2000) % 4) == 0)
+					{
+						return (steps / double(29));
+					}
+					else
+					{
+						return (steps / double(28));
+					}
+				}
+				case 3:
+				{
+					return (steps / double(31));
+				}
+				case 4:
+				{
+					return (steps / double(30));
+				}
+				case 5:
+				{
+					return (steps / double(31));
+				}
+				case 6:
+				{
+					return (steps / double(30));
+				}
+				case 7:
+				{
+					return (steps / double(31));
+				}
+				case 8:
+				{
+					return (steps / double(31));
+				}
+				case 9:
+				{
+					return (steps / double(30));
+				}
+				case 10:
+				{
+					return (steps / double(31));
+				}
+				case 11:
+				{
+					return (steps / double(30));
+				}
+				case 12:
+				{
+					return (steps / double(31));
+				}
+			}
 		}
 	}
-	double GetTheAverageNumberOfStepsOnTheSelectedDayOfTheWeekInTheEntireObservationHistory(int _day)
+	double GetAverageStepsOnDayOfTheWeek(int _day)
 	{
 		int steps = 0;
 		int k = 0;
@@ -157,84 +212,87 @@ public:
 		int help = 0;
 		for (int i = 0; i <= numberOfCounts; i++)
 		{
-			days += (365 * abs(info[i].year - 2000));
-			help = info[i].month - 1;
-			switch (help)
+			if (StepCounts[i] != 0)
 			{
-				case 1:
+				days += (365 * abs(info[i].year - 2000));
+				help = info[i].month - 1;
+				switch (help)
 				{
-					days += 28;
-					break;
-				}
-				case 2:
-				{
-					days += 59;
-					break;
-				}
-				case 3:
-				{
-					days += 89;
-					break;
-				}
-				case 4:
-				{
-					days += 120;
-					break;
-				}
-				case 5:
-				{
-					days += 150;
-					break;
-				}
-				case 6:
-				{
-					days += 181;
-					break;
-				}
-				case 7:
-				{
-					days += 212;
-					break;
-				}
-				case 8:
-				{
-					days += 242;
-					break;
-				}
-				case 9:
-				{
-					days += 273;
-					break;
-				}
-				case 10:
-				{
-					days += 303;
-					break;
-				}
-				case 11:
-				{
+					case 1:
+					{
+						days += 28;
+						break;
+					}
+					case 2:
+					{
+						days += 59;
+						break;
+					}
+					case 3:
+					{
+						days += 89;
+						break;
+					}
+					case 4:
+					{
+						days += 120;
+						break;
+					}
+					case 5:
+					{
+						days += 150;
+						break;
+					}
+					case 6:
+					{
+						days += 181;
+						break;
+					}
+					case 7:
+					{
+						days += 212;
+						break;
+					}
+					case 8:
+					{
+						days += 242;
+						break;
+					}
+					case 9:
+					{
+						days += 273;
+						break;
+					}
+					case 10:
+					{
+						days += 303;
+						break;
+					}
+					case 11:
+					{
 					days += 334;
 					break;
+					}
 				}
-			}
-			days += (info[i].day - 1);
-			for (int i = 1; i <= abs(info[i].year - 2000); i++)
-			{
-				if ((i % 4) == 0)
+				days += (info[i].day - 1);
+				for (int i = 1; i <= abs(info[i].year - 2000); i++)
 				{
-					daysOfLeapYears++;
+					if ((i % 4) == 0)
+					{
+						daysOfLeapYears++;
+					}
+				}
+				days += daysOfLeapYears;
+				if ((days % 7) == _day)
+				{
+					k++;
+					steps += StepCounts[i];
 				}
 			}
-			days += daysOfLeapYears;
-			if ((days % 7) == _day)
-			{
-				k++;
-				steps += StepCounts[i];
-			}
+			return (steps / double(k));
 		}
-		return (steps / double(k));
 	}
-	int GetTheMaximumNumberOfStepsOnTheSelectedDayInTheSelectedMonthOrInTheEntireObservationHistoryAndTheDateWhenItWasReached(int _month, int _i)
+	int GetMaximumStepsOnTheSelectedDayAndDate(int _month, int _i)
 	{
 		int max = 0;
 		int nmax = 0;
@@ -285,32 +343,32 @@ public:
 	}
 	void SaveHistoryToFile(int k)
 	{
-		pedometer_in << "Step counts: " << k << endl;
+		scale_in << "Step counts: " << k << endl;
 		for (int i = 0; i < k; i++)
 		{
-			pedometer_in << StepCounts[i] << endl << info[i] << endl;
+			scale_in << StepCounts[i] << endl << info[i] << endl;
 		}
 	}
-	void ConsiderHistoryFromFile(int size , int k)
+	void ConsiderHistoryFromFile(int size)
 	{
 		char y[300];
-		for (int i = k; i < (k+size); i++)
+		for (int i = 0; i < size; i++)
 		{
-			pedometer_out.getline(y, 100, '\n');
+			scale_out.getline(y, 100, '\n');
 			StepCounts[i] = atoi(y);
-			pedometer_out.getline(y, 100, '.');
+			scale_out.getline(y, 100, '.');
 			info[i].day = atoi(y);
-			pedometer_out.getline(y, 100, '.');
+			scale_out.getline(y, 100, '.');
 			info[i].month = atoi(y);
-			pedometer_out.getline(y, 100, '.');
+			scale_out.getline(y, 100, '.');
 			info[i].year = atoi(y);
-			pedometer_out.getline(y, 100, '.');
+			scale_out.getline(y, 100, '.');
 			info[i].minOfStart = atoi(y);
-			pedometer_out.getline(y, 100, '.');
+			scale_out.getline(y, 100, '.');
 			info[i].hourOfStart = atoi(y);
-			pedometer_out.getline(y, 100, '.');
+			scale_out.getline(y, 100, '.');
 			info[i].minOfEnd = atoi(y);
-			pedometer_out.getline(y, 100, '\n');
+			scale_out.getline(y, 100, '\n');
 			info[i].hourOfEnd = atoi(y);
 		}
 	}
@@ -364,14 +422,14 @@ int main()
 				cin >> _stMonth;
 				cout << "Enter the year: ";
 				cin >> _stYear;
-				GO.SetDateOfTheStartOfCounts(_stDay, _stMonth, _stYear);
+				GO.SetStartDate(_stDay, _stMonth, _stYear);
 				system("pause");
 				system("cls");
 				break;
 			}
 			case 2: // Get date of the start of counts 
 			{
-				startDate = GO.GetDateOfTheStartOfCounts();
+				startDate = GO.GetStartDate();
 				cout << "day: " << startDate.startDay << endl;
 				cout << "month: " << startDate.startMonth << endl;
 				cout << "year: " << startDate.startYear << endl;
@@ -462,7 +520,7 @@ int main()
 			{
 				cout << "Enter the month: ";
 				cin >> _month1;
-				cout << "average number of steps: " << GO.GetTheAverageNumberOfStepsInTheSelectedMonthOrInTheEntireObservationHistory(_month1) << endl;
+				cout << "average number of steps: " << GO.GetAverageStepsInMonth(_month1) << endl;
 				system("pause");
 				system("cls");
 				break;
@@ -479,7 +537,7 @@ int main()
 				cout << "7) Sunday" << "\n";
 				cout << "Enter your choice: ";
 				cin >> dayOfWeek;
-				cout << "\n" << "Average steps on that day in the entire observation history: " << GO.GetTheAverageNumberOfStepsOnTheSelectedDayOfTheWeekInTheEntireObservationHistory(dayOfWeek) << endl;
+				cout << "\n" << "Average steps on that day in the entire observation history: " << GO.GetAverageStepsOnDayOfTheWeek(dayOfWeek) << endl;
 				system("pause");
 				system("cls");
 				break;
@@ -527,7 +585,7 @@ int main()
 							break;
 						}
 					}
-					cout << GO.GetTheMaximumNumberOfStepsOnTheSelectedDayInTheSelectedMonthOrInTheEntireObservationHistoryAndTheDateWhenItWasReached(_month2, i) << endl;
+					cout << GO.GetMaximumStepsOnTheSelectedDayAndDate(_month2, i) << endl;
 				}
 				system("pause");
 				system("cls");
@@ -535,9 +593,9 @@ int main()
 			}
 			case 8: // Save history of the step counts to a file 
 			{
-				pedometer_in.open("C:/Users/Maksim/Desktop/Pedometer.txt");
+				scale_in.open("C:/Users/Maksim/Desktop/Pedometer.txt");
 				GO.SaveHistoryToFile(k);
-				pedometer_in.close();
+				scale_in.close();
 				system("pause");
 				system("cls");
 				break;
@@ -545,14 +603,13 @@ int main()
 			case 9: // Consider history of the step counts from a file 
 			{
 				char x[100];
-				pedometer_out.open("C:/Users/Maksim/Desktop/Pedometer.txt");
-				pedometer_out.getline(x, 100, ' ');
-				pedometer_out.getline(x, 100, ' ');
-				pedometer_out.getline(x, 100, '\n');
+				scale_out.open("C:/Users/Maksim/Desktop/Pedometer.txt");
+				scale_out.getline(x, 100, ' ');
+				scale_out.getline(x, 100, ' ');
+				scale_out.getline(x, 100, '\n');
 				counts = atoi(x);
-				GO.ConsiderHistoryFromFile(counts,k);
-				pedometer_out.close();
-				k += counts;
+				GO.ConsiderHistoryFromFile(counts);
+				scale_out.close();
 				system("pause");
 				system("cls");
 				break;
