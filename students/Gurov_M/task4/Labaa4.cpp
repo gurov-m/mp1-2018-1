@@ -289,7 +289,14 @@ public:
 					steps += StepCounts[i];
 				}
 			}
-			return (double(steps) / double(k));
+			if (steps == 0)
+			{
+				return 0;
+			}
+			else
+			{
+				return (double(steps) / double(k));
+			}
 		}
 	}
 	int GetMaximumStepsOnTheSelectedDayAndDate(int _month, int _i)
