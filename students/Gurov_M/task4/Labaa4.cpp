@@ -214,7 +214,7 @@ public:
 		{
 			if (StepCounts[i] != 0)
 			{
-				days += (365 * abs(info[i].year - 2000));
+				days += (365 * (info[i].year - 2000));
 				help = info[i].month - 1;
 				switch (help)
 				{
@@ -275,7 +275,7 @@ public:
 					}
 				}
 				days += (info[i].day - 1);
-				for (int i = 1; i <= abs(info[i].year - 2000); i++)
+				for (int i = 1; i <= (info[i].year - 2000); i++)
 				{
 					if ((i % 4) == 0)
 					{
@@ -289,7 +289,7 @@ public:
 					steps += StepCounts[i];
 				}
 			}
-			return (steps / double(k));
+			return (double(steps) / double(k));
 		}
 	}
 	int GetMaximumStepsOnTheSelectedDayAndDate(int _month, int _i)
