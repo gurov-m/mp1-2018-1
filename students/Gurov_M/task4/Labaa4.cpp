@@ -44,8 +44,8 @@ struct AllInfoAboutCount
 	}
 	friend ostream &operator<<(ostream& os, const AllInfoAboutCount &_info);
 };
-ofstream scale_in;
-ifstream scale_out;
+ofstream pedometer_in;
+ifstream pedometer_out;
 ostream &operator<<(ostream& os, const AllInfoAboutCount &_info)
 {
 	os << _info.day << '.' << _info.month << '.' << _info.year << '.' << _info.minOfStart << '.' << _info.hourOfStart << '.' << _info.minOfEnd << '.' << _info.hourOfEnd;
@@ -285,10 +285,10 @@ public:
 	}
 	void SaveHistoryToFile(int k)
 	{
-		scale_in << "Step counts: " << k << endl;
+		pedometer_in << "Step counts: " << k << endl;
 		for (int i = 0; i < k; i++)
 		{
-			scale_in << StepCounts[i] << endl << info[i] << endl;
+			pedometer_in << StepCounts[i] << endl << info[i] << endl;
 		}
 	}
 	void ConsiderHistoryFromFile(int size , int k)
@@ -296,21 +296,21 @@ public:
 		char y[300];
 		for (int i = k; i < (k+size); i++)
 		{
-			scale_out.getline(y, 100, '\n');
+			pedometer_out.getline(y, 100, '\n');
 			StepCounts[i] = atoi(y);
-			scale_out.getline(y, 100, '.');
+			pedometer_out.getline(y, 100, '.');
 			info[i].day = atoi(y);
-			scale_out.getline(y, 100, '.');
+			pedometer_out.getline(y, 100, '.');
 			info[i].month = atoi(y);
-			scale_out.getline(y, 100, '.');
+			pedometer_out.getline(y, 100, '.');
 			info[i].year = atoi(y);
-			scale_out.getline(y, 100, '.');
+			pedometer_out.getline(y, 100, '.');
 			info[i].minOfStart = atoi(y);
-			scale_out.getline(y, 100, '.');
+			pedometer_out.getline(y, 100, '.');
 			info[i].hourOfStart = atoi(y);
-			scale_out.getline(y, 100, '.');
+			pedometer_out.getline(y, 100, '.');
 			info[i].minOfEnd = atoi(y);
-			scale_out.getline(y, 100, '\n');
+			pedometer_out.getline(y, 100, '\n');
 			info[i].hourOfEnd = atoi(y);
 		}
 	}
@@ -545,13 +545,13 @@ int main()
 			case 9: // Consider history of the step counts from a file 
 			{
 				char x[100];
-				scale_out.open("C:/Users/Maksim/Desktop/Pedometer.txt");
-				scale_out.getline(x, 100, ' ');
-				scale_out.getline(x, 100, ' ');
-				scale_out.getline(x, 100, '\n');
+				pedometer_out.open("C:/Users/Maksim/Desktop/Pedometer.txt");
+				pedometer_out.getline(x, 100, ' ');
+				pedometer_out.getline(x, 100, ' ');
+				pedometer_out.getline(x, 100, '\n');
 				counts = atoi(x);
 				GO.ConsiderHistoryFromFile(counts,k);
-				scale_out.close();
+				pedometer_out.close();
 				k += counts;
 				system("pause");
 				system("cls");
