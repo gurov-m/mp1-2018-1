@@ -535,9 +535,9 @@ int main()
 			}
 			case 8: // Save history of the step counts to a file 
 			{
-				scale_in.open("C:/Users/Maksim/Desktop/Pedometer.txt");
+				pedometer_in.open("C:/Users/Maksim/Desktop/Pedometer.txt");
 				GO.SaveHistoryToFile(k);
-				scale_in.close();
+				pedometer_in.close();
 				system("pause");
 				system("cls");
 				break;
