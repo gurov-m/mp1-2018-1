@@ -4,7 +4,7 @@
 #include <conio.h>
 #include <fstream> 
 #include <vector>
-#include<string>
+#include <string>
 using namespace std;
 struct Index
 {
