@@ -165,40 +165,40 @@ ostream& operator<<(ostream& os, NewOrder& obj)
 	os << "Date: " << obj.date[0] << "." << obj.date[1] << "." << obj.date[2] << "." << endl;
 	switch (obj.direction)
 	{
-	case 1:
-	{
-		os << "Direction:  Nizhny Novgorod - Moscow" << endl;
-		break;
-	}
-	case 2:
-	{
-		os << "Direction:  Moscow - Nizhny Novgorod" << endl;
-		break;
-	}
+		case 1:
+		{
+			os << "Direction:  Nizhny Novgorod - Moscow" << endl;
+			break;
+		}
+		case 2:
+		{
+			os << "Direction:  Moscow - Nizhny Novgorod" << endl;
+			break;
+		}
 	}
 	os << "Number of train: " << obj.trainNumber << endl;
 	switch (obj.wagonType)
 	{
-	case 0:
-	{
-		os << "Wagon of Lastochka train" << endl;
-		break;
-	}
-	case 1:
-	{
-		os << "Sleeping" << endl;
-		break;
-	}
-	case 2:
-	{
-		os << "Compartment" << endl;
-		break;
-	}
-	case 3:
-	{
-		os << "Second class" << endl;
-		break;
-	}
+		case 0:
+		{
+			os << "Wagon of Lastochka train" << endl;
+			break;
+		}
+		case 1:
+		{
+			os << "Sleeping" << endl;
+			break;
+		}
+		case 2:
+		{
+			os << "Compartment" << endl;
+			break;
+		}
+		case 3:
+		{
+			os << "Second class" << endl;
+			break;
+		}
 	}
 	os << "Number of wagon: " << obj.wagonNumber << endl;
 	os << "Tickets on Lastochka: " << obj.lastochkaTickets << endl;
