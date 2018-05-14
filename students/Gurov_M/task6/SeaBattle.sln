@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SeaBattle", "..\..\..\..\SeaBattle\SeaBattle.vcxproj", "{BD802E81-5363-45A9-BEDA-3339950F505D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SeaBattle", "SeaBattle.vcxproj", "{BD802E81-5363-45A9-BEDA-3339950F505D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +26,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {9D9A3E1D-637C-4D57-979B-05D5D63B1D83}
+		SolutionGuid = {E1475350-7E39-4D16-AC6A-922ACC4E8F0F}
 	EndGlobalSection
 EndGlobal
