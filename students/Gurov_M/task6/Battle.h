@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #define _CRT_SECURE_NO_WARNINGS
 #include<iostream>
 #include<windows.h>
@@ -12,17 +12,17 @@
 using namespace std;
 struct Ship
 {
-	int *firstDeckAdress;//адрес первой палубы
-	int position;//положение кораб.
-	int decks;//количество палуб
+	int *firstDeckAdress;//Р°РґСЂРµСЃ РїРµСЂРІРѕР№ РїР°Р»СѓР±С‹
+	int position;//РїРѕР»РѕР¶РµРЅРёРµ РєРѕСЂР°Р±.
+	int decks;//РєРѕР»РёС‡РµСЃС‚РІРѕ РїР°Р»СѓР±
 };
 class Battle
 {
 protected:
 	Ship FourPC, Three1PC, Three2PC, Two1PC, Two2PC, Two3PC, FourPlay, Three1Play, Three2Play, Two1Play, Two2Play, Two3Play;
-	int playerInd = 0; // индекс адресов кор. пользователя
-	int pcInd = 0; // индекс адресов кор. компьютера
-	int indexMovePC = 0; // индекс ходов компьютера
+	int playerInd = 0; // РёРЅРґРµРєСЃ Р°РґСЂРµСЃРѕРІ РєРѕСЂ. РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+	int pcInd = 0; // РёРЅРґРµРєСЃ Р°РґСЂРµСЃРѕРІ РєРѕСЂ. РєРѕРјРїСЊСЋС‚РµСЂР°
+	int indexMovePC = 0; // РёРЅРґРµРєСЃ С…РѕРґРѕРІ РєРѕРјРїСЊСЋС‚РµСЂР°
 	int decks = 4;
 	int hit = 0;
 	int hitsCount = 0;
@@ -33,9 +33,9 @@ protected:
 	int countPlayer = 0;
 	int countPC = 0;
 	const int Rows = 12, Cols = 12;
-	int *playerShipAddress[144]; // адреса кораблей пользователя
-	int *pcShipAddress[144]; // адреса кораблей компьютера
-	int *moveAddressPC[144]; // адреса ходов компьютера
+	int *playerShipAddress[144]; // Р°РґСЂРµСЃР° РєРѕСЂР°Р±Р»РµР№ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+	int *pcShipAddress[144]; // Р°РґСЂРµСЃР° РєРѕСЂР°Р±Р»РµР№ РєРѕРјРїСЊСЋС‚РµСЂР°
+	int *moveAddressPC[144]; // Р°РґСЂРµСЃР° С…РѕРґРѕРІ РєРѕРјРїСЊСЋС‚РµСЂР°
 	int playerField[12][12] = { 0 };
 	int compField[12][12] = { 0 };
 public:

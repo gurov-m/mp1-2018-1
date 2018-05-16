@@ -1,4 +1,4 @@
-#include "BattleField.h"
+п»ї#include "BattleField.h"
 #include "Battle.h"
 enum ConsoleColor { Black, Blue, Green, Cyan, Red, Magenta, Brown, LightGray, DarkGray, LightBlue, LightGreen, LightCyan, LightRed, LightMagenta, Yellow, White };
 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -13,7 +13,7 @@ void BattleField::DrawPlayer()
 		system("cls");
 	flag = 1;
 	SetColor(LightGreen, Black);
-	cout << "\t\t Поле Игрока\n\n";
+	cout << "\t\t РџРѕР»Рµ РРіСЂРѕРєР°\n\n";
 	SetColor(LightGreen, Black);
 	cout << "     a   b   c   d   e   f   g   h   i   j\n";
 	SetColor(White, Black);
@@ -27,21 +27,21 @@ void BattleField::DrawPlayer()
 				cout << "| " << "  ";
 				SetColor(White, Black);
 			}
-			else if (playerField[i][j] == 1)//если 1 рисует корабль 
+			else if (playerField[i][j] == 1)//РµСЃР»Рё 1 СЂРёСЃСѓРµС‚ РєРѕСЂР°Р±Р»СЊ 
 			{
 				cout << "|";
 				SetColor(Green, Green);
 				cout << '0' << "  ";
 				SetColor(White, Black);
 			}
-			else if (playerField[i][j] == 2)//если 2 мимо желтый крест
+			else if (playerField[i][j] == 2)//РµСЃР»Рё 2 РјРёРјРѕ Р¶РµР»С‚С‹Р№ РєСЂРµСЃС‚
 			{
 				cout << "| ";
 				SetColor(Yellow, Black);
 				cout << 'x' << " ";
 				SetColor(White, Black);
 			}
-			else if (playerField[i][j] == 3)//если 3 ранен или убит крас крест
+			else if (playerField[i][j] == 3)//РµСЃР»Рё 3 СЂР°РЅРµРЅ РёР»Рё СѓР±РёС‚ РєСЂР°СЃ РєСЂРµСЃС‚
 			{
 				cout << "|";
 				SetColor(LightRed, Black);
@@ -61,7 +61,7 @@ void BattleField::DrawPlayer()
 void BattleField::DrawComp()
 {
 	SetColor(LightGreen, Black);
-	cout << "\n\t\t Поле Компьютера\n\n";
+	cout << "\n\t\t РџРѕР»Рµ РљРѕРјРїСЊСЋС‚РµСЂР°\n\n";
 	SetColor(LightGreen, Black);
 	cout << "     a   b   c   d   e   f   g   h   i   j\n";
 	SetColor(White, Black);
@@ -108,7 +108,7 @@ void BattleField::DrawComp()
 					cout << "| " << "  ";
 					SetColor(White, Black);
 				}
-				else if (compField[i][j] == 1)//если 1 нарисовать корабль
+				else if (compField[i][j] == 1)//РµСЃР»Рё 1 РЅР°СЂРёСЃРѕРІР°С‚СЊ РєРѕСЂР°Р±Р»СЊ
 				{
 					cout << "|";
 					SetColor(Green, Green);
@@ -153,16 +153,16 @@ void BattleField::SetFloat(int decks , int number)
 	char getChoice[10] = {};
 	int choice = 0;
 	in: SetColor(LightGreen, Black);
-	cout << "Выберете расстановку кораблей:" << endl;
+	cout << "Р’С‹Р±РµСЂРµС‚Рµ СЂР°СЃСЃС‚Р°РЅРѕРІРєСѓ РєРѕСЂР°Р±Р»РµР№:" << endl;
 	SetColor(LightGreen, Black);
-	cout << "1) Автоматическая расстановка" << endl;
+	cout << "1) РђРІС‚РѕРјР°С‚РёС‡РµСЃРєР°СЏ СЂР°СЃСЃС‚Р°РЅРѕРІРєР°" << endl;
 	SetColor(LightGreen, Black);
-	cout << "2) Расстановка вручную" << endl;
+	cout << "2) Р Р°СЃСЃС‚Р°РЅРѕРІРєР° РІСЂСѓС‡РЅСѓСЋ" << endl;
 	cin >> choice;
 	if (choice<1 || choice>2)
 	{
 		SetColor(White, LightRed);
-		cout << "\n Неверный выбор \n";
+		cout << "\n РќРµРІРµСЂРЅС‹Р№ РІС‹Р±РѕСЂ \n";
 		goto in;
 	}
 	switch (choice)
@@ -186,28 +186,28 @@ void BattleField::SetFloat(int decks , int number)
 	}
 
 }
-void BattleField::AutomaticFloatSetting(int decks, int number)//автоматическая расcтановка кораблей пользователя
+void BattleField::AutomaticFloatSetting(int decks, int number)//Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєР°СЏ СЂР°СЃcС‚Р°РЅРѕРІРєР° РєРѕСЂР°Р±Р»РµР№ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 {
-	if (!decks)//палуб 0 - выход
+	if (!decks)//РїР°Р»СѓР± 0 - РІС‹С…РѕРґ
 		return;
-	int firstDeck = 1;//для записи в структуру
-	for (int j = 1; j <= number; j++)//j количество кораблей одного типа
+	int firstDeck = 1;//РґР»СЏ Р·Р°РїРёСЃРё РІ СЃС‚СЂСѓРєС‚СѓСЂСѓ
+	for (int j = 1; j <= number; j++)//j РєРѕР»РёС‡РµСЃС‚РІРѕ РєРѕСЂР°Р±Р»РµР№ РѕРґРЅРѕРіРѕ С‚РёРїР°
 	{
-		int *deckAdress;//указывает на адрес палубы 
-		int row, col;//строка - столбец массива
-		int random = 1 + rand() % 2;//по горизонтали или по вертикали
-		int k = 1, i = decks;//k счетчик i текущяя палуба
-		if (random == 1)//вертикаль
+		int *deckAdress;//СѓРєР°Р·С‹РІР°РµС‚ РЅР° Р°РґСЂРµСЃ РїР°Р»СѓР±С‹ 
+		int row, col;//СЃС‚СЂРѕРєР° - СЃС‚РѕР»Р±РµС† РјР°СЃСЃРёРІР°
+		int random = 1 + rand() % 2;//РїРѕ РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё РёР»Рё РїРѕ РІРµСЂС‚РёРєР°Р»Рё
+		int k = 1, i = decks;//k СЃС‡РµС‚С‡РёРє i С‚РµРєСѓС‰СЏСЏ РїР°Р»СѓР±Р°
+		if (random == 1)//РІРµСЂС‚РёРєР°Р»СЊ
 		{
 			do {
 				do {
 					row = rand() % 10 + 1;
-				} while (row + decks > 11);//чтобы не вышел за пределы массива
+				} while (row + decks > 11);//С‡С‚РѕР±С‹ РЅРµ РІС‹С€РµР» Р·Р° РїСЂРµРґРµР»С‹ РјР°СЃСЃРёРІР°
 				col = rand() % 10 + 1;
 				deckAdress = &playerField[row][col];
-			} while (!SearchAddress(deckAdress, decks, random));//проверка записан ли такой адресс           
+			} while (!SearchAddress(deckAdress, decks, random));//РїСЂРѕРІРµСЂРєР° Р·Р°РїРёСЃР°РЅ Р»Рё С‚Р°РєРѕР№ Р°РґСЂРµСЃСЃ           
 		}
-		else if (random == 2)//горизонталь
+		else if (random == 2)//РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊ
 		{
 			do {
 				do {
@@ -219,16 +219,16 @@ void BattleField::AutomaticFloatSetting(int decks, int number)//автоматическая р
 		}
 		switch (random)
 		{
-		case 1:     //вертикаль         
-			while (k <= i)//k счетчик i текущяя палуба
+		case 1:     //РІРµСЂС‚РёРєР°Р»СЊ         
+			while (k <= i)//k СЃС‡РµС‚С‡РёРє i С‚РµРєСѓС‰СЏСЏ РїР°Р»СѓР±Р°
 			{
 				playerField[row][col] = 1;
 				if (decks == 4 && firstDeck == 1)
 				{
-					FourPlay.firstDeckAdress = &playerField[row][col];     //запись в структуру адреса только самой первой палубы
-					FourPlay.position = 1;//положение корабля
-					FourPlay.decks = 4;//кол. палуб
-					firstDeck++;//чтобы больше не зап. адреса остальн. палуб
+					FourPlay.firstDeckAdress = &playerField[row][col];     //Р·Р°РїРёСЃСЊ РІ СЃС‚СЂСѓРєС‚СѓСЂСѓ Р°РґСЂРµСЃР° С‚РѕР»СЊРєРѕ СЃР°РјРѕР№ РїРµСЂРІРѕР№ РїР°Р»СѓР±С‹
+					FourPlay.position = 1;//РїРѕР»РѕР¶РµРЅРёРµ РєРѕСЂР°Р±Р»СЏ
+					FourPlay.decks = 4;//РєРѕР». РїР°Р»СѓР±
+					firstDeck++;//С‡С‚РѕР±С‹ Р±РѕР»СЊС€Рµ РЅРµ Р·Р°Рї. Р°РґСЂРµСЃР° РѕСЃС‚Р°Р»СЊРЅ. РїР°Р»СѓР±
 				}
 				else if (decks == 3 && firstDeck == 1)
 				{
@@ -269,16 +269,16 @@ void BattleField::AutomaticFloatSetting(int decks, int number)//автоматическая р
 				i--;
 			}
 			break;
-		case 2:         //горизонталь               
+		case 2:         //РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊ               
 			while (k <= i)
 			{
 				playerField[row][col] = 1;
 				if (decks == 4 && firstDeck == 1)
 				{
-					FourPlay.firstDeckAdress = &playerField[row][col];     //запись в структуру адреса только самой первой палубы
-					FourPlay.position = 2;//положение корабля
-					FourPlay.decks = 4;//кол. палуб
-					firstDeck++;//чтобы больше не зап. адреса остальн. палуб
+					FourPlay.firstDeckAdress = &playerField[row][col];     //Р·Р°РїРёСЃСЊ РІ СЃС‚СЂСѓРєС‚СѓСЂСѓ Р°РґСЂРµСЃР° С‚РѕР»СЊРєРѕ СЃР°РјРѕР№ РїРµСЂРІРѕР№ РїР°Р»СѓР±С‹
+					FourPlay.position = 2;//РїРѕР»РѕР¶РµРЅРёРµ РєРѕСЂР°Р±Р»СЏ
+					FourPlay.decks = 4;//РєРѕР». РїР°Р»СѓР±
+					firstDeck++;//С‡С‚РѕР±С‹ Р±РѕР»СЊС€Рµ РЅРµ Р·Р°Рї. Р°РґСЂРµСЃР° РѕСЃС‚Р°Р»СЊРЅ. РїР°Р»СѓР±
 				}
 				else if (decks == 3 && firstDeck == 1)
 				{
@@ -321,137 +321,137 @@ void BattleField::AutomaticFloatSetting(int decks, int number)//автоматическая р
 			break;
 		}
 	}
-	AutomaticFloatSetting(decks - 1, number + 1);//уменшение палуб - увеличение кол. кор.
+	AutomaticFloatSetting(decks - 1, number + 1);//СѓРјРµРЅС€РµРЅРёРµ РїР°Р»СѓР± - СѓРІРµР»РёС‡РµРЅРёРµ РєРѕР». РєРѕСЂ.
 }
-void BattleField::ManualFloatSetting(int decks, int number)//растановка в ручную
+void BattleField::ManualFloatSetting(int decks, int number)//СЂР°СЃС‚Р°РЅРѕРІРєР° РІ СЂСѓС‡РЅСѓСЋ
 {
 	DrawPlayer();
-	int *deckAdress;//указывает на адрес палубы 
-	int row, col;//строка - столбец массива
-	int choice1 = 0;//по горизонтали или по вертикали        
+	int *deckAdress;//СѓРєР°Р·С‹РІР°РµС‚ РЅР° Р°РґСЂРµСЃ РїР°Р»СѓР±С‹ 
+	int row, col;//СЃС‚СЂРѕРєР° - СЃС‚РѕР»Р±РµС† РјР°СЃСЃРёРІР°
+	int choice1 = 0;//РїРѕ РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё РёР»Рё РїРѕ РІРµСЂС‚РёРєР°Р»Рё        
 	char column;
 	if (!decks)
 		return;
 	int firstDeck = 1;
-	for (int j = 1; j <= number; j++)//j количество кораблей одного типа
+	for (int j = 1; j <= number; j++)//j РєРѕР»РёС‡РµСЃС‚РІРѕ РєРѕСЂР°Р±Р»РµР№ РѕРґРЅРѕРіРѕ С‚РёРїР°
 	{
 		do {
-			cout << decks << " - палубный корабль\n";
-			cout << "Введите координаты корабля по горизонтали например(а)\n";
+			cout << decks << " - РїР°Р»СѓР±РЅС‹Р№ РєРѕСЂР°Р±Р»СЊ\n";
+			cout << "Р’РІРµРґРёС‚Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ РєРѕСЂР°Р±Р»СЏ РїРѕ РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё РЅР°РїСЂРёРјРµСЂ(Р°)\n";
 			cin >> column;
-			cout << "Введите координаты корабля по вертикали например(5)\n";
+			cout << "Р’РІРµРґРёС‚Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ РєРѕСЂР°Р±Р»СЏ РїРѕ РІРµСЂС‚РёРєР°Р»Рё РЅР°РїСЂРёРјРµСЂ(5)\n";
 			cin >> row;
 			col = Translation(column);
 			if ((col < 1) || (col > 10) || (row < 1) || (row > 10))
 			{
 				SetColor(Blue, LightRed);
-				cout << " Неверные координаты \n";
+				cout << " РќРµРІРµСЂРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ \n";
 				SetColor(White, Black);
 			}
 		} while ((!col) || (row < 1) || (row > 10));
-		int k = 1, i = decks;//k счетчик i текущяя палуба      
+		int k = 1, i = decks;//k СЃС‡РµС‚С‡РёРє i С‚РµРєСѓС‰СЏСЏ РїР°Р»СѓР±Р°      
 		if (decks > 1)
 		{
 			do {
-				cout << "Как Вы хотите установить свой " << decks << " палубный корабль \nВертикально(1)  Горизонтально(2) = ";
+				cout << "РљР°Рє Р’С‹ С…РѕС‚РёС‚Рµ СѓСЃС‚Р°РЅРѕРІРёС‚СЊ СЃРІРѕР№ " << decks << " РїР°Р»СѓР±РЅС‹Р№ РєРѕСЂР°Р±Р»СЊ \nР’РµСЂС‚РёРєР°Р»СЊРЅРѕ(1)  Р“РѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅРѕ(2) = ";
 				cin >> choice1;
 				if (choice1 < 1 || choice1 > 2)
 				{
 					SetColor(White, LightRed);
-					cout << " Неверные координаты \n";
+					cout << " РќРµРІРµСЂРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ \n";
 					SetColor(White, Black);
 				}
 			} while (choice1 < 1 || choice1 > 2);
 		}
-		if (decks == 1)//для однопалубного
+		if (decks == 1)//РґР»СЏ РѕРґРЅРѕРїР°Р»СѓР±РЅРѕРіРѕ
 			choice1 = 1;
-		if (choice1 == 1)//вертикаль
+		if (choice1 == 1)//РІРµСЂС‚РёРєР°Р»СЊ
 		{
 			do {
-				if (errors)//проверка адресов
+				if (errors)//РїСЂРѕРІРµСЂРєР° Р°РґСЂРµСЃРѕРІ
 				{
 					SetColor(White, LightRed);
-					cout << " Неверные координаты \n";
+					cout << " РќРµРІРµСЂРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ \n";
 					SetColor(White, Black);
 					do {
-						cout << decks << " - палубный корабль\n";
-						cout << "Введите координаты корабля по горизонтали например(а)\n";
+						cout << decks << " - РїР°Р»СѓР±РЅС‹Р№ РєРѕСЂР°Р±Р»СЊ\n";
+						cout << "Р’РІРµРґРёС‚Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ РєРѕСЂР°Р±Р»СЏ РїРѕ РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё РЅР°РїСЂРёРјРµСЂ(Р°)\n";
 						cin >> column;
-						cout << "Введите координаты корабля по вертикали например(5)\n";
+						cout << "Р’РІРµРґРёС‚Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ РєРѕСЂР°Р±Р»СЏ РїРѕ РІРµСЂС‚РёРєР°Р»Рё РЅР°РїСЂРёРјРµСЂ(5)\n";
 						cin >> row;
 						col = Translation(column);
 						if ((!col) || (row < 1) || (row > 10))
 						{
 							SetColor(White, LightRed);
-							cout << " Неверные координаты \n";
+							cout << " РќРµРІРµСЂРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ \n";
 							SetColor(White, Black);
 						}
 					} while ((!col) || (row < 1) || (row > 10));
 					errors = 0;
 				}
-				if (row + decks>11)//проверка на выход за пределы массива
+				if (row + decks>11)//РїСЂРѕРІРµСЂРєР° РЅР° РІС‹С…РѕРґ Р·Р° РїСЂРµРґРµР»С‹ РјР°СЃСЃРёРІР°
 					do {
 						SetColor(White, LightRed);
-						cout << " Неверные координаты \n";
+						cout << " РќРµРІРµСЂРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ \n";
 						SetColor(White, Black);
 						do {
-							cout << decks << " - палубный корабль\n";
-							cout << "Введите координаты корабля по горизонтали например(а)\n";
+							cout << decks << " - РїР°Р»СѓР±РЅС‹Р№ РєРѕСЂР°Р±Р»СЊ\n";
+							cout << "Р’РІРµРґРёС‚Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ РєРѕСЂР°Р±Р»СЏ РїРѕ РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё РЅР°РїСЂРёРјРµСЂ(Р°)\n";
 							cin >> column;
-							cout << "Введите координаты корабля по вертикали например(5)\n";
+							cout << "Р’РІРµРґРёС‚Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ РєРѕСЂР°Р±Р»СЏ РїРѕ РІРµСЂС‚РёРєР°Р»Рё РЅР°РїСЂРёРјРµСЂ(5)\n";
 							cin >> row;
 							col = Translation(column);
 							if ((!col) || (row < 1) || (row > 10))
 							{
 								SetColor(White, LightRed);
-								cout << " Неверные координаты \n";
+								cout << " РќРµРІРµСЂРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ \n";
 								SetColor(White, Black);
 							}
 						} while ((!col) || (row < 1) || (row > 10));
-					} while (row + decks > 11); //проверка на выход за пределы массива          
-					deckAdress = &playerField[row][col];  //первая палуба             
-			} while (!SearchAddress(deckAdress, decks, choice1)); //проверка на совпадение адресов        
+					} while (row + decks > 11); //РїСЂРѕРІРµСЂРєР° РЅР° РІС‹С…РѕРґ Р·Р° РїСЂРµРґРµР»С‹ РјР°СЃСЃРёРІР°          
+					deckAdress = &playerField[row][col];  //РїРµСЂРІР°СЏ РїР°Р»СѓР±Р°             
+			} while (!SearchAddress(deckAdress, decks, choice1)); //РїСЂРѕРІРµСЂРєР° РЅР° СЃРѕРІРїР°РґРµРЅРёРµ Р°РґСЂРµСЃРѕРІ        
 		}
-		else if (choice1 == 2)//горизонталь
+		else if (choice1 == 2)//РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊ
 		{
 			do {
-				if (errors)//проверка адресов
+				if (errors)//РїСЂРѕРІРµСЂРєР° Р°РґСЂРµСЃРѕРІ
 				{
 					SetColor(White, LightRed);
-					cout << " Неверные координаты \n";
+					cout << " РќРµРІРµСЂРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ \n";
 					SetColor(White, Black);
 					do {
-						cout << decks << " - палубный корабль\n";
-						cout << "Введите координаты корабля по горизонтали например(а)\n";
+						cout << decks << " - РїР°Р»СѓР±РЅС‹Р№ РєРѕСЂР°Р±Р»СЊ\n";
+						cout << "Р’РІРµРґРёС‚Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ РєРѕСЂР°Р±Р»СЏ РїРѕ РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё РЅР°РїСЂРёРјРµСЂ(Р°)\n";
 						cin >> column;
-						cout << "Введите координаты корабля по вертикали например(5)\n";
+						cout << "Р’РІРµРґРёС‚Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ РєРѕСЂР°Р±Р»СЏ РїРѕ РІРµСЂС‚РёРєР°Р»Рё РЅР°РїСЂРёРјРµСЂ(5)\n";
 						cin >> row;
 						col = Translation(column);
 						if ((!col) || (row<1) || (row>10))
 						{
 							SetColor(White, LightRed);
-							cout << " Неверные координаты \n";
+							cout << " РќРµРІРµСЂРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ \n";
 							SetColor(White, Black);
 						}
 					} while ((!col) || (row < 1) || (row > 10));
 					errors = 0;
 				}
-				if (col + decks > 11)//проверка на выход за пределы массива
+				if (col + decks > 11)//РїСЂРѕРІРµСЂРєР° РЅР° РІС‹С…РѕРґ Р·Р° РїСЂРµРґРµР»С‹ РјР°СЃСЃРёРІР°
 					do {
 						SetColor(White, LightRed);
-						cout << " Неверные координаты \n";
+						cout << " РќРµРІРµСЂРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ \n";
 						SetColor(White, Black);
 						do {
-							cout << decks << " - палубный корабль\n";
-							cout << "Введите координаты корабля по горизонтали например(а)\n";
+							cout << decks << " - РїР°Р»СѓР±РЅС‹Р№ РєРѕСЂР°Р±Р»СЊ\n";
+							cout << "Р’РІРµРґРёС‚Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ РєРѕСЂР°Р±Р»СЏ РїРѕ РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё РЅР°РїСЂРёРјРµСЂ(Р°)\n";
 							cin >> column;
-							cout << "Введите координаты корабля по вертикали например(5)\n";
+							cout << "Р’РІРµРґРёС‚Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ РєРѕСЂР°Р±Р»СЏ РїРѕ РІРµСЂС‚РёРєР°Р»Рё РЅР°РїСЂРёРјРµСЂ(5)\n";
 							cin >> row;
 							col = Translation(column);
 							if ((!col) || (row < 1) || (row > 10))
 							{
 								SetColor(White, LightRed);
-								cout << " Неверные координаты \n";
+								cout << " РќРµРІРµСЂРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ \n";
 								SetColor(White, Black);
 							}
 						} while ((!col) || (row < 1) || (row > 10));
@@ -461,16 +461,16 @@ void BattleField::ManualFloatSetting(int decks, int number)//растановка в ручную
 		}
 		switch (choice1)
 		{
-		case 1:     //вертикаль         
-			while (k <= i)//k счетчик i текущяя палуба
+		case 1:     //РІРµСЂС‚РёРєР°Р»СЊ         
+			while (k <= i)//k СЃС‡РµС‚С‡РёРє i С‚РµРєСѓС‰СЏСЏ РїР°Р»СѓР±Р°
 			{
 				playerField[row][col] = 1;
 				if (decks == 4 && firstDeck == 1)
 				{
-					FourPlay.firstDeckAdress = &playerField[row][col];     //запись в структуру адреса только самой первой палубы
-					FourPlay.position = 1;//положение корабля
-					FourPlay.decks = 4;//кол. палуб
-					firstDeck++;//чтобы больше не зап. адреса остальн. палуб
+					FourPlay.firstDeckAdress = &playerField[row][col];     //Р·Р°РїРёСЃСЊ РІ СЃС‚СЂСѓРєС‚СѓСЂСѓ Р°РґСЂРµСЃР° С‚РѕР»СЊРєРѕ СЃР°РјРѕР№ РїРµСЂРІРѕР№ РїР°Р»СѓР±С‹
+					FourPlay.position = 1;//РїРѕР»РѕР¶РµРЅРёРµ РєРѕСЂР°Р±Р»СЏ
+					FourPlay.decks = 4;//РєРѕР». РїР°Р»СѓР±
+					firstDeck++;//С‡С‚РѕР±С‹ Р±РѕР»СЊС€Рµ РЅРµ Р·Р°Рї. Р°РґСЂРµСЃР° РѕСЃС‚Р°Р»СЊРЅ. РїР°Р»СѓР±
 				}
 				else if (decks == 3 && firstDeck == 1)
 				{
@@ -511,16 +511,16 @@ void BattleField::ManualFloatSetting(int decks, int number)//растановка в ручную
 				i--;
 			}
 			break;
-		case 2:         //горизонталь               
+		case 2:         //РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊ               
 			while (k <= i)
 			{
 				playerField[row][col] = 1;
 				if (decks == 4 && firstDeck == 1)
 				{
-					FourPlay.firstDeckAdress = &playerField[row][col];     //запись в структуру адреса только самой первой палубы
-					FourPlay.position = 2;//положение корабля
-					FourPlay.decks = 4;//кол. палуб
-					firstDeck++;//чтобы больше не зап. адреса остальн. палуб
+					FourPlay.firstDeckAdress = &playerField[row][col];     //Р·Р°РїРёСЃСЊ РІ СЃС‚СЂСѓРєС‚СѓСЂСѓ Р°РґСЂРµСЃР° С‚РѕР»СЊРєРѕ СЃР°РјРѕР№ РїРµСЂРІРѕР№ РїР°Р»СѓР±С‹
+					FourPlay.position = 2;//РїРѕР»РѕР¶РµРЅРёРµ РєРѕСЂР°Р±Р»СЏ
+					FourPlay.decks = 4;//РєРѕР». РїР°Р»СѓР±
+					firstDeck++;//С‡С‚РѕР±С‹ Р±РѕР»СЊС€Рµ РЅРµ Р·Р°Рї. Р°РґСЂРµСЃР° РѕСЃС‚Р°Р»СЊРЅ. РїР°Р»СѓР±
 				}
 				else if (decks == 3 && firstDeck == 1)
 				{
@@ -564,51 +564,51 @@ void BattleField::ManualFloatSetting(int decks, int number)//растановка в ручную
 		}
 		DrawPlayer();
 	}
-	ManualFloatSetting(decks - 1, number + 1);//уменшение палуб - увеличение кол. кор.
+	ManualFloatSetting(decks - 1, number + 1);//СѓРјРµРЅС€РµРЅРёРµ РїР°Р»СѓР± - СѓРІРµР»РёС‡РµРЅРёРµ РєРѕР». РєРѕСЂ.
 }
 void BattleField::SetPCShips(int decks, int number)
 {
 	if (!decks)
 		return;
 	int firstDeck = 1;
-	for (int j = 1; j <= number; j++)//j количество кораблей одного типа
+	for (int j = 1; j <= number; j++)//j РєРѕР»РёС‡РµСЃС‚РІРѕ РєРѕСЂР°Р±Р»РµР№ РѕРґРЅРѕРіРѕ С‚РёРїР°
 	{
-		int *deckAdress;//указывает на адрес палубы 
-		int row, col;//строка - столбец массива
-		int random = 1 + rand() % 2;//по горизонтали или по вертикали
-		int k = 1, i = decks;//k счетчик i текущяя палуба
-		if (random == 1)//вертикаль
+		int *deckAdress;//СѓРєР°Р·С‹РІР°РµС‚ РЅР° Р°РґСЂРµСЃ РїР°Р»СѓР±С‹ 
+		int row, col;//СЃС‚СЂРѕРєР° - СЃС‚РѕР»Р±РµС† РјР°СЃСЃРёРІР°
+		int random = 1 + rand() % 2;//РїРѕ РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё РёР»Рё РїРѕ РІРµСЂС‚РёРєР°Р»Рё
+		int k = 1, i = decks;//k СЃС‡РµС‚С‡РёРє i С‚РµРєСѓС‰СЏСЏ РїР°Р»СѓР±Р°
+		if (random == 1)//РІРµСЂС‚РёРєР°Р»СЊ
 		{
 			do {
 				do {
 					row = rand() % 10 + 1;
-				} while (row + decks>11);//чтобы не выйти за пределы массива
+				} while (row + decks>11);//С‡С‚РѕР±С‹ РЅРµ РІС‹Р№С‚Рё Р·Р° РїСЂРµРґРµР»С‹ РјР°СЃСЃРёРІР°
 				col = rand() % 10 + 1;
-				deckAdress = &compField[row][col];//адресс для проверки на совпадение
-			} while (!SearchPCAddress(deckAdress, decks, random));//-----------------//вызвать ф-ю         
+				deckAdress = &compField[row][col];//Р°РґСЂРµСЃСЃ РґР»СЏ РїСЂРѕРІРµСЂРєРё РЅР° СЃРѕРІРїР°РґРµРЅРёРµ
+			} while (!SearchPCAddress(deckAdress, decks, random));//-----------------//РІС‹Р·РІР°С‚СЊ С„-СЋ         
 		}
-		else if (random == 2)//горизонталь
+		else if (random == 2)//РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊ
 		{
 			do {
 				do {
 					col = rand() % 10 + 1;
-				} while (col + decks>11);//чтобы не выйти за пределы массива
+				} while (col + decks>11);//С‡С‚РѕР±С‹ РЅРµ РІС‹Р№С‚Рё Р·Р° РїСЂРµРґРµР»С‹ РјР°СЃСЃРёРІР°
 				row = rand() % 10 + 1;
-				deckAdress = &compField[row][col];//адресс для проверки на совпадение
-			} while (!SearchPCAddress(deckAdress, decks, random));//-----------------//вызвать ф-ю     
+				deckAdress = &compField[row][col];//Р°РґСЂРµСЃСЃ РґР»СЏ РїСЂРѕРІРµСЂРєРё РЅР° СЃРѕРІРїР°РґРµРЅРёРµ
+			} while (!SearchPCAddress(deckAdress, decks, random));//-----------------//РІС‹Р·РІР°С‚СЊ С„-СЋ     
 		}
 		switch (random)
 		{
-		case 1:     //вертикаль         
-			while (k <= i)//k счетчик i текущяя палуба
+		case 1:     //РІРµСЂС‚РёРєР°Р»СЊ         
+			while (k <= i)//k СЃС‡РµС‚С‡РёРє i С‚РµРєСѓС‰СЏСЏ РїР°Р»СѓР±Р°
 			{
-				compField[row][col] = 1;//устоновка палубы 1
+				compField[row][col] = 1;//СѓСЃС‚РѕРЅРѕРІРєР° РїР°Р»СѓР±С‹ 1
 				if (decks == 4 && firstDeck == 1)
 				{
-					FourPC.firstDeckAdress = &compField[row][col];  //запись в структуру только первой палубы
-					FourPC.position = 1;//положение корабл.
-					FourPC.decks = 4;//колич. палуб
-					firstDeck++;//чтобы не входить в блок дважды
+					FourPC.firstDeckAdress = &compField[row][col];  //Р·Р°РїРёСЃСЊ РІ СЃС‚СЂСѓРєС‚СѓСЂСѓ С‚РѕР»СЊРєРѕ РїРµСЂРІРѕР№ РїР°Р»СѓР±С‹
+					FourPC.position = 1;//РїРѕР»РѕР¶РµРЅРёРµ РєРѕСЂР°Р±Р».
+					FourPC.decks = 4;//РєРѕР»РёС‡. РїР°Р»СѓР±
+					firstDeck++;//С‡С‚РѕР±С‹ РЅРµ РІС…РѕРґРёС‚СЊ РІ Р±Р»РѕРє РґРІР°Р¶РґС‹
 				}
 				else if (decks == 3 && firstDeck == 1)
 				{
@@ -649,7 +649,7 @@ void BattleField::SetPCShips(int decks, int number)
 				i--;
 			}
 			break;
-		case 2:         //горизонталь               
+		case 2:         //РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊ               
 			while (k <= i)
 			{
 				compField[row][col] = 1;
@@ -701,7 +701,7 @@ void BattleField::SetPCShips(int decks, int number)
 			break;
 		}
 	}
-	SetPCShips(decks - 1, number + 1);//уменш. палуб - увел. кол. корабл.
+	SetPCShips(decks - 1, number + 1);//СѓРјРµРЅС€. РїР°Р»СѓР± - СѓРІРµР». РєРѕР». РєРѕСЂР°Р±Р».
 }
 void BattleField::Move()
 {
@@ -711,15 +711,15 @@ void BattleField::Move()
 			do
 			{
 				SetColor(LightGreen, Black);
-				cout << "Кто ходит первым ? \n";
+				cout << "РљС‚Рѕ С…РѕРґРёС‚ РїРµСЂРІС‹Рј ? \n";
 				SetColor(LightGreen, Black);
-				cout << "Компьютер(1)  Пользователь(2) =  \n";
+				cout << "РљРѕРјРїСЊСЋС‚РµСЂ(1)  РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ(2) =  \n";
 				SetColor(White, Black);
 				cin >> firstMove;
 				if (firstMove < 1 || firstMove > 2)
 				{
 					SetColor(White, LightRed);
-					cout << "\n Неверный выбор \n";
+					cout << "\n РќРµРІРµСЂРЅС‹Р№ РІС‹Р±РѕСЂ \n";
 					SetColor(White, Black);
 				}
 			} while (firstMove < 1 || firstMove > 2);
@@ -731,40 +731,40 @@ void BattleField::Move()
 		system("pause");
 		return;
 }
-void BattleField::PlayerMove()//хода польз.
+void BattleField::PlayerMove()//С…РѕРґР° РїРѕР»СЊР·.
 {
-	if (!IfWin())//проверка на победителя
+	if (!IfWin())//РїСЂРѕРІРµСЂРєР° РЅР° РїРѕР±РµРґРёС‚РµР»СЏ
 	{
 		SetColor(White, Black);
 		cout << "\n\t\t";
 		SetColor(White, LightRed);
 		cout << " GAME OVER \n";
 		SetColor(LightGreen, Black);
-		cout << "\nПобедил Пользователь со счетом = " << countPlayer << " Компьютер = " << countPC << endl;
+		cout << "\nРџРѕР±РµРґРёР» РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ СЃРѕ СЃС‡РµС‚РѕРј = " << countPlayer << " РљРѕРјРїСЊСЋС‚РµСЂ = " << countPC << endl;
 		SetColor(White, Black);
 		return;
 	}
 	int row, col;
-	char сolumn;
+	char СЃolumn;
 	do { 
 		SetColor(LightGreen, Black);
-		cout << "\nПроизведите выстрел введя координаты (a2)__ ";
-		cout << "Введите координаты по горизонтали например(а)\n";
-		cin >> сolumn;
-		cout << "Введите координаты по вертикали например(5)\n";
+		cout << "\nРџСЂРѕРёР·РІРµРґРёС‚Рµ РІС‹СЃС‚СЂРµР» РІРІРµРґСЏ РєРѕРѕСЂРґРёРЅР°С‚С‹ (a2)__ ";
+		cout << "Р’РІРµРґРёС‚Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ РїРѕ РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё РЅР°РїСЂРёРјРµСЂ(Р°)\n";
+		cin >> СЃolumn;
+		cout << "Р’РІРµРґРёС‚Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ РїРѕ РІРµСЂС‚РёРєР°Р»Рё РЅР°РїСЂРёРјРµСЂ(5)\n";
 		cin >> row;
-		col = Translation(сolumn);
+		col = Translation(СЃolumn);
 		if ((!col) || (row < 1) || (row > 10))
 		{
 			SetColor(White, LightRed);
-			cout << "\n Неверные координаты \n\n";
+			cout << "\n РќРµРІРµСЂРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ \n\n";
 			SetColor(White, Black);
 		}
 	} while ((!col) || (row < 1) || (row > 10));
-	if (compField[row][col] == 1)//если попали
+	if (compField[row][col] == 1)//РµСЃР»Рё РїРѕРїР°Р»Рё
 	{
-		int *hit = &compField[row][col];//адрес ранен. кор. чтобы обвести если убит
-		compField[row][col] = 3;//присв. 3
+		int *hit = &compField[row][col];//Р°РґСЂРµСЃ СЂР°РЅРµРЅ. РєРѕСЂ. С‡С‚РѕР±С‹ РѕР±РІРµСЃС‚Рё РµСЃР»Рё СѓР±РёС‚
+		compField[row][col] = 3;//РїСЂРёСЃРІ. 3
 		IfHittedPCShip(hit);
 		DrawPlayer();
 		DrawComp();
@@ -774,9 +774,9 @@ void BattleField::PlayerMove()//хода польз.
 			return;
 		}
 	}
-	else if (compField[row][col] != 3 && compField[row][col] != 1)//если мимо
+	else if (compField[row][col] != 3 && compField[row][col] != 1)//РµСЃР»Рё РјРёРјРѕ
 	{
-		compField[row][col] = 2;      //присв. 2
+		compField[row][col] = 2;      //РїСЂРёСЃРІ. 2
 	}
 	DrawPlayer();
 	DrawComp();
@@ -786,44 +786,44 @@ void BattleField::PlayerMove()//хода польз.
 		return;
 	}
 }
-void BattleField::PCMove()// ход РС
+void BattleField::PCMove()// С…РѕРґ Р РЎ
 {
-	if (!IfWin())//проверка на победителя
+	if (!IfWin())//РїСЂРѕРІРµСЂРєР° РЅР° РїРѕР±РµРґРёС‚РµР»СЏ
 	{
 		SetColor(White, Black);
 		cout << "\n\t\t";
 		SetColor(White, LightRed);
-		cout << " ИГРА ОКОНЧЕНА \n";
+		cout << " РР“Р Рђ РћРљРћРќР§Р•РќРђ \n";
 		SetColor(LightGreen, Black);
-		cout << "\nПобедил Компьютер со счетом Компьютер = " << countPC << " Пользователь = " << countPlayer << endl;
+		cout << "\nРџРѕР±РµРґРёР» РљРѕРјРїСЊСЋС‚РµСЂ СЃРѕ СЃС‡РµС‚РѕРј РљРѕРјРїСЊСЋС‚РµСЂ = " << countPC << " РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ = " << countPlayer << endl;
 		SetColor(White, Black);
 		//system("pause");
 		return;
 	}
 	int *moves;
-	int rows = 1, cols = 1, step = 1;//для того чтобы РС стрелял через клетку
-	int *firstHittedDeck = 0;//адрес первой раненой палубы
-	if (!hit)//если не ранил
+	int rows = 1, cols = 1, step = 1;//РґР»СЏ С‚РѕРіРѕ С‡С‚РѕР±С‹ Р РЎ СЃС‚СЂРµР»СЏР» С‡РµСЂРµР· РєР»РµС‚РєСѓ
+	int *firstHittedDeck = 0;//Р°РґСЂРµСЃ РїРµСЂРІРѕР№ СЂР°РЅРµРЅРѕР№ РїР°Р»СѓР±С‹
+	if (!hit)//РµСЃР»Рё РЅРµ СЂР°РЅРёР»
 	{
 		for (; step <= 2; )//step1 *_  step2 _*
 		{
-			for (; rows < 11; rows++, (step == 1) ? ((rows % 2 == 0) ? cols = 2 : cols = 1) : ((rows % 2 == 0) ? cols = 1 : cols = 2))//как ходить *_ или _*
+			for (; rows < 11; rows++, (step == 1) ? ((rows % 2 == 0) ? cols = 2 : cols = 1) : ((rows % 2 == 0) ? cols = 1 : cols = 2))//РєР°Рє С…РѕРґРёС‚СЊ *_ РёР»Рё _*
 			{
 				for (; cols < 11; )
 				{
 					moves = &playerField[rows][cols];
-					if (!IfPCMoveRepeat(moves))//чтобы не ходить в то-же место
+					if (!IfPCMoveRepeat(moves))//С‡С‚РѕР±С‹ РЅРµ С…РѕРґРёС‚СЊ РІ С‚Рѕ-Р¶Рµ РјРµСЃС‚Рѕ
 					{
 						cols += 2;
 						continue;
 					}
 					moveAddressPC[indexMovePC] = &playerField[rows][cols];
 					indexMovePC++;
-					if (playerField[rows][cols] == 1)//если попал
+					if (playerField[rows][cols] == 1)//РµСЃР»Рё РїРѕРїР°Р»
 					{
-						playerField[rows][cols] = 3;//присвоить 3
+						playerField[rows][cols] = 3;//РїСЂРёСЃРІРѕРёС‚СЊ 3
 						int *hit = &playerField[rows][cols];
-						IfHittedPlayerShip(hit);  //проверка на ранение  
+						IfHittedPlayerShip(hit);  //РїСЂРѕРІРµСЂРєР° РЅР° СЂР°РЅРµРЅРёРµ  
 						DrawPlayer();
 						DrawComp();
 						cols += 2;
@@ -835,13 +835,13 @@ void BattleField::PCMove()// ход РС
 					}
 					else
 					{
-						playerField[rows][cols] = 2; //иначе присв. 2
+						playerField[rows][cols] = 2; //РёРЅР°С‡Рµ РїСЂРёСЃРІ. 2
 						cols += 2;
 					}
 					DrawPlayer();
 					DrawComp();
 					SetColor(LightRed, Black);
-					cout << "\nКомпьютер походил !" << endl << endl;
+					cout << "\nРљРѕРјРїСЊСЋС‚РµСЂ РїРѕС…РѕРґРёР» !" << endl << endl;
 					SetColor(White, Black);
 					PlayerMove();
 					if (!IfWin())
@@ -857,67 +857,67 @@ void BattleField::PCMove()// ход РС
 			step++;
 		}
 	}
-	if (hit)//если ранен
+	if (hit)//РµСЃР»Рё СЂР°РЅРµРЅ
 	{
 		int *hit = &*(firstHittedDeck);
 		do {
 			if (hitsCount == 1)
-				hit = &*(firstHittedDeck + 1);//вправо на 1
+				hit = &*(firstHittedDeck + 1);//РІРїСЂР°РІРѕ РЅР° 1
 			if (hitsCount == 2)
-				hit = &*(firstHittedDeck - 1);//влево на 1
+				hit = &*(firstHittedDeck - 1);//РІР»РµРІРѕ РЅР° 1
 			if (hitsCount == 3)
 				if (*(firstHittedDeck + 1) != 2)
-					hit = &*(firstHittedDeck + 2);//если вправо на 1 !=2 вправо на 2
+					hit = &*(firstHittedDeck + 2);//РµСЃР»Рё РІРїСЂР°РІРѕ РЅР° 1 !=2 РІРїСЂР°РІРѕ РЅР° 2
 				else
 					hitsCount++;
 			if (hitsCount == 4)
 				if (*(firstHittedDeck - 1) != 2)
-					hit = &*(firstHittedDeck - 2);//если влево на 1 !=2 влево на 2
+					hit = &*(firstHittedDeck - 2);//РµСЃР»Рё РІР»РµРІРѕ РЅР° 1 !=2 РІР»РµРІРѕ РЅР° 2
 				else
 					hitsCount++;
 			if (hitsCount == 5)
 				if (*(firstHittedDeck + 1) != 2)
-					hit = &*(firstHittedDeck + 3);//если вправо на 1 !=2 вправо на 3
+					hit = &*(firstHittedDeck + 3);//РµСЃР»Рё РІРїСЂР°РІРѕ РЅР° 1 !=2 РІРїСЂР°РІРѕ РЅР° 3
 				else
 					hitsCount++;
 			if (hitsCount == 6)
 				if (*(firstHittedDeck - 1) != 2)
-					hit = &*(firstHittedDeck - 3);//если влево на 1 !=2 влево на 3
+					hit = &*(firstHittedDeck - 3);//РµСЃР»Рё РІР»РµРІРѕ РЅР° 1 !=2 РІР»РµРІРѕ РЅР° 3
 				else
 					hitsCount++;
 			if (hitsCount == 7)
-				hit = &*(firstHittedDeck + 12);//значит корабль стоит вертикально - в низ на 1
+				hit = &*(firstHittedDeck + 12);//Р·РЅР°С‡РёС‚ РєРѕСЂР°Р±Р»СЊ СЃС‚РѕРёС‚ РІРµСЂС‚РёРєР°Р»СЊРЅРѕ - РІ РЅРёР· РЅР° 1
 			if (hitsCount == 8)
-				hit = &*(firstHittedDeck - 12);//вверх на 1
+				hit = &*(firstHittedDeck - 12);//РІРІРµСЂС… РЅР° 1
 			if (hitsCount == 9)
 				if (*(firstHittedDeck - 12) != 2)
-					hit = &*(firstHittedDeck - 24);//если вверх на 1 !=2 то вверх на 2
+					hit = &*(firstHittedDeck - 24);//РµСЃР»Рё РІРІРµСЂС… РЅР° 1 !=2 С‚Рѕ РІРІРµСЂС… РЅР° 2
 				else
 					hitsCount++;
 			if (hitsCount == 10)
 				if (*(firstHittedDeck + 12) != 2)
-					hit = &*(firstHittedDeck + 24);//если вниз на 1 !=2 то вниз на 2
+					hit = &*(firstHittedDeck + 24);//РµСЃР»Рё РІРЅРёР· РЅР° 1 !=2 С‚Рѕ РІРЅРёР· РЅР° 2
 				else
 					hitsCount++;
 			if (hitsCount == 11)
 				if (*(firstHittedDeck - 12) != 2)
-					hit = &*(firstHittedDeck - 36);//если вверх на 1 !=2 то вверх на 3
+					hit = &*(firstHittedDeck - 36);//РµСЃР»Рё РІРІРµСЂС… РЅР° 1 !=2 С‚Рѕ РІРІРµСЂС… РЅР° 3
 				else
 					hitsCount++;
 			if (hitsCount == 12)
 				if (*(firstHittedDeck + 12) != 2)
-					hit = &*(firstHittedDeck + 36);//если вниз на 1 !=2 то вниз на 3
+					hit = &*(firstHittedDeck + 36);//РµСЃР»Рё РІРЅРёР· РЅР° 1 !=2 С‚Рѕ РІРЅРёР· РЅР° 3
 				else
 					hitsCount++;
 			moves = &*hit;
 			hitsCount++;
-		} while (!IfPCMoveRepeat(moves));//проверит ходил ли уже так
-		moveAddressPC[indexMovePC] = &*(hit);//запись хода
+		} while (!IfPCMoveRepeat(moves));//РїСЂРѕРІРµСЂРёС‚ С…РѕРґРёР» Р»Рё СѓР¶Рµ С‚Р°Рє
+		moveAddressPC[indexMovePC] = &*(hit);//Р·Р°РїРёСЃСЊ С…РѕРґР°
 		indexMovePC++;
-		if (*hit == 1)//если попал
+		if (*hit == 1)//РµСЃР»Рё РїРѕРїР°Р»
 		{
 			*hit = 3;
-			IfHittedPCShip(hit);  //проверка 
+			IfHittedPCShip(hit);  //РїСЂРѕРІРµСЂРєР° 
 			DrawPlayer();
 			DrawComp();
 			PCMove();
@@ -934,7 +934,7 @@ void BattleField::PCMove()// ход РС
 		DrawPlayer();
 		DrawComp();
 		SetColor(LightRed, Black);
-		cout << "\nКомпьютер походил !" << endl << endl;
+		cout << "\nРљРѕРјРїСЊСЋС‚РµСЂ РїРѕС…РѕРґРёР» !" << endl << endl;
 		SetColor(White, Black);
 		PlayerMove();
 		if (!IfWin())

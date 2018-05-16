@@ -1,8 +1,8 @@
-#define _CRT_SECURE_NO_WARNINGS
+п»ї#define _CRT_SECURE_NO_WARNINGS
 #include <iostream> // cin, cout
-#include <clocale>  // поддержка русского языка
+#include <clocale>  // РїРѕРґРґРµСЂР¶РєР° СЂСѓСЃСЃРєРѕРіРѕ СЏР·С‹РєР°
 #include <conio.h>  // _getch()
-#include <stdlib.h> // поддержка функции очистки экрана system("cls")
+#include <stdlib.h> // РїРѕРґРґРµСЂР¶РєР° С„СѓРЅРєС†РёРё РѕС‡РёСЃС‚РєРё СЌРєСЂР°РЅР° system("cls")
 #include <time.h>
 #include "BattleField.h"
 using namespace std;
@@ -17,6 +17,6 @@ int main()
 	Fields.DrawComp();
 	Fields.SetFloat(_decks , _number);
 	Fields.Move();
-	cout << "\nСпасибо за игру :)";
+	cout << "\nРЎРїР°СЃРёР±Рѕ Р·Р° РёРіСЂСѓ :)";
 	system("pause");
 }

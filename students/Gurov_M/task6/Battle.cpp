@@ -1,4 +1,4 @@
-#include "Battle.h"
+п»ї#include "Battle.h"
 enum ConsoleColor { Black, Blue, Green, Cyan, Red, Magenta, Brown, LightGray, DarkGray, LightBlue, LightGreen, LightCyan, LightRed, LightMagenta, Yellow, White };
 HANDLE hConsole2 = GetStdHandle(STD_OUTPUT_HANDLE);
 void SetColor2(ConsoleColor text, ConsoleColor background)
@@ -38,13 +38,13 @@ int Battle::IfWin()
 	else
 		return 1;
 }
-void Battle::SetAddress(int *deckAddress, int decks, int position)//записывает адреса кор. и вокруг них
+void Battle::SetAddress(int *deckAddress, int decks, int position)//Р·Р°РїРёСЃС‹РІР°РµС‚ Р°РґСЂРµСЃР° РєРѕСЂ. Рё РІРѕРєСЂСѓРі РЅРёС…
 {
-	if (position == 1)//если корабль по вертикали
+	if (position == 1)//РµСЃР»Рё РєРѕСЂР°Р±Р»СЊ РїРѕ РІРµСЂС‚РёРєР°Р»Рё
 	{
 		int *deckAddress1 = &*(deckAddress - 1);
 		int *deckAddress2 = &*(deckAddress + 1);
-		for (int i = 0; i < decks + 2; i++)//обвод корабля
+		for (int i = 0; i < decks + 2; i++)//РѕР±РІРѕРґ РєРѕСЂР°Р±Р»СЏ
 		{
 			playerShipAddress[playerInd] = &*deckAddress;
 			playerInd++;
@@ -57,11 +57,11 @@ void Battle::SetAddress(int *deckAddress, int decks, int position)//записывает а
 			*(deckAddress2 -= 12);
 		}
 	}
-	else if (position == 2)//по горизонтали
+	else if (position == 2)//РїРѕ РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё
 	{
 		int *deckAddress1 = &*(deckAddress + 12);
 		int *deckAddress2 = &*(deckAddress - 12);
-		for (int i = 0; i< decks + 2; i++)//обвод корабля
+		for (int i = 0; i< decks + 2; i++)//РѕР±РІРѕРґ РєРѕСЂР°Р±Р»СЏ
 		{
 			playerShipAddress[playerInd] = &*deckAddress;
 			playerInd++;
@@ -75,10 +75,10 @@ void Battle::SetAddress(int *deckAddress, int decks, int position)//записывает а
 		}
 	}
 }
-int Battle::SearchAddress(int *deckAddress, int decks, int random)//ищет есть ли совпадение адресов , есть = 0 , нет = 1
+int Battle::SearchAddress(int *deckAddress, int decks, int random)//РёС‰РµС‚ РµСЃС‚СЊ Р»Рё СЃРѕРІРїР°РґРµРЅРёРµ Р°РґСЂРµСЃРѕРІ , РµСЃС‚СЊ = 0 , РЅРµС‚ = 1
 {
-	//запись адрессов пользователя
-	for (int a = 1; a <= decks; a++)//проверка каждой палубы 
+	//Р·Р°РїРёСЃСЊ Р°РґСЂРµСЃСЃРѕРІ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+	for (int a = 1; a <= decks; a++)//РїСЂРѕРІРµСЂРєР° РєР°Р¶РґРѕР№ РїР°Р»СѓР±С‹ 
 	{
 		if (random == 1)
 		{
@@ -86,7 +86,7 @@ int Battle::SearchAddress(int *deckAddress, int decks, int random)//ищет есть ли
 			{
 				if (deckAddress == playerShipAddress[i])
 				{
-					errors = 1;// только для ручного ввода
+					errors = 1;// С‚РѕР»СЊРєРѕ РґР»СЏ СЂСѓС‡РЅРѕРіРѕ РІРІРѕРґР°
 					return 0;
 				}
 			}
@@ -98,17 +98,17 @@ int Battle::SearchAddress(int *deckAddress, int decks, int random)//ищет есть ли
 			{
 				if (deckAddress == playerShipAddress[i])
 				{
-					errors = 1;// только для ручного ввода
+					errors = 1;// С‚РѕР»СЊРєРѕ РґР»СЏ СЂСѓС‡РЅРѕРіРѕ РІРІРѕРґР°
 					return 0;
 				}
 			}
 			*(deckAddress += 1);
 		}
 	}
-	SetAddress(deckAddress, decks, random);//нет совпадений записывает адраса
+	SetAddress(deckAddress, decks, random);//РЅРµС‚ СЃРѕРІРїР°РґРµРЅРёР№ Р·Р°РїРёСЃС‹РІР°РµС‚ Р°РґСЂР°СЃР°
 	return 1;
 }
-int Battle::Translation(char symbol)//переводит введ. пользоват. символы
+int Battle::Translation(char symbol)//РїРµСЂРµРІРѕРґРёС‚ РІРІРµРґ. РїРѕР»СЊР·РѕРІР°С‚. СЃРёРјРІРѕР»С‹
 {
 	switch (symbol)
 	{
@@ -158,9 +158,9 @@ int Battle::Translation(char symbol)//переводит введ. пользоват. символы
 		}
 	}
 }
-int Battle::SearchPCAddress(int *deckAdress, int decks, int random)//есть ли уже этот адрес - если нет 1 записать адреса иначе 0 выбр. др.
+int Battle::SearchPCAddress(int *deckAdress, int decks, int random)//РµСЃС‚СЊ Р»Рё СѓР¶Рµ СЌС‚РѕС‚ Р°РґСЂРµСЃ - РµСЃР»Рё РЅРµС‚ 1 Р·Р°РїРёСЃР°С‚СЊ Р°РґСЂРµСЃР° РёРЅР°С‡Рµ 0 РІС‹Р±СЂ. РґСЂ.
 {
-	for (int a = 1; a <= decks; a++)//проверка каждой палубы 
+	for (int a = 1; a <= decks; a++)//РїСЂРѕРІРµСЂРєР° РєР°Р¶РґРѕР№ РїР°Р»СѓР±С‹ 
 	{
 		if (random == 1)
 		{
@@ -184,13 +184,13 @@ int Battle::SearchPCAddress(int *deckAdress, int decks, int random)//есть ли уже
 	SetPCAddress(deckAdress, decks, random);
 	return 1;
 }
-void Battle::SetPCAddress(int *deckAddress, int decks, int random)//запись адрессов
+void Battle::SetPCAddress(int *deckAddress, int decks, int random)//Р·Р°РїРёСЃСЊ Р°РґСЂРµСЃСЃРѕРІ
 {
-	if (random == 1)//если по вертикали
+	if (random == 1)//РµСЃР»Рё РїРѕ РІРµСЂС‚РёРєР°Р»Рё
 	{
 		int *deckAddress1 = &*(deckAddress - 1);
 		int *deckAddress2 = &*(deckAddress + 1);
-		for (int i = 0; i < decks + 2; i++)// адреса корабл. и вокруг него
+		for (int i = 0; i < decks + 2; i++)// Р°РґСЂРµСЃР° РєРѕСЂР°Р±Р». Рё РІРѕРєСЂСѓРі РЅРµРіРѕ
 		{
 			pcShipAddress[pcInd] = &*deckAddress;
 			pcInd++;
@@ -203,7 +203,7 @@ void Battle::SetPCAddress(int *deckAddress, int decks, int random)//запись адрес
 			*(deckAddress2 -= 12);
 		}
 	}
-	else if (random == 2)//горизонт.
+	else if (random == 2)//РіРѕСЂРёР·РѕРЅС‚.
 	{
 		int *deckAddress1 = &*(deckAddress + 12);
 		int *deckAddress2 = &*(deckAddress - 12);
@@ -221,7 +221,7 @@ void Battle::SetPCAddress(int *deckAddress, int decks, int random)//запись адрес
 		}
 	}
 }
-void Battle::EncircleDeadPCShip(int *firstdeck, int position, int decks)//обводит убитые корабли
+void Battle::EncircleDeadPCShip(int *firstdeck, int position, int decks)//РѕР±РІРѕРґРёС‚ СѓР±РёС‚С‹Рµ РєРѕСЂР°Р±Р»Рё
 {
 	if (position == 1)
 	{
@@ -314,9 +314,9 @@ void Battle::EncircleDeadPCShip(int *firstdeck, int position, int decks)//обводи
 		}
 	}
 }
-void Battle::EncircleDeadPlayerShip(int *firstdeck, int position, int decks)//обвод уитого корабля
+void Battle::EncircleDeadPlayerShip(int *firstdeck, int position, int decks)//РѕР±РІРѕРґ СѓРёС‚РѕРіРѕ РєРѕСЂР°Р±Р»СЏ
 {
-	if (position == 1)//вертикаль
+	if (position == 1)//РІРµСЂС‚РёРєР°Р»СЊ
 	{
 		int *deck3 = &*(firstdeck - 12);
 		*deck3 = 2;
@@ -337,7 +337,7 @@ void Battle::EncircleDeadPlayerShip(int *firstdeck, int position, int decks)//об
 			}
 		}
 	}
-	else if (position == 2)//горизонталь
+	else if (position == 2)//РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊ
 	{
 		int *deck3 = &*(firstdeck - 1);
 		*deck3 = 2;
@@ -359,7 +359,7 @@ void Battle::EncircleDeadPlayerShip(int *firstdeck, int position, int decks)//об
 		}
 	}
 }
-int Battle::IfPCMoveRepeat(int *moves)//сравнение ходов на совпадение
+int Battle::IfPCMoveRepeat(int *moves)//СЃСЂР°РІРЅРµРЅРёРµ С…РѕРґРѕРІ РЅР° СЃРѕРІРїР°РґРµРЅРёРµ
 {
 	for (int i = 0; i < 144; i++)
 	{
@@ -370,10 +370,10 @@ int Battle::IfPCMoveRepeat(int *moves)//сравнение ходов на совпадение
 	}
 	return 1;
 }
-void Battle::IfPlayerShipDead(int *firstdeck, int position, int decks)//проверка убит ли кор. если да то вызвать ф-ю обвести obvodUbitKor
+void Battle::IfPlayerShipDead(int *firstdeck, int position, int decks)//РїСЂРѕРІРµСЂРєР° СѓР±РёС‚ Р»Рё РєРѕСЂ. РµСЃР»Рё РґР° С‚Рѕ РІС‹Р·РІР°С‚СЊ С„-СЋ РѕР±РІРµСЃС‚Рё obvodUbitKor
 {
 	int count = 0;
-	int *firstdeckAddress = &*(firstdeck);//адрес первой палубы
+	int *firstdeckAddress = &*(firstdeck);//Р°РґСЂРµСЃ РїРµСЂРІРѕР№ РїР°Р»СѓР±С‹
 
 	if (position == 1)
 	{
@@ -403,7 +403,7 @@ void Battle::IfPlayerShipDead(int *firstdeck, int position, int decks)//проверка
 		}
 	}
 }
-void Battle::IfPCShipDead(int *firstdeck, int position, int decks)//если убит то вызв. ф-ю обвода и сбросить положение ранен 
+void Battle::IfPCShipDead(int *firstdeck, int position, int decks)//РµСЃР»Рё СѓР±РёС‚ С‚Рѕ РІС‹Р·РІ. С„-СЋ РѕР±РІРѕРґР° Рё СЃР±СЂРѕСЃРёС‚СЊ РїРѕР»РѕР¶РµРЅРёРµ СЂР°РЅРµРЅ 
 {
 	int *firstHittedDeck;
 	int count = 0;
@@ -417,11 +417,11 @@ void Battle::IfPCShipDead(int *firstdeck, int position, int decks)//если убит то
 				count++;
 				hit = 1;
 				if (hitsCount == 1)
-					firstHittedDeck = &*(firstdeckAddress);  // присваивает адрес только первого попадения
+					firstHittedDeck = &*(firstdeckAddress);  // РїСЂРёСЃРІР°РёРІР°РµС‚ Р°РґСЂРµСЃ С‚РѕР»СЊРєРѕ РїРµСЂРІРѕРіРѕ РїРѕРїР°РґРµРЅРёСЏ
 			}
-			if (count == decks) {//значит убит
-				EncircleDeadPCShip(firstdeck, position, decks);//    обвод
-				hit = 0;//сброс ранения
+			if (count == decks) {//Р·РЅР°С‡РёС‚ СѓР±РёС‚
+				EncircleDeadPCShip(firstdeck, position, decks);//    РѕР±РІРѕРґ
+				hit = 0;//СЃР±СЂРѕСЃ СЂР°РЅРµРЅРёСЏ
 				hitsCount = 1;
 			}
 			*(firstdeckAddress += j);
@@ -436,7 +436,7 @@ void Battle::IfPCShipDead(int *firstdeck, int position, int decks)//если убит то
 				count++;
 				hit = 1;
 				if (hitsCount == 1)
-					firstHittedDeck = &*(firstdeckAddress);  //заменил   obvodPal на     obvod               
+					firstHittedDeck = &*(firstdeckAddress);  //Р·Р°РјРµРЅРёР»   obvodPal РЅР°     obvod               
 			}
 			if (count == decks) {
 				EncircleDeadPCShip(firstdeck, position, decks);
@@ -447,10 +447,10 @@ void Battle::IfPCShipDead(int *firstdeck, int position, int decks)//если убит то
 		}
 	}
 }
-// после этой функции использовать DrawPlayer и DrawPC
-void Battle::IfHittedPlayerShip(int*hit)//Поиск корабля в который попали
+// РїРѕСЃР»Рµ СЌС‚РѕР№ С„СѓРЅРєС†РёРё РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ DrawPlayer Рё DrawPC
+void Battle::IfHittedPlayerShip(int*hit)//РџРѕРёСЃРє РєРѕСЂР°Р±Р»СЏ РІ РєРѕС‚РѕСЂС‹Р№ РїРѕРїР°Р»Рё
 {
-	if ((*(hit + 1) != 1) && (*(hit - 1) != 1) && (*(hit + 12) != 1) && (*(hit - 12) != 1) &&//для однопалубных обвод в случае попадания
+	if ((*(hit + 1) != 1) && (*(hit - 1) != 1) && (*(hit + 12) != 1) && (*(hit - 12) != 1) &&//РґР»СЏ РѕРґРЅРѕРїР°Р»СѓР±РЅС‹С… РѕР±РІРѕРґ РІ СЃР»СѓС‡Р°Рµ РїРѕРїР°РґР°РЅРёСЏ
 		(*(hit + 1) != 3) && (*(hit - 1) != 3) && (*(hit + 12) != 3) && (*(hit - 12) != 3))
 	{
 		*(hit + 11) = 2;
@@ -463,10 +463,10 @@ void Battle::IfHittedPlayerShip(int*hit)//Поиск корабля в который попали
 		*(hit + 12) = 2;
 		*(hit - 12) = 2;
 	}
-	for (int i = 0, j = 12; i<4; i++)//проверка в какой корабль попали
+	for (int i = 0, j = 12; i<4; i++)//РїСЂРѕРІРµСЂРєР° РІ РєР°РєРѕР№ РєРѕСЂР°Р±Р»СЊ РїРѕРїР°Р»Рё
 	{
-		if (&*hit == &*(FourPlay.firstDeckAdress + i) || &*hit == &*(FourPlay.firstDeckAdress + j))//если есть такой адрес
-			IfPlayerShipDead(FourPlay.firstDeckAdress, FourPlay.position, FourPlay.decks);//проверить убили или ранели
+		if (&*hit == &*(FourPlay.firstDeckAdress + i) || &*hit == &*(FourPlay.firstDeckAdress + j))//РµСЃР»Рё РµСЃС‚СЊ С‚Р°РєРѕР№ Р°РґСЂРµСЃ
+			IfPlayerShipDead(FourPlay.firstDeckAdress, FourPlay.position, FourPlay.decks);//РїСЂРѕРІРµСЂРёС‚СЊ СѓР±РёР»Рё РёР»Рё СЂР°РЅРµР»Рё
 		j += 12;
 	}
 	for (int i = 0, j = 12; i<3; i++)
@@ -500,8 +500,8 @@ void Battle::IfHittedPlayerShip(int*hit)//Поиск корабля в который попали
 		j += 12;
 	}
 }
-// после этой функции использовать DrawPlayer и DrawPC
-void Battle::IfHittedPCShip(int*hit)//Поиск корабля в который попали
+// РїРѕСЃР»Рµ СЌС‚РѕР№ С„СѓРЅРєС†РёРё РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ DrawPlayer Рё DrawPC
+void Battle::IfHittedPCShip(int*hit)//РџРѕРёСЃРє РєРѕСЂР°Р±Р»СЏ РІ РєРѕС‚РѕСЂС‹Р№ РїРѕРїР°Р»Рё
 {
 	if ((*(hit + 1) != 1) && (*(hit - 1) != 1) && (*(hit + 12) != 1) && (*(hit - 12) != 1) &&
 		(*(hit + 1) != 3) && (*(hit - 1) != 3) && (*(hit + 12) != 3) && (*(hit - 12) != 3))
