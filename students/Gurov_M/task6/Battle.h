@@ -24,6 +24,7 @@ protected:
 	int pcInd = 0; // индекс адресов кор. компьютера
 	int indexMovePC = 0; // индекс ходов компьютера
 	int decks = 4;
+	int *firstHittedDeck;
 	int hit = 0;
 	int hitsCount = 0;
 	int number = 1;

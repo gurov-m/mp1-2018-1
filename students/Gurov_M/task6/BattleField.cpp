@@ -800,9 +800,9 @@ void BattleField::PCMove()// ход РС
 		//system("pause");
 		return;
 	}
+	hit = 0;
 	int *moves;
 	int rows = 1, cols = 1, step = 1;//для того чтобы РС стрелял через клетку
-	int *firstHittedDeck = 0;//адрес первой раненой палубы
 	if (!hit)//если не ранил
 	{
 		for (; step <= 2; )//step1 *_  step2 _*
