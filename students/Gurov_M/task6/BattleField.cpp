@@ -707,7 +707,7 @@ void BattleField::Move()
 	{
 		do
 		{
-			at1:SetColor(LightGreen, Black);
+			at1: SetColor(LightGreen, Black);
 			cout << "Кто ходит первым ? \n";
 			SetColor(LightGreen, Black);
 			cout << "Компьютер(1)  Пользователь(2) =  \n";
@@ -777,7 +777,7 @@ void BattleField::PlayerMove()//хода польз.
 	else if (compField[row][col] != 3 && compField[row][col] != 1)//если мимо
 	{		
 		compField[row][col] = 2;      //присв. 2
-		hit = 0;
+		
 		DrawPlayer();
 		DrawComp();
 		PCMove();
@@ -789,6 +789,7 @@ void BattleField::PlayerMove()//хода польз.
 }
 void BattleField::PCMove()// ход РС
 {
+	
 	in:if (!IfWin())//проверка на победителя
 	{
 		SetColor(White, Black);
@@ -833,6 +834,7 @@ void BattleField::PCMove()// ход РС
 		else
 		{
 			playerField[rows][cols] = 2; //иначе присв. 2
+			hit = 0;
 		}
 		DrawPlayer();
 		DrawComp();
@@ -847,12 +849,14 @@ void BattleField::PCMove()// ход РС
 	}
 	if (hit)//если ранен
 	{
-		int *hits = &*(firstHittedDeck);
+		 int *hits = &*(firstHittedDeck);
 		do {
-			if (hitsCount == 1)
+		in2:	if (hitsCount == 1)
 				hits = &*(firstHittedDeck + 1);//вправо на 1
+				
 			if (hitsCount == 2)
 				hits = &*(firstHittedDeck - 1);//влево на 1
+			
 			if (hitsCount == 3)
 				if (*(firstHittedDeck + 1) != 2)
 					hits = &*(firstHittedDeck + 2);//если вправо на 1 !=2 вправо на 2
@@ -899,6 +903,8 @@ void BattleField::PCMove()// ход РС
 					hitsCount++;
 			moves = &*hits; 
 			hitsCount++;
+			if (hitsCount > 39)
+				PCMove();
 		} while (!IfPCMoveRepeat(moves));//проверит ходил ли уже так
 		moveAddressPC[indexMovePC] = &*(hits);//запись хода
 		indexMovePC++;		
@@ -907,13 +913,13 @@ void BattleField::PCMove()// ход РС
 			*hits = 3;
 			IfHittedPlayerShip(hits);  //проверка 
 			DrawPlayer();
-			DrawComp();			
+			DrawComp();	
 			PCMove();
 			if (!IfWin())
 			{
 				return;
 			}
-			goto in;
+			
 		}
 		else
 		{
