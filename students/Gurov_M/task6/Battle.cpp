@@ -223,7 +223,52 @@ void Battle::SetPCAddress(int *deckAddress, int decks, int random)//запись
 }
 void Battle::EncircleDeadPCShip(int *firstdeck, int position, int decks)//обводит убитые корабли
 {
-	if (position == 1)
+	if (position == 1)//вертикаль
+	{
+		int *deck3 = &*(firstdeck - 12);
+		*deck3 = 2;
+		int *deck1 = &*(deck3 - 1);
+		int *deck2 = &*(deck3 + 1);
+		for (int i = 0; i < decks + 2; i++)
+		{
+			if (*deck1 != 3)
+				*deck1 = 2;
+			*(deck1 += 12);
+			if (*deck2 != 3)
+				*deck2 = 2;
+			*(deck2 += 12);
+			if (i == decks + 1)
+			{
+				*(deck2 -= 13);
+				*deck2 = 2;
+			}
+		}
+	}
+	else if (position == 2)//горизонталь
+	{
+		int *deck3 = &*(firstdeck - 1);
+		*deck3 = 2;
+		int *deck1 = &*(deck3 - 12);
+		int *deck2 = &*(deck3 + 12);
+		for (int i = 0; i < decks + 2; i++)
+		{
+			if (*deck1 != 3)
+				*deck1 = 2;
+			*(deck1 += 1);
+			if (*deck2 != 3)
+				*deck2 = 2;
+			*(deck2 += 1);
+			if (i == decks + 1)
+			{
+				*(deck1 += 11);
+				*deck1 = 2;
+			}
+		}
+	}
+
+
+
+	/*if (position == 1)
 	{
 		int *deck3 = &*(firstdeck - 12);
 		if (*deck3 != 2)
@@ -312,52 +357,146 @@ void Battle::EncircleDeadPCShip(int *firstdeck, int position, int decks)//обв
 				*deck1 = 2;
 			}
 		}
-	}
+	}*/
 }
 void Battle::EncircleDeadPlayerShip(int *firstdeck, int position, int decks)//обвод уитого корабля
 {
-	if (position == 1)//вертикаль
+	if (position == 1)
 	{
 		int *deck3 = &*(firstdeck - 12);
+		if (*deck3 != 2)
+		{
+			moveAddressPC[indexMovePC] = &*(deck3);
+			indexMovePC++;
+		}
 		*deck3 = 2;
 		int *deck1 = &*(deck3 - 1);
 		int *deck2 = &*(deck3 + 1);
 		for (int i = 0; i < decks + 2; i++)
 		{
 			if (*deck1 != 3)
+			{
+				if (*deck1 != 2)
+				{
+					moveAddressPC[indexMovePC] = &*(deck1);
+					indexMovePC++;
+				}
 				*deck1 = 2;
+			}
 			*(deck1 += 12);
 			if (*deck2 != 3)
+			{
+				if (*deck2 != 2)
+				{
+					moveAddressPC[indexMovePC] = &*(deck2);
+					indexMovePC++;
+				}
 				*deck2 = 2;
+			}
 			*(deck2 += 12);
 			if (i == decks + 1)
 			{
 				*(deck2 -= 13);
+				if (*deck2 != 2)
+				{
+					moveAddressPC[indexMovePC] = &*(deck2);
+					indexMovePC++;
+				}
 				*deck2 = 2;
 			}
 		}
 	}
-	else if (position == 2)//горизонталь
+	else if (position == 2)
 	{
 		int *deck3 = &*(firstdeck - 1);
+		if (*deck3 != 2)
+		{
+			moveAddressPC[indexMovePC] = &*(deck3);
+			indexMovePC++;
+		}
 		*deck3 = 2;
 		int *deck1 = &*(deck3 - 12);
 		int *deck2 = &*(deck3 + 12);
 		for (int i = 0; i < decks + 2; i++)
 		{
 			if (*deck1 != 3)
+			{
+				if (*deck1 != 2)
+				{
+					moveAddressPC[indexMovePC] = &*(deck1);
+					indexMovePC++;
+				}
 				*deck1 = 2;
+			}
 			*(deck1 += 1);
 			if (*deck2 != 3)
+			{
+				if (*deck2 != 2)
+				{
+					moveAddressPC[indexMovePC] = &*(deck2);
+					indexMovePC++;
+				}
 				*deck2 = 2;
+			}
 			*(deck2 += 1);
 			if (i == decks + 1)
 			{
 				*(deck1 += 11);
+				if (*deck1 != 2)
+				{
+					moveAddressPC[indexMovePC] = &*(deck1);
+					indexMovePC++;
+				}
 				*deck1 = 2;
 			}
 		}
 	}
+	hit = 0;
+
+
+		//if (position == 1)//вертикаль
+		//{
+		//	int *deck3 = &*(firstdeck - 12);
+		//	*deck3 = 2;
+		//	int *deck1 = &*(deck3 - 1);
+		//	int *deck2 = &*(deck3 + 1);
+		//	for (int i = 0; i < decks + 2; i++)
+		//	{
+		//		if (*deck1 != 3)
+		//			*deck1 = 2;
+		//		*(deck1 += 12);
+		//		if (*deck2 != 3)
+		//			*deck2 = 2;
+		//		*(deck2 += 12);
+		//		if (i == decks + 1)
+		//		{
+		//			*(deck2 -= 13);
+		//			*deck2 = 2;
+		//		}
+		//	}
+		//}
+		//else if (position == 2)//горизонталь
+		//{
+		//	int *deck3 = &*(firstdeck - 1);
+		//	*deck3 = 2;
+		//	int *deck1 = &*(deck3 - 12);
+		//	int *deck2 = &*(deck3 + 12);
+		//	for (int i = 0; i < decks + 2; i++)
+		//	{
+		//		if (*deck1 != 3)
+		//			*deck1 = 2;
+		//		*(deck1 += 1);
+		//		if (*deck2 != 3)
+		//			*deck2 = 2;
+		//		*(deck2 += 1);
+		//		if (i == decks + 1)
+		//		{
+		//			*(deck1 += 11);
+		//			*deck1 = 2;
+		//		}
+		//	}
+		//}
+	
 }
 int Battle::IfPCMoveRepeat(int *moves)//сравнение ходов на совпадение
 {
@@ -373,19 +512,20 @@ int Battle::IfPCMoveRepeat(int *moves)//сравнение ходов на со�
 void Battle::IfPlayerShipDead(int *firstdeck, int position, int decks)//проверка убит ли кор. если да то вызвать ф-ю обвести obvodUbitKor
 {
 	int count = 0;
-	int *firstdeckAddress = &*(firstdeck);//адрес первой палубы
+	int *firstdeckAddresss = &*(firstdeck);//адрес первой палубы
 
 	if (position == 1)
 	{
 		for (int i = 0, j = 12; i < decks; i++)
 		{
-			if (*(firstdeckAddress) == 3)
+			if (*(firstdeckAddresss) == 3)
 			{
-				*(firstdeckAddress += j);
+				*(firstdeckAddresss += j);
 				count++;
 			}
 			if (count == decks)
 				EncircleDeadPlayerShip(firstdeck, position, decks);
+				hitsCount = 0;
 		}
 	}
 
@@ -393,13 +533,14 @@ void Battle::IfPlayerShipDead(int *firstdeck, int position, int decks)//пров
 	{
 		for (int i = 0, j = 1; i < decks; i++)
 		{
-			if (*(firstdeckAddress) == 3)
+			if (*(firstdeckAddresss) == 3)
 			{
-				*(firstdeckAddress += j);
+				*(firstdeckAddresss += j);
 				count++;
 			}
 			if (count == decks)
 				EncircleDeadPlayerShip(firstdeck, position, decks);
+				hitsCount = 0;
 		}
 	}
 }

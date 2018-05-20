@@ -26,6 +26,7 @@ protected:
 	int decks = 4;
 	int *firstHittedDeck;
 	int hit = 0;
+	int *moves;
 	int hitsCount = 0;
 	int number = 1;
 	int flag = 0;

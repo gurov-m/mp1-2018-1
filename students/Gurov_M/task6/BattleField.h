@@ -15,6 +15,7 @@ class BattleField : Battle
 {
 private:
 public:
+	void PCNEW();
 	void DrawPlayer();
 	void DrawComp();
 	void Move();

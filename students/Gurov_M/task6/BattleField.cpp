@@ -788,7 +788,7 @@ void BattleField::PlayerMove()//хода польз.
 }
 void BattleField::PCMove()// ход РС
 {
-	if (!IfWin())//проверка на победителя
+	in:if (!IfWin())//проверка на победителя
 	{
 		SetColor(White, Black);
 		cout << "\n\t\t";
@@ -800,136 +800,94 @@ void BattleField::PCMove()// ход РС
 		//system("pause");
 		return;
 	}
-	hit = 0;
-	int *moves;
-	int rows = 1, cols = 1, step = 1;//для того чтобы РС стрелял через клетку
+	/*int *moves;*/
 	if (!hit)//если не ранил
-	{
-		for (; step <= 2; )//step1 *_  step2 _*
+	{	
+		
+		hit = 0;
+		//for (; step <= 2; )//step1 *_  step2 _*
+		//{
+		//	for (; rows < 11; rows++, (step == 1) ? ((rows % 2 == 0) ? cols = 2 : cols = 1) : ((rows % 2 == 0) ? cols = 1 : cols = 2))//как ходить *_ или _*
+		//	{
+		//		for (; cols < 11; )
+		//		{
+		//			moves = &playerField[rows][cols];
+		//			if (!IfPCMoveRepeat(moves))//чтобы не ходить в то-же место
+		//			{
+		//				cols += 2;
+		//				continue;
+		//			}
+		//			moveAddressPC[indexMovePC] = &playerField[rows][cols];
+		//			indexMovePC++;
+					//if (playerField[rows][cols] == 1)//если попал
+					//{
+					//	playerField[rows][cols] = 3;//присвоить 3
+					//	int *hit = &playerField[rows][cols];
+					//	firstHittedDeck = &playerField[rows][cols];
+					//	hitsCount++;
+					//	IfHittedPlayerShip(hit);  //проверка на ранение  
+					//	DrawPlayer();
+					//	DrawComp();
+					//	cols += 2;
+					//	PCMove();
+					//	if (!IfWin())
+					//	{
+					//		return;
+					//	}
+					//}
+					//else
+					//{
+					//	playerField[rows][cols] = 2; //иначе присв. 2
+					//	cols += 2;
+					//}
+					//DrawPlayer();
+					//DrawComp();
+					//SetColor(LightRed, Black);
+					//cout << "\nКомпьютер походил !" << endl << endl;
+					//SetColor(White, Black);
+					//PlayerMove();
+					//if (!IfWin())
+					//{
+					//	//system("pause");
+					//	return;
+					//}
+		//		}
+		//	}
+		//	if (rows == 11 && cols == 1)
+		//		rows = 1;
+		//	cols = 2;
+		//	step++;
+		//}
+		int rows = 1 + rand() % 10;
+		int cols = 1 + rand() % 10;
+		moves = &playerField[rows][cols];
+		do
 		{
-			for (; rows < 11; rows++, (step == 1) ? ((rows % 2 == 0) ? cols = 2 : cols = 1) : ((rows % 2 == 0) ? cols = 1 : cols = 2))//как ходить *_ или _*
-			{
-				for (; cols < 11; )
-				{
-					moves = &playerField[rows][cols];
-					if (!IfPCMoveRepeat(moves))//чтобы не ходить в то-же место
-					{
-						cols += 2;
-						continue;
-					}
-					moveAddressPC[indexMovePC] = &playerField[rows][cols];
-					indexMovePC++;
-					if (playerField[rows][cols] == 1)//если попал
-					{
-						playerField[rows][cols] = 3;//присвоить 3
-						int *hit = &playerField[rows][cols];
-						IfHittedPlayerShip(hit);  //проверка на ранение  
-						DrawPlayer();
-						DrawComp();
-						cols += 2;
-						PCMove();
-						if (!IfWin())
-						{
-							return;
-						}
-					}
-					else
-					{
-						playerField[rows][cols] = 2; //иначе присв. 2
-						cols += 2;
-					}
-					DrawPlayer();
-					DrawComp();
-					SetColor(LightRed, Black);
-					cout << "\nКомпьютер походил !" << endl << endl;
-					SetColor(White, Black);
-					PlayerMove();
-					if (!IfWin())
-					{
-						//system("pause");
-						return;
-					}
-				}
-			}
-			if (rows == 11 && cols == 1)
-				rows = 1;
-			cols = 2;
-			step++;
-		}
-	}
-	if (hit)//если ранен
-	{
-		int *hit = &*(firstHittedDeck);
-		do {
-			if (hitsCount == 1)
-				hit = &*(firstHittedDeck + 1);//вправо на 1
-			if (hitsCount == 2)
-				hit = &*(firstHittedDeck - 1);//влево на 1
-			if (hitsCount == 3)
-				if (*(firstHittedDeck + 1) != 2)
-					hit = &*(firstHittedDeck + 2);//если вправо на 1 !=2 вправо на 2
-				else
-					hitsCount++;
-			if (hitsCount == 4)
-				if (*(firstHittedDeck - 1) != 2)
-					hit = &*(firstHittedDeck - 2);//если влево на 1 !=2 влево на 2
-				else
-					hitsCount++;
-			if (hitsCount == 5)
-				if (*(firstHittedDeck + 1) != 2)
-					hit = &*(firstHittedDeck + 3);//если вправо на 1 !=2 вправо на 3
-				else
-					hitsCount++;
-			if (hitsCount == 6)
-				if (*(firstHittedDeck - 1) != 2)
-					hit = &*(firstHittedDeck - 3);//если влево на 1 !=2 влево на 3
-				else
-					hitsCount++;
-			if (hitsCount == 7)
-				hit = &*(firstHittedDeck + 12);//значит корабль стоит вертикально - в низ на 1
-			if (hitsCount == 8)
-				hit = &*(firstHittedDeck - 12);//вверх на 1
-			if (hitsCount == 9)
-				if (*(firstHittedDeck - 12) != 2)
-					hit = &*(firstHittedDeck - 24);//если вверх на 1 !=2 то вверх на 2
-				else
-					hitsCount++;
-			if (hitsCount == 10)
-				if (*(firstHittedDeck + 12) != 2)
-					hit = &*(firstHittedDeck + 24);//если вниз на 1 !=2 то вниз на 2
-				else
-					hitsCount++;
-			if (hitsCount == 11)
-				if (*(firstHittedDeck - 12) != 2)
-					hit = &*(firstHittedDeck - 36);//если вверх на 1 !=2 то вверх на 3
-				else
-					hitsCount++;
-			if (hitsCount == 12)
-				if (*(firstHittedDeck + 12) != 2)
-					hit = &*(firstHittedDeck + 36);//если вниз на 1 !=2 то вниз на 3
-				else
-					hitsCount++;
-			moves = &*hit;
-			hitsCount++;
-		} while (!IfPCMoveRepeat(moves));//проверит ходил ли уже так
-		moveAddressPC[indexMovePC] = &*(hit);//запись хода
+			rows = 1 + rand() % 10;
+			cols = 1 + rand() % 10;
+			moves = &playerField[rows][cols];			
+		} while (!IfPCMoveRepeat(moves));
+		moveAddressPC[indexMovePC] = &playerField[rows][cols];
 		indexMovePC++;
-		if (*hit == 1)//если попал
+		if (playerField[rows][cols] == 1)//если попал
 		{
-			*hit = 3;
-			IfHittedPCShip(hit);  //проверка 
+			hit = 1;
+			playerField[rows][cols] = 3;//присвоить 3
+			int *hits = &playerField[rows][cols];
+			firstHittedDeck = &playerField[rows][cols];
+			hitsCount++;
+			IfHittedPlayerShip(hits);  //проверка на ранение  
 			DrawPlayer();
 			DrawComp();
 			PCMove();
 			if (!IfWin())
 			{
-				//system("pause");
 				return;
 			}
 		}
 		else
 		{
-			*hit = 2;
+			playerField[rows][cols] = 2; //иначе присв. 2
 		}
 		DrawPlayer();
 		DrawComp();
@@ -939,8 +897,99 @@ void BattleField::PCMove()// ход РС
 		PlayerMove();
 		if (!IfWin())
 		{
-			//system("pause");
 			return;
 		}
+	}
+	if (hit)//если ранен
+	{
+		int *hits = &*(firstHittedDeck);
+		do {
+			if (hitsCount == 1)
+				hits = &*(firstHittedDeck + 1);//вправо на 1
+			if (hitsCount == 2)
+				hits = &*(firstHittedDeck - 1);//влево на 1
+			if (hitsCount == 3)
+				if (*(firstHittedDeck + 1) != 2)
+					hits = &*(firstHittedDeck + 2);//если вправо на 1 !=2 вправо на 2
+				else
+					hitsCount++;
+			if (hitsCount == 4)
+				if (*(firstHittedDeck - 1) != 2)
+					hits = &*(firstHittedDeck - 2);//если влево на 1 !=2 влево на 2
+				else
+					hitsCount++;
+			if (hitsCount == 5)
+				if (*(firstHittedDeck + 1) != 2)
+					hits = &*(firstHittedDeck + 3);//если вправо на 1 !=2 вправо на 3
+				else
+					hitsCount++;
+			if (hitsCount == 6)
+				if (*(firstHittedDeck - 1) != 2)
+					hits = &*(firstHittedDeck - 3);//если влево на 1 !=2 влево на 3
+				else
+					hitsCount++;
+			if (hitsCount == 7)
+				hits = &*(firstHittedDeck + 12);//значит корабль стоит вертикально - в низ на 1
+			if (hitsCount == 8)
+				hits = &*(firstHittedDeck - 12);//вверх на 1
+			if (hitsCount == 9)
+				if (*(firstHittedDeck - 12) != 2)
+					hits = &*(firstHittedDeck - 24);//если вверх на 1 !=2 то вверх на 2
+				else
+					hitsCount++;
+			if (hitsCount == 10)
+				if (*(firstHittedDeck + 12) != 2)
+					hits = &*(firstHittedDeck + 24);//если вниз на 1 !=2 то вниз на 2
+				else
+					hitsCount++;
+			if (hitsCount == 11)
+				if (*(firstHittedDeck - 12) != 2)
+					hits = &*(firstHittedDeck - 36);//если вверх на 1 !=2 то вверх на 3
+				else
+					hitsCount++;
+			if (hitsCount == 12)
+				if (*(firstHittedDeck + 12) != 2)
+					hits = &*(firstHittedDeck + 36);//если вниз на 1 !=2 то вниз на 3
+				else
+					hitsCount++;
+			moves = &*hits;
+			//IfHittedPCShip(hits);  //проверка 
+			hitsCount++;
+		} while (!IfPCMoveRepeat(moves));//проверит ходил ли уже так
+		moveAddressPC[indexMovePC] = &*(hits);//запись хода
+		indexMovePC++;
+		
+		if (*hits == 1)//если попал
+		{
+			*hits = 3;
+			IfHittedPlayerShip(hits);  //проверка 
+			DrawPlayer();
+			DrawComp();
+			
+			PCMove();
+			if (!IfWin())
+			{
+				//system("pause");
+				return;
+			}
+			goto in;
+		}
+		else
+		{
+			*hits = 2;
+		}
+		
+		DrawPlayer();
+		DrawComp();
+		SetColor(LightRed, Black);
+		cout << "\nКомпьютер походил !" << endl << endl;
+		SetColor(White, Black);
+		/*PCMove();*/
+		PlayerMove();
+		if (!IfWin())
+		{
+			return;
+		}
+		
 	}
 }
