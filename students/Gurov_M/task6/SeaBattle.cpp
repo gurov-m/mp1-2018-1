@@ -1,8 +1,8 @@
 ﻿#define _CRT_SECURE_NO_WARNINGS
-#include <iostream> // cin, cout
-#include <clocale>  // поддержка русского языка
-#include <conio.h>  // _getch()
-#include <stdlib.h> // поддержка функции очистки экрана system("cls")
+#include <iostream>
+#include <clocale>  
+#include <conio.h>  
+#include <stdlib.h> 
 #include <time.h>
 #include "BattleField.h"
 using namespace std;
@@ -17,7 +17,7 @@ int main()
 	Fields.DrawComp();
 	Fields.SetFloat(_decks , _number);
 	Fields.Move();
-	cout << "\nСпасибо за игру :)";
+	cout << "\nСпасибо за игру :)"<< endl;
 	system("pause");
 }
 

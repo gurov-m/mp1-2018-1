@@ -18,7 +18,6 @@ int Battle::IfWin()
 				countPC++;
 		}
 	}
-
 	for (int i = 1; i<Rows - 1; i++)
 	{
 		for (int j = 1; j<Cols - 1; j++)
@@ -264,100 +263,7 @@ void Battle::EncircleDeadPCShip(int *firstdeck, int position, int decks)//обв
 				*deck1 = 2;
 			}
 		}
-	}
-
-
-
-	/*if (position == 1)
-	{
-		int *deck3 = &*(firstdeck - 12);
-		if (*deck3 != 2)
-		{
-			moveAddressPC[indexMovePC] = &*(deck3);
-			indexMovePC++;
-		}
-		*deck3 = 2;
-		int *deck1 = &*(deck3 - 1);
-		int *deck2 = &*(deck3 + 1);
-		for (int i = 0; i < decks + 2; i++)
-		{
-			if (*deck1 != 3) 
-			{
-				if (*deck1 != 2) 
-				{
-					moveAddressPC[indexMovePC] = &*(deck1);
-					indexMovePC++;
-				}
-				*deck1 = 2;
-			}
-			*(deck1 += 12);
-			if (*deck2 != 3)
-			{
-				if (*deck2 != 2) 
-				{
-					moveAddressPC[indexMovePC] = &*(deck2);
-					indexMovePC++;
-				}
-				*deck2 = 2;
-			}
-			*(deck2 += 12);
-			if (i == decks + 1)
-			{
-				*(deck2 -= 13);
-				if (*deck2 != 2)
-				{
-					moveAddressPC[indexMovePC] = &*(deck2);
-					indexMovePC++;
-				}
-				*deck2 = 2;
-			}
-		}
-	}
-	else if (position == 2)
-	{
-		int *deck3 = &*(firstdeck - 1);
-		if (*deck3 != 2) 
-		{
-			moveAddressPC[indexMovePC] = &*(deck3);
-			indexMovePC++;
-		}
-		*deck3 = 2;
-		int *deck1 = &*(deck3 - 12);
-		int *deck2 = &*(deck3 + 12);
-		for (int i = 0; i < decks + 2; i++)
-		{
-			if (*deck1 != 3) 
-			{
-				if (*deck1 != 2)
-				{
-					moveAddressPC[indexMovePC] = &*(deck1);
-					indexMovePC++;
-				}
-				*deck1 = 2;
-			}
-			*(deck1 += 1);
-			if (*deck2 != 3) 
-			{
-				if (*deck2 != 2) 
-				{
-					moveAddressPC[indexMovePC] = &*(deck2);
-					indexMovePC++;
-				}
-				*deck2 = 2;
-			}
-			*(deck2 += 1);
-			if (i == decks + 1)
-			{
-				*(deck1 += 11);
-				if (*deck1 != 2) 
-				{
-					moveAddressPC[indexMovePC] = &*(deck1);
-					indexMovePC++;
-				}
-				*deck1 = 2;
-			}
-		}
-	}*/
+	}	
 }
 void Battle::EncircleDeadPlayerShip(int *firstdeck, int position, int decks)//обвод уитого корабля
 {
@@ -451,52 +357,7 @@ void Battle::EncircleDeadPlayerShip(int *firstdeck, int position, int decks)//о
 			}
 		}
 	}
-	hit = 0;
-
-
-		//if (position == 1)//вертикаль
-		//{
-		//	int *deck3 = &*(firstdeck - 12);
-		//	*deck3 = 2;
-		//	int *deck1 = &*(deck3 - 1);
-		//	int *deck2 = &*(deck3 + 1);
-		//	for (int i = 0; i < decks + 2; i++)
-		//	{
-		//		if (*deck1 != 3)
-		//			*deck1 = 2;
-		//		*(deck1 += 12);
-		//		if (*deck2 != 3)
-		//			*deck2 = 2;
-		//		*(deck2 += 12);
-		//		if (i == decks + 1)
-		//		{
-		//			*(deck2 -= 13);
-		//			*deck2 = 2;
-		//		}
-		//	}
-		//}
-		//else if (position == 2)//горизонталь
-		//{
-		//	int *deck3 = &*(firstdeck - 1);
-		//	*deck3 = 2;
-		//	int *deck1 = &*(deck3 - 12);
-		//	int *deck2 = &*(deck3 + 12);
-		//	for (int i = 0; i < decks + 2; i++)
-		//	{
-		//		if (*deck1 != 3)
-		//			*deck1 = 2;
-		//		*(deck1 += 1);
-		//		if (*deck2 != 3)
-		//			*deck2 = 2;
-		//		*(deck2 += 1);
-		//		if (i == decks + 1)
-		//		{
-		//			*(deck1 += 11);
-		//			*deck1 = 2;
-		//		}
-		//	}
-		//}
-	
+	hit = 0;	
 }
 int Battle::IfPCMoveRepeat(int *moves)//сравнение ходов на совпадение
 {
@@ -513,7 +374,6 @@ void Battle::IfPlayerShipDead(int *firstdeck, int position, int decks)//пров
 {
 	int count = 0;
 	int *firstdeckAddresss = &*(firstdeck);//адрес первой палубы
-
 	if (position == 1)
 	{
 		for (int i = 0, j = 12; i < decks; i++)
@@ -528,7 +388,6 @@ void Battle::IfPlayerShipDead(int *firstdeck, int position, int decks)//пров
 				hitsCount = 0;
 		}
 	}
-
 	else if (position == 2)
 	{
 		for (int i = 0, j = 1; i < decks; i++)
@@ -598,7 +457,6 @@ void Battle::IfHittedPlayerShip(int*hit)//Поиск корабля в кото�
 		*(hit - 11) = 2;
 		*(hit + 13) = 2;
 		*(hit - 13) = 2;
-
 		*(hit + 1) = 2;
 		*(hit - 1) = 2;
 		*(hit + 12) = 2;

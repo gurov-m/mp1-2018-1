@@ -33,7 +33,7 @@ protected:
 	int errors = 0;
 	int firstMove = 0;
 	int countPlayer = 0;
-	int countPC = 0;
+	int countPC = 0; 
 	const int Rows = 12, Cols = 12;
 	int *playerShipAddress[144]; // адреса кораблей пользователя
 	int *pcShipAddress[144]; // адреса кораблей компьютера
