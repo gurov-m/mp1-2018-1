@@ -777,7 +777,7 @@ void BattleField::PlayerMove()//хода польз.
 	else if (compField[row][col] != 3 && compField[row][col] != 1)//если мимо
 	{		
 		compField[row][col] = 2;      //присв. 2
-		
+		hit = 0;
 		DrawPlayer();
 		DrawComp();
 		PCMove();
@@ -803,7 +803,6 @@ void BattleField::PCMove()// ход РС
 	}
 	if (!hit)//если не ранил
 	{			
-		hit = 0;		
 		int rows = 1 + rand() % 10;
 		int cols = 1 + rand() % 10;
 		moves = &playerField[rows][cols];
@@ -849,9 +848,10 @@ void BattleField::PCMove()// ход РС
 	}
 	if (hit)//если ранен
 	{
-		 int *hits = &*(firstHittedDeck);
+		int *hits = &*(firstHittedDeck);
 		do {
-		in2:	if (hitsCount == 1)
+		in2:
+			if (hitsCount == 1)
 				hits = &*(firstHittedDeck + 1);//вправо на 1
 				
 			if (hitsCount == 2)
@@ -903,8 +903,8 @@ void BattleField::PCMove()// ход РС
 					hitsCount++;
 			moves = &*hits; 
 			hitsCount++;
-			if (hitsCount > 39)
-				PCMove();
+			if (hitsCount > 12)
+				goto in3;
 		} while (!IfPCMoveRepeat(moves));//проверит ходил ли уже так
 		moveAddressPC[indexMovePC] = &*(hits);//запись хода
 		indexMovePC++;		
@@ -914,22 +914,24 @@ void BattleField::PCMove()// ход РС
 			IfHittedPlayerShip(hits);  //проверка 
 			DrawPlayer();
 			DrawComp();	
-			PCMove();
+			PCMove();			
 			if (!IfWin())
 			{
 				return;
-			}
-			
+			}			
 		}
 		else
-		{
+		{			
 			*hits = 2;
-		}		
+			hit = 0;
+			goto in2;
+		}
+		in3:
 		DrawPlayer();
 		DrawComp();
 		SetColor(LightRed, Black);
 		cout << "\nКомпьютер походил !" << endl << endl;
-		SetColor(White, Black);
+		SetColor(White, Black);hit = 1;
 		PlayerMove();
 		if (!IfWin())
 		{

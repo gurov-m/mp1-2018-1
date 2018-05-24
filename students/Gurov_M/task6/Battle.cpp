@@ -8,6 +8,7 @@ void SetColor2(ConsoleColor text, ConsoleColor background)
 }
 int Battle::IfWin()
 {
+	hitsCount = 0;
 	countPlayer = 0; 
 	countPC = 0;
 	for (int i = 1; i< Rows - 1; i++)
@@ -402,6 +403,8 @@ void Battle::IfPlayerShipDead(int *firstdeck, int position, int decks)//пров
 				hitsCount = 0;
 		}
 	}
+	HIT = 0;
+	HIT1 = 1;
 }
 void Battle::IfPCShipDead(int *firstdeck, int position, int decks)//если убит то вызв. ф-ю обвода и сбросить положение ранен 
 {
